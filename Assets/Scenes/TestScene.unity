@@ -343,11 +343,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lanes:
-  - HitObjects: []
+  - HitObjects:
+    - Type: 0
+      Timepoint: 1
+      StartingPoint: 0
+      SliderStarted: 0
     Pointer: 0
-  - HitObjects: []
+  - HitObjects:
+    - Type: 0
+      Timepoint: 1.12
+      StartingPoint: 0
+      SliderStarted: 0
     Pointer: 0
-  CurrentTime: 0
+  CurrentTime: 1
   LevelThreshold: {fileID: 1847177071}
   InputProcess: {fileID: 1847177072}
 --- !u!114 &1847177071
@@ -363,11 +371,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Thresholds:
-  - Range: 100
+  - Range: 0.1
     Score: 300
-  - Range: 150
+  - Range: 0.15
     Score: 100
-  - Range: 200
+  - Range: 0.2
     Score: 50
   SliderTickScore: 10
   BeatdownScore: 25

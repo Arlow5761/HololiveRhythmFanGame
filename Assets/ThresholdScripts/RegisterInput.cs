@@ -7,42 +7,44 @@ public class RegisterInput : MonoBehaviour
     public ProcessInput ProcessTarget;
     void Update()
     {
-        if (Input.GetButtonDown("D")) 
+        
+
+        if (Input.GetKeyDown(KeyCode.D)) 
         {
             ProcessTarget.Down(0);
         }
 
-        if (Input.GetButtonDown("F"))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             ProcessTarget.Down(0);
         }
 
-        if (Input.GetButtonDown("J"))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             ProcessTarget.Down(1);
         }
         
-        if (Input.GetButtonDown("K"))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             ProcessTarget.Down(1);
         }
 
-        if (Input.GetButtonUp("D"))
+        if (Input.GetKeyUp(KeyCode.D))
         {
             ProcessTarget.Release(0);
         }
         
-        if (Input.GetButtonUp("F"))
+        if (Input.GetKeyUp(KeyCode.F))
         {
             ProcessTarget.Release(0);
         }
 
-        if (Input.GetButtonUp("J"))
+        if (Input.GetKeyUp(KeyCode.J))
         {
             ProcessTarget.Release(1);
         }
         
-        if (Input.GetButtonUp("K"))
+        if (Input.GetKeyUp(KeyCode.K))
         {
             ProcessTarget.Release(1);
         }

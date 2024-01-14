@@ -14,7 +14,8 @@ public class Timeline : MonoBehaviour
             SliderStart,
             SliderEnd,
             BeatdownStart,
-            BeatdownEnd
+            BeatdownEnd,
+            None
         }
 
         public HitObjectType Type;
@@ -35,6 +36,16 @@ public class Timeline : MonoBehaviour
     public Threshold LevelThreshold;
     public ProcessInput InputProcess;
 
+    private HitObject EmptyHitObject;
+
+    void Awake()
+    {
+        EmptyHitObject = new HitObject
+        {
+            Type = HitObject.HitObjectType.None
+        };
+    }
+
     public ref HitObject GetCurrentHitObject(int Lane)
     {
         return ref GetHitObjectAt(Lane, Lanes[Lane].Pointer);
@@ -42,6 +53,11 @@ public class Timeline : MonoBehaviour
 
     public ref HitObject GetHitObjectAt(int Lane, int Pointer)
     {
+        if (Pointer >= Lanes[Lane].HitObjects.Length)
+        {
+            return ref EmptyHitObject;
+        }
+
         return ref Lanes[Lane].HitObjects[Pointer];
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,11 @@ public class GameStatus : MonoBehaviour
     [Header("Misc")]
     public Threshold LevelThreshold;
     
+    void Awake()
+    {
+        Array.Resize(ref CountEachThreshold, LevelThreshold.Thresholds.Length);
+    }
+
     public void AddCombo(int AddedCombo = 1)
     {
         Combo += AddedCombo;
@@ -34,5 +40,7 @@ public class GameStatus : MonoBehaviour
     public void AddRawScore(int AddedScore)
     {
         TotalScore += AddedScore;
+
+        Debug.Log(TotalScore);
     }
 }

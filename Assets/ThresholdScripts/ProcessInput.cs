@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -10,8 +11,14 @@ public class ProcessInput : MonoBehaviour
     public GameStatus LevelStatus;
     public Threshold LevelThreshold;
 
-    private int[] HeldSliders;
-    private int[] HeldButtons;
+    private int[] HeldSliders = {0, 0};
+    private int[] HeldButtons = {0, 0};
+
+    void Awake()
+    {
+        Array.Resize(ref HeldSliders, 2);
+        Array.Resize(ref HeldButtons, 2);
+    }
 
     public void Down(int Lane)
     {
