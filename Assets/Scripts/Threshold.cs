@@ -14,7 +14,7 @@ public struct Grade
 
 public class Threshold : MonoBehaviour
 {
-    public Threshold instance;
+    public static Threshold instance;
     public Grade[] grades;
 
     void Awake()
@@ -27,6 +27,7 @@ public class Threshold : MonoBehaviour
         if (instance && instance != this)
         {
             Destroy(gameObject);
+            return;
         }
 
         instance = this;
