@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Movement Variables
     [SerializeField] 
     private float verticalUp;
     [SerializeField]
     private float verticalDown;
-
+    [SerializeField]
+    private float delay;
     private float xFixedPos = -9.5f;
-    private float delay = 0.5f;
+
+    //PlayerController's Combo and Health Variables
+    [SerializeField]
+    private int hitDamage;
+    [HideInInspector]
+    public int health = 100;
+    [HideInInspector]
+    public int comboBeat = 0;
 
     // Update is called once per frame
     void Update()
@@ -18,7 +27,10 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.F))
         {
             transform.position = new Vector2(xFixedPos, verticalUp);
-            StartCoroutine(DownDelay());
+            if(Time.time - Time.deltaTime >= 0.5f)
+            {
+                StartCoroutine(DownDelay());
+            }
         }
         else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
         {
@@ -30,7 +42,9 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Beat")
         {
+            comboBeat = 0;
             Destroy(collision.gameObject);
+            health -= hitDamage;
         }
     }
 

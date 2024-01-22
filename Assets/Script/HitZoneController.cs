@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HitZoneController : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerController playerController;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision);
@@ -11,11 +14,11 @@ public class HitZoneController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.F))
+        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.F)) && collision.gameObject.tag == "Beat")
         {
-            Debug.Log("Pencet");
             Destroy(collision.gameObject);
-            Debug.Log("Deleted");
+            playerController.comboBeat++;
+            Debug.Log(playerController.comboBeat);
         }
     }
 }
