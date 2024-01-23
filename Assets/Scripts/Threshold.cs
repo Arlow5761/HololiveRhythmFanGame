@@ -8,6 +8,7 @@ using UnityEngine;
 [Serializable]
 public struct Grade
 {
+    public string name;
     public double margin;
     public int score;
 }
@@ -16,6 +17,7 @@ public class Threshold : MonoBehaviour
 {
     public static Threshold instance;
     public Grade[] grades;
+    public Grade[] specialGrades;
 
     void Awake()
     {
@@ -55,6 +57,11 @@ public class Threshold : MonoBehaviour
             if (math.abs(error) < grades[i].margin) return grades[i];
         }
 
-        return new Grade { score = 0 };
+        return Array.Find(specialGrades, grade => grade.name == "Miss");
+    }
+
+    public Grade GetSpecialGrade(string name)
+    {
+        return Array.Find(specialGrades, grade => grade.name == name);
     }
 }

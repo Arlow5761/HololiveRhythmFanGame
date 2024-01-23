@@ -51,7 +51,7 @@ public class NormalNote : BaseNote
 
         if (result.score == 0) return;
 
-        Debug.Log(result.score);// Add score here
+        Debug.Log(result.score); // Add score here
 
         CleanUp();
     }
@@ -74,25 +74,94 @@ public class NormalNote : BaseNote
 public class SliderNote : BaseNote
 {
     public double endTiming;
+    private int ticks;
 
     public SliderNote(double start, double end, int Lane) : base(start, NoteType.Slider, Lane)
     {
         endTiming = end;
+        ticks = 0;
     }
 
-    public void Hit(double HitTime)
+    public void SliderTick(double currentTime)
     {
+        if (currentTime <= timing || currentTime >= endTiming) return;
 
+        int newTicks = (int) Math.Floor(currentTime - timing / 1);
+
+        if (newTicks > ticks) // Change tick distance from 1 later
+        {
+            Grade tickGrade = Threshold.instance.GetSpecialGrade("SliderTick");
+
+            Debug.Log(tickGrade.score * (newTicks - ticks)); // Add score here
+
+            ticks = newTicks;
+        }
     }
 
-    public void Release(double ReleaseTime)
+    public void CheckMissStart(double currentTime)
     {
+        if (currentTime < timing || Threshold.instance.GetGrade(currentTime - timing).score != 0) return;
 
+        Debug.Log("Miss!"); // Register miss here
+
+        ProcessInput.instance.inputEvent.RemoveListener(Press);
+        Timeline.instance.updateEvent.RemoveListener(CheckMissStart);
+        
+        noteLocked = false;
+    }
+
+    public void CheckMissEnd(double currentTime)
+    {
+        if (currentTime < endTiming || Threshold.instance.GetGrade(currentTime - endTiming).score != 0) return;
+
+        Debug.Log("Miss!"); // Register miss here
+
+        ProcessInput.instance.inputEvent.RemoveListener(Release);
+        Timeline.instance.updateEvent.RemoveListener(CheckMissEnd);
+        Timeline.instance.updateEvent.RemoveListener(SliderTick);
+    }
+
+    public void Press((int lane, bool down) input)
+    {
+        if (input.lane != this.lane || !input.down) return;
+
+        double currentTime = Timeline.instance.currentTime;
+
+        Grade result = Threshold.instance.GetGrade(currentTime - timing);
+
+        if (result.score == 0) return;
+
+        Debug.Log(result.score); // Add score here
+
+        ProcessInput.instance.inputEvent.RemoveListener(Press);
+        ProcessInput.instance.inputEvent.AddListener(Release);
+        Timeline.instance.updateEvent.RemoveListener(CheckMissStart);
+        Timeline.instance.updateEvent.AddListener(SliderTick);
+        Timeline.instance.updateEvent.AddListener(CheckMissEnd);
+
+        noteLocked = false;
+    }
+
+    public void Release((int lane, bool down) input)
+    {
+        if (input.lane != this.lane || input.down) return;
+
+        double currentTime = Timeline.instance.currentTime;
+
+        Grade result = Threshold.instance.GetGrade(currentTime - endTiming);
+
+        Debug.Log(result.score); // Add score here
+
+        ProcessInput.instance.inputEvent.RemoveListener(Release);
+        Timeline.instance.updateEvent.RemoveListener(SliderTick);
+        Timeline.instance.updateEvent.RemoveListener(CheckMissEnd);
     }
 
     public override void LockNote()
     {
         noteLocked = true;
+        ProcessInput.instance.inputEvent.AddListener(Press);
+        Timeline.instance.updateEvent.AddListener(CheckMissStart);
     }
 }
 

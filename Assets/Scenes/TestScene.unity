@@ -164,12 +164,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grades:
-  - margin: 0.2
+  - name: Perfect
+    margin: 0.2
     score: 300
-  - margin: 0.5
+  - name: Great
+    margin: 0.5
     score: 100
-  - margin: 1
+  - name: Okay
+    margin: 1
     score: 50
+  specialGrades:
+  - name: Miss
+    margin: 0
+    score: 0
+  - name: SliderTick
+    margin: 0
+    score: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
