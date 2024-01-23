@@ -180,6 +180,9 @@ MonoBehaviour:
   - name: SliderTick
     margin: 0
     score: 10
+  - name: MashGrade
+    margin: 0
+    score: 100
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

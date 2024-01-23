@@ -174,13 +174,37 @@ public class MashNote : BaseNote
         endTiming = end;
     }
 
-    public void Hit(double HitTime)
+    public void Start(double currentTime)
     {
+        if (currentTime < timing) return;
 
+        Timeline.instance.updateEvent.RemoveListener(Start);
+        Timeline.instance.updateEvent.AddListener(End);
+        ProcessInput.instance.inputEvent.AddListener(Hit);
+
+        noteLocked = false;
+    }
+
+    public void End(double currentTime)
+    {
+        if (currentTime < endTiming) return;
+
+        Timeline.instance.updateEvent.RemoveListener(End);
+        ProcessInput.instance.inputEvent.RemoveListener(Hit);
+    }
+
+    public void Hit((int lane, bool down) input)
+    {
+        if (input.lane != lane || !input.down) return;
+
+        Grade mashGrade = Threshold.instance.GetSpecialGrade("MashGrade");
+
+        Debug.Log(mashGrade.score); // Add score here
     }
 
     public override void LockNote()
     {
         noteLocked = true;
+        Timeline.instance.updateEvent.AddListener(Start);
     }
 }
