@@ -70,11 +70,13 @@ public class Timeline : MonoBehaviour
         // Code below is for testing
         Array.Resize(ref lanes, 2);
         lanes[0] = new Lane(1);
-        lanes[0].stream[0] = new MashNote(5, 10, 0);
+        lanes[0].stream[0] = new NormalNote(3, 0);
         lanes[0].stream[0].LockNote();
 
-        lanes[1] = new Lane(1);
-        lanes[1].stream[0] = new NormalNote(11, 1);
+        lanes[1] = new Lane(3);
+        lanes[1].stream[0] = new NormalNote(4, 1);
+        lanes[1].stream[1] = new NormalNote(4.25, 1);
+        lanes[1].stream[2] = new NormalNote(4.5, 1);
         lanes[1].stream[0].LockNote();
     }
 
