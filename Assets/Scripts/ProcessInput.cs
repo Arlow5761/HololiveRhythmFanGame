@@ -51,6 +51,7 @@ public class ProcessInput : MonoBehaviour
 
     public void GetInputs()
     {
+        // Change later
         if (Input.GetKeyDown(KeyCode.D)) inputQueue.Enqueue((0, true));
         if (Input.GetKeyDown(KeyCode.F)) inputQueue.Enqueue((0, true));
         if (Input.GetKeyDown(KeyCode.J)) inputQueue.Enqueue((1, true));

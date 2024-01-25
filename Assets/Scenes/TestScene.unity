@@ -165,13 +165,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grades:
   - name: Perfect
-    margin: 0.2
+    margin: 0.05
     score: 300
   - name: Great
-    margin: 0.5
+    margin: 0.01
     score: 100
   - name: Okay
-    margin: 1
+    margin: 0.1
     score: 50
   specialGrades:
   - name: Miss

@@ -63,6 +63,8 @@ public class NoteSpawner : MonoBehaviour
 
     public void Spawn(BaseNote note, int lane)
     {
+        // Make note movement be handled by the notes themselves later
+
         string type = "";
 
         switch (note.type)
