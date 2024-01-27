@@ -49,6 +49,8 @@ public class SongSelector : MonoBehaviour
 
     void Start()
     {
+        songList = SongsListReader.instance.songList;
+
         Draw();
         selectedSong = songList[currentSong];
         slotObjects[currentSlot].Focus();

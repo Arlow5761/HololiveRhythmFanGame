@@ -1,0 +1,50 @@
+
+[
+    {
+        "songName" : "Test Song 1",
+        "artist" : "Arlow5761",
+        "bpm" : 167,
+        "difficulties" : [
+          "Easy",
+          "Medium",
+          "Hard"
+        ],
+        "notePath" : "",
+        "songPath" : ""
+    },
+    {
+        "songName" : "Test Song 2",
+        "artist" : "Arlow5762",
+        "bpm" : 222,
+        "difficulties" : [
+          "Basic",
+          "Hell"
+        ],
+        "notePath" : "",
+        "songPath" : ""
+    },
+    {
+        "songName" : "Test Song 3",
+        "artist" : "Arlow5763",
+        "bpm" : 180,
+        "difficulties" : [
+          "Easy",
+          "Medium",
+          "Hard",
+          "Expert",
+          "Demon"
+        ],
+        "notePath" : "",
+        "songPath" : ""
+    },
+    {
+        "songName" : "Test Song 4",
+        "artist" : "Arlow5764",
+        "bpm" : 666,
+        "difficulties" : [
+          "Supreme"
+        ],
+        "notePath" : "",
+        "songPath" : ""
+    }
+]
