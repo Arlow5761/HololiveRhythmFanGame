@@ -2,26 +2,45 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SongSelector : MonoBehaviour
 {
     public static SongSelector instance;
 
-    public Song selectedSong;
+    private Song _selectedSong;
+    public Song selectedSong
+    {
+        get
+        {
+            return _selectedSong;
+        }
+
+        set
+        {
+            _selectedSong = value;
+            onSelectedSongChanged.Invoke(_selectedSong);
+        }
+    }
+
+
     public float rotationSpeed;
     public float rotationOffset;
     public int songSlots;
     public float radius;
     public float songSize;
-    public Song[] songList;
     public GameObject songPrefab;
+    public Song[] songList;
+    public UnityEvent<Song> onSelectedSongChanged;
+    
 
     private float rotation;
     private int rotateDirection;
     private int currentSong;
     private int currentSlot;
-    private GameObject[] slotObjects = {};
+    private SongThumbnailDisplayer[] slotObjects = {};
 
     void Awake()
     {
@@ -31,17 +50,15 @@ public class SongSelector : MonoBehaviour
     void Start()
     {
         Draw();
+        selectedSong = songList[currentSong];
+        slotObjects[currentSlot].Focus();
+        UpdateSlots();
     }
 
     void Update()
     {
-        float currentRelativeRotation = (360f / songSlots * currentSlot + rotation) % 360f;
-
-        if (currentRelativeRotation < 0)
-        {
-            currentRelativeRotation = 360f + currentRelativeRotation;
-        }
-
+        float currentRelativeRotation = GetRelativeRotation(currentSlot);
+        
         if (currentRelativeRotation == 0f || currentRelativeRotation == 360f) return;
 
         if (currentRelativeRotation < 1 || currentRelativeRotation > 359)
@@ -87,7 +104,7 @@ public class SongSelector : MonoBehaviour
 
             for (int i = 0; i < slotObjects.Length; i++)
             {
-                slotObjects[i] = Instantiate(songPrefab, gameObject.transform);
+                slotObjects[i] = Instantiate(songPrefab, gameObject.transform).GetComponent<SongThumbnailDisplayer>();
                 slotObjects[i].transform.localScale = new Vector3(songSize, songSize, 1);
             }
         }
@@ -105,35 +122,72 @@ public class SongSelector : MonoBehaviour
 
     public void MoveCW()
     {
-        currentSong = (currentSong - 1) % songList.Length;
+        float currentRelativeRotation = GetRelativeRotation(currentSlot);
+        if (currentRelativeRotation != 0f && currentRelativeRotation != 360f) return;
 
-        if (currentSong < 0)
-        {
-            currentSong = songList.Length - currentSong;
-        }
+        currentSong = Modulo(currentSong - 1, songList.Length);
 
-        currentSlot = (currentSlot - 1) % songSlots;
+        slotObjects[currentSlot].Unfocus();
+        currentSlot = Modulo(currentSlot - 1, songSlots);
+        slotObjects[currentSlot].Focus();
 
-        if (currentSlot < 0)
-        {
-            currentSlot = songSlots + currentSlot;
-        }
+        selectedSong = songList[currentSong];
+
+        UpdateSlots();
     }
 
     public void MoveCCW()
     {
-        currentSong = (currentSong + 1) % songList.Length;
+        float currentRelativeRotation = GetRelativeRotation(currentSlot);
+        if (currentRelativeRotation != 0f && currentRelativeRotation != 360f) return;
 
-        if (currentSong < 0)
+        currentSong = Modulo(currentSong + 1, songList.Length);
+
+        slotObjects[currentSlot].Unfocus();
+        currentSlot = Modulo(currentSlot + 1, songSlots);
+        slotObjects[currentSlot].Focus();
+
+        selectedSong = songList[currentSong];
+
+        UpdateSlots();
+    }
+
+    public void UpdateSlots()
+    {
+        for (int i = 0; i < slotObjects.Length; i++)
         {
-            currentSong = songList.Length - currentSong;
+            slotObjects[i].displayedSong = songList[Modulo(i - currentSlot + currentSong, songList.Length)];
+        }
+    }
+
+    private float GetRelativeRotation(int slot)
+    {
+        float relativeRotation = Modulo(360f / songSlots * slot + rotation, 360f);
+
+        return relativeRotation;
+    }
+
+    private static float Modulo(float a, float b)
+    {
+        float c = a % b;
+
+        if (c < 0)
+        {
+            c += b;
         }
 
-        currentSlot = (currentSlot + 1) % songSlots;
+        return c;
+    }
 
-        if (currentSlot < 0)
+    private static int Modulo(int a, int b)
+    {
+        int c = a % b;
+
+        if (c < 0)
         {
-            currentSlot = songSlots + currentSlot;
+            c += b;
         }
+
+        return c;
     }
 }
