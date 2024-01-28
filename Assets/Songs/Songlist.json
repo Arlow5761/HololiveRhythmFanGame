@@ -10,7 +10,7 @@
           "Hard"
         ],
         "notePath" : "",
-        "songPath" : ""
+        "songPath" : "Audio//sample.ogg"
     },
     {
         "songName" : "Test Song 2",
@@ -21,7 +21,7 @@
           "Hell"
         ],
         "notePath" : "",
-        "songPath" : ""
+        "songPath" : "Audio//sample2.ogg"
     },
     {
         "songName" : "Test Song 3",
@@ -35,7 +35,7 @@
           "Demon"
         ],
         "notePath" : "",
-        "songPath" : ""
+        "songPath" : "Audio//sample3.ogg"
     },
     {
         "songName" : "Test Song 4",
@@ -45,6 +45,6 @@
           "Supreme"
         ],
         "notePath" : "",
-        "songPath" : ""
+        "songPath" : "Audio//sample4.ogg"
     }
 ]
