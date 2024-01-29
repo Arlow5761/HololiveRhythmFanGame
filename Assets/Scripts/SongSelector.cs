@@ -10,8 +10,8 @@ public class SongSelector : MonoBehaviour
 {
     public static SongSelector instance;
 
-    private Song _selectedSong;
-    public Song selectedSong
+    private SongData _selectedSong;
+    public SongData selectedSong
     {
         get
         {
@@ -32,8 +32,8 @@ public class SongSelector : MonoBehaviour
     public float radius;
     public float songSize;
     public GameObject songPrefab;
-    public Song[] songList;
-    public UnityEvent<Song> onSelectedSongChanged;
+    public SongData[] songList;
+    public UnityEvent<SongData> onSelectedSongChanged;
     
 
     private float rotation;

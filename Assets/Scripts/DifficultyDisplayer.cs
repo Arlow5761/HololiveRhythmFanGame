@@ -6,7 +6,7 @@ public class DifficultyDisplayer : MonoBehaviour
 {
     public DifficultyBarDisplayer[] difficultyBars;
 
-    public void UpdateDifficulties(Song song)
+    public void UpdateDifficulties(SongData song)
     {
         int i = 0;
 

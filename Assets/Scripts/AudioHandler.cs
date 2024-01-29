@@ -80,16 +80,17 @@ public class AudioHandler : MonoBehaviour
     void Awake()
     {
         Initialize();
-    }
 
-    void Start()
-    {
         musicClip.CreateAudioSoure();
 
         for (int i = 0; i < sfxClips.Length; i++)
         {
             sfxClips[i].CreateAudioSoure();
         }
+    }
+
+    void Start()
+    {
     }
 
     public void Initialize()

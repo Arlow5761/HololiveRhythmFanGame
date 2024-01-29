@@ -6,7 +6,7 @@ using UnityEngine;
 public class SongThumbnailDisplayer : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
-    public Song displayedSong
+    public SongData displayedSong
     {
         get
         {
@@ -24,7 +24,7 @@ public class SongThumbnailDisplayer : MonoBehaviour
     public float focusSpeed;
 
     private bool isFocused;
-    private Song _displayedSong;
+    private SongData _displayedSong;
 
     void Update()
     {
