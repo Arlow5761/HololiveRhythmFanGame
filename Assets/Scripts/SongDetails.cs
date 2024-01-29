@@ -16,7 +16,7 @@ public struct SongMetadata
 }
 
 [Serializable]
-public class SongData
+public class SongInfo
 {
     public SongMetadata metadata;
 }

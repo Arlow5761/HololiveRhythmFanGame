@@ -29,7 +29,7 @@ public class SongsListReader : MonoBehaviour
 {
     public static SongsListReader instance;
 
-    public SongData[] songList;
+    public SongInfo[] songList;
 
     void Awake()
     {
@@ -58,7 +58,7 @@ public class SongsListReader : MonoBehaviour
         Array.Resize(ref songList, metadataList.Length);
         for (int i = 0; i < songList.Length; i++)
         {
-            songList[i] = new SongData {metadata = metadataList[i]};
+            songList[i] = new SongInfo {metadata = metadataList[i]};
         }
     }
 }

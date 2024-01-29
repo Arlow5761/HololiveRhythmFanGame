@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
 {
-    public SongData displayedSong;
+    public SongInfo displayedSong;
     public bool isPlaying;
 
-    public void ChangeMusic(SongData newSong)
+    public void ChangeMusic(SongInfo newSong)
     {
         displayedSong = newSong;
         PauseMusic();
