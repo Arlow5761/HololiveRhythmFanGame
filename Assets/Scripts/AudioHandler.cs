@@ -11,6 +11,7 @@ using UnityEngine.Networking;
 public class AudioContainer
 {
     public string name = "";
+    public bool loops {get; private set;}
     public AudioClip audioClip
     {
         get
@@ -63,9 +64,29 @@ public class AudioContainer
     {
         GameObject sourceObject = new GameObject(name, typeof(AudioSource));
         sourceObject.transform.parent = AudioHandler.instance.transform;
+        sourceObject.name = name;
 
         audioSource = sourceObject.GetComponent<AudioSource>();
         audioSource.clip = _audioClip;
+    }
+
+    public void SetLoops(bool loop)
+    {
+        loops = loop;
+        if (audioSource != null)
+        {
+            audioSource.loop = loops;
+        }
+    }
+
+    public float GetClipLength()
+    {
+        return audioClip.length;
+    }
+
+    public float GetTimePosition()
+    {
+        return audioSource.time;
     }
 }
 
@@ -82,6 +103,7 @@ public class AudioHandler : MonoBehaviour
         Initialize();
 
         musicClip.CreateAudioSoure();
+        musicClip.SetLoops(true);
 
         for (int i = 0; i < sfxClips.Length; i++)
         {
@@ -128,7 +150,8 @@ public class AudioHandler : MonoBehaviour
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
+                ((DownloadHandlerAudioClip) www.downloadHandler).streamAudio = true;
+                AudioClip audioClip = ((DownloadHandlerAudioClip) www.downloadHandler).audioClip;
 
                 if (audioClip == null)
                 {
@@ -138,6 +161,7 @@ public class AudioHandler : MonoBehaviour
                 {
                     musicClip.name = name;
                     musicClip.audioClip = audioClip;
+                    musicClip.audioClip.name = name;
                     onMusicClipChanged.Invoke(musicClip);
                 }
             }
