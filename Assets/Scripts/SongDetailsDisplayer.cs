@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class SongDetailsDisplayer : MonoBehaviour
 {
-    public SongData displayedSong;
+    public SongInfo displayedSong;
 
     public TextMeshProUGUI songNameField;
     public TextMeshProUGUI songArtistField;
     public TextMeshProUGUI songBPMField;
 
-    public void ChangeSong(SongData newSong)
+    public void ChangeSong(SongInfo newSong)
     {
         displayedSong = newSong;
         songNameField.SetText(displayedSong.metadata.songName);
