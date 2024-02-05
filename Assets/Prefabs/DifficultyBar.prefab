@@ -411,6 +411,7 @@ MonoBehaviour:
   nameField: {fileID: 3671388406511080046}
   ratingField: {fileID: 2996848237998326072}
   gradeField: {fileID: 8750704019856816290}
+  button: {fileID: 922773755737736530}
 --- !u!1 &8875267800051289750
 GameObject:
   m_ObjectHideFlags: 0

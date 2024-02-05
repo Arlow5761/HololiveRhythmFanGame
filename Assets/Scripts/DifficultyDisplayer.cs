@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DifficultyDisplayer : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class DifficultyDisplayer : MonoBehaviour
 
         for (; i < song.metadata.difficulties.Length; i++)
         {
+            
             difficultyBars[i].ChangeDifficulty(song.metadata.difficulties[i], 0, "S");
             difficultyBars[i].Display();
         }
