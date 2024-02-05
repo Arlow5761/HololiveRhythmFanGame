@@ -137,11 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.x
@@ -149,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_SizeDelta.x
@@ -503,11 +503,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.x
@@ -942,6 +942,7 @@ GameObject:
   - component: {fileID: 416411773}
   - component: {fileID: 416411775}
   - component: {fileID: 416411776}
+  - component: {fileID: 416411777}
   m_Layer: 5
   m_Name: Difficulties
   m_TagString: Untagged
@@ -999,6 +1000,32 @@ MonoBehaviour:
   - {fileID: 1698794648}
   - {fileID: 728134006}
   - {fileID: 118220955}
+--- !u!114 &416411777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416411772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!224 &473479614 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
@@ -1191,6 +1218,56 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &694366885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 694366886}
+  - component: {fileID: 694366887}
+  m_Layer: 0
+  m_Name: SceneHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &694366886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694366885}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.2139227, y: -0.6427882, z: -0.029894829}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &694366887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694366885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df977d589ee4b644fb67277608986f70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSceneLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+  onSceneUnloaded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &728134005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1209,11 +1286,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1221,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2267,7 +2344,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1851918441}
+        m_TargetAssemblyTypeName: MusicPlayer, Assembly-CSharp
+        m_MethodName: UpdateMusicTimePosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1084785705
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,11 +2845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.98
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2768,7 +2857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3756,11 +3845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.58
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.x
@@ -3768,7 +3857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1348096034481726532, guid: 6270a2c0d443d3d4eb8abdac6423ca85, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4072,6 +4161,8 @@ MonoBehaviour:
       notePath: 
       songPath: 
   isPlaying: 0
+  musicProgressSlider: {fileID: 1056227810}
+  musicTimeStamp: {fileID: 1312623477}
 --- !u!1 &1920707549
 GameObject:
   m_ObjectHideFlags: 0
@@ -4750,3 +4841,4 @@ SceneRoots:
   - {fileID: 873022538}
   - {fileID: 909337124}
   - {fileID: 896785054}
+  - {fileID: 694366886}
