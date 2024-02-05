@@ -21,26 +21,28 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public int comboBeat = 0;
 
+    // How much air time the player has left before falling back down
     private float airTime;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.F))
-        {
-            transform.position = new Vector2(xFixedPos, verticalUp);
-            if(Time.time - Time.deltaTime >= 0.5f)
-            {
-                airTime = delay;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
-        {
-            transform.position = new Vector2(xFixedPos, -verticalDown);
-            airTime = 0;
-        }
-
         DownDelay();
+    }
+
+    private void Jump()
+    {
+        transform.position = new Vector2(xFixedPos, verticalUp);
+        if(Time.time - Time.deltaTime >= 0.5f) // Idk what this if does
+        {
+            airTime = delay;
+        }
+    }
+
+    private void Land()
+    {
+        transform.position = new Vector2(xFixedPos, -verticalDown);
+        airTime = 0;
     }
 
     private void DownDelay()
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
             if (airTime <= 0)
             {
-                transform.position = new Vector2(xFixedPos, -verticalDown);
+                Land();
             }
         }
     }
@@ -64,5 +66,29 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             health -= hitDamage;
         }
+    }
+
+    // The following functions are used to respond inputs from InputHandler
+
+    public void PressUp()
+    {
+        Jump();
+        ProcessInput.instance.PollInputDown(1);
+    }
+
+    public void ReleaseUp()
+    {
+        ProcessInput.instance.PollInputUp(1);
+    }
+
+    public void PressDown()
+    {
+        Land();
+        ProcessInput.instance.PollInputDown(0);
+    }
+
+    public void ReleaseDown()
+    {
+        ProcessInput.instance.PollInputUp(0);
     }
 }

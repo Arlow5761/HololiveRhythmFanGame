@@ -9,10 +9,14 @@ using UnityEngine.Purchasing;
 
 public class InputEvent : UnityEvent<(int lane, bool up)> {}
 
+// This class is used to notify notes when the player is trying to hit them
 public class ProcessInput : MonoBehaviour
 {
     public static ProcessInput instance;
+
+    // Used by notes for hit detection
     public Queue<(int lane, bool down)> inputQueue = new Queue<(int lane, bool down)>();
+
     public InputEvent inputEvent = new InputEvent();
 
     void Awake()
@@ -23,11 +27,6 @@ public class ProcessInput : MonoBehaviour
     void Start()
     {
         Timeline.instance.updateEvent.AddListener(PushInputs);
-    }
-
-    void Update()
-    {
-        GetInputs();
     }
 
     public void Initialize()
@@ -41,6 +40,7 @@ public class ProcessInput : MonoBehaviour
         instance = this;
     }
 
+    // Broadcasts the polled inputs
     public void PushInputs(double _)
     {
         while (inputQueue.Count > 0)
@@ -49,9 +49,25 @@ public class ProcessInput : MonoBehaviour
         }
     }
 
-    public void GetInputs()
+    // Functions to add inputs to the queue
+    public void PollInputDown(int lane)
     {
-        // Change later
+        PollInput(lane, true);
+    }
+
+    public void PollInputUp(int lane)
+    {
+        PollInput(lane, false);
+    }
+
+    public void PollInput(int lane, bool down)
+    {
+        inputQueue.Enqueue((lane, down));
+    }
+
+    // Inputs should be sent by the PlayerController instead of manually polling
+    [Obsolete] public void GetInputs()
+    {
         if (Input.GetKeyDown(KeyCode.D)) inputQueue.Enqueue((0, true));
         if (Input.GetKeyDown(KeyCode.F)) inputQueue.Enqueue((0, true));
         if (Input.GetKeyDown(KeyCode.J)) inputQueue.Enqueue((1, true));
