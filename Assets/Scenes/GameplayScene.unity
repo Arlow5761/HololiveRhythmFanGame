@@ -467,13 +467,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grades:
   - name: Perfect
-    margin: 0.01
+    margin: 0.05
     score: 300
   - name: Great
-    margin: 0.05
+    margin: 0.1
     score: 100
   - name: Okay
-    margin: 0.1
+    margin: 0.2
     score: 50
   specialGrades:
   - name: Miss

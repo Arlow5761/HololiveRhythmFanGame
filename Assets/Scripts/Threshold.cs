@@ -39,13 +39,16 @@ public class Threshold : MonoBehaviour
 
     public void SortGrades()
     {
-        for (int i = 0; i < grades.Length - 1; i++)
+        for (int j = 0; j < grades.Length - 1; j++)
         {
-            if (grades[i].margin > grades[i + 1].margin)
+            for (int i = 0; i < grades.Length - 1 - j; i++)
             {
-                Grade temp = grades[i];
-                grades[i] = grades[i + 1];
-                grades[i + 1] = temp;
+                if (grades[i].margin > grades[i + 1].margin)
+                {
+                    Grade temp = grades[i];
+                    grades[i] = grades[i + 1];
+                    grades[i + 1] = temp;
+                }
             }
         }
     }

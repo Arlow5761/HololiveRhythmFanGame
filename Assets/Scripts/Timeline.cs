@@ -24,6 +24,12 @@ public class TimingLane
 
     public bool IsCurrentNoteLocked()
     {
+        if (current == stream.Count)
+        {
+            ended = true;
+            return true;
+        }
+
         return stream[current].noteLocked;
     }
 
@@ -74,6 +80,16 @@ public class Timeline : MonoBehaviour
     public void Run()
     {
         started = true;
+        
+        if (lanes[0].stream.Count > 0)
+        {
+            lanes[0].stream[0].LockNote();
+        }
+
+        if (lanes[1].stream.Count > 0)
+        {
+            lanes[1].stream[0].LockNote();
+        }
     }
 
     void Update()

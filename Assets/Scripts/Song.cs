@@ -51,7 +51,7 @@ public class Song : MonoBehaviour
 
     private void ReadSongAndMetadata()
     {
-        NotesData = NoteTest.GenerateNotes();
+        NotesData = NotesReader.ReadNotesFromFile(Path.Combine(Application.dataPath, "Songs", "TestSong", "Easy.json"));
         string path = Path.Combine(Application.dataPath, "Audio", "sample.ogg");
         StartCoroutine(LoadAudioAndPlay(path));
     }
