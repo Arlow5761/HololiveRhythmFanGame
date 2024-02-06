@@ -18,8 +18,8 @@ public class Lane : MonoBehaviour
     private GameObject LoadPrefabFromFile(string filename)
     {
         try {
-            Debug.Log("Trying to load LevelPrefab from file ("+filename+ ")...");
-            Debug.Log(Path.Combine("file://", Application.dataPath, "Preftabs", filename + ".prefab"));
+//            Debug.Log("Trying to load LevelPrefab from file ("+filename+ ")...");
+//            Debug.Log(Path.Combine("file://", Application.dataPath, "Preftabs", filename + ".prefab"));
             GameObject loadedObject = (GameObject)AssetDatabase.LoadAssetAtPath(Path.Combine("Assets/Preftabs", filename + ".prefab"),typeof(GameObject));
             return loadedObject;
         } catch (IOException e) {
@@ -47,9 +47,10 @@ public class Lane : MonoBehaviour
             if (Song.GetAudioSourceTime() >= Song.Instance.NotesData[spawnIndex].TimestampStart - Song.Instance.noteTime) {
                 GameObject note = SpawnNote(Song.Instance.NotesData[spawnIndex].NoteId, Song.Instance.NotesData[spawnIndex].RowNumber);
                 notes.Add(note.AddComponent<Note>());
-                spawnIndex++;
-                Debug.Log("Note " + spawnIndex + " : " + note.transform.position.x + " " + note.transform.position.y);
+//                Debug.Log("Note " + spawnIndex + " : " + note.transform.position.x + " " + note.transform.position.y);
                 note.GetComponent<Note>().index = spawnIndex;
+                note.GetComponent<Note>().noteData = Song.Instance.NotesData[spawnIndex];
+                spawnIndex++;
             }
         }
 

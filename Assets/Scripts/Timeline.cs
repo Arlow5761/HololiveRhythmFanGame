@@ -10,7 +10,7 @@ public class TimestampEvent : UnityEvent<double> {}
 [Serializable]
 public class TimingLane
 {
-    public BaseNote[] stream;
+    public List<BaseNote> stream;
     public bool ended = false;
 
     private int current = 0;
@@ -19,7 +19,7 @@ public class TimingLane
     {
         current = 0;
         ended = false;
-        Array.Resize(ref stream, Buffer);
+        stream = new();
     }
 
     public bool IsCurrentNoteLocked()
@@ -29,7 +29,7 @@ public class TimingLane
 
     public int LockNextNote()
     {
-        if (++current == stream.Length)
+        if (++current == stream.Count)
         {
             ended = true;
         }
@@ -49,6 +49,8 @@ public class Timeline : MonoBehaviour
     [SerializeField] public TimingLane[] lanes;
     public TimestampEvent updateEvent = new TimestampEvent();
 
+    private bool started = false;
+
     void Awake()
     {
         Initialize();
@@ -63,26 +65,22 @@ public class Timeline : MonoBehaviour
         }
 
         instance = this;
+
+        Array.Resize(ref lanes, 2);
+        lanes[0] = new();
+        lanes[1] = new();
     }
 
-    void Start()
+    public void Run()
     {
-        // Code below is for testing
-        Array.Resize(ref lanes, 2);
-        lanes[0] = new TimingLane(1);
-        lanes[0].stream[0] = new NormalNote(3, 0);
-        lanes[0].stream[0].LockNote();
-
-        lanes[1] = new TimingLane(3);
-        lanes[1].stream[0] = new NormalNote(4, 1);
-        lanes[1].stream[1] = new NormalNote(4.25, 1);
-        lanes[1].stream[2] = new NormalNote(4.5, 1);
-        lanes[1].stream[0].LockNote();
+        started = true;
     }
 
     void Update()
     {
-        UpdateTime(currentTime += Time.deltaTime);
+        if (!started) return;
+        
+        UpdateTime(Song.GetAudioSourceTime());
     }
 
     public void UpdateTime(double time)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SongData {
     public string SongName {get; set;}
@@ -17,6 +18,16 @@ public class NotesData {
     public int NoteId {get; set;}
     public int RowNumber {get; set;}
     public string NoteType {get; set;}
+
+    public BaseNote timingObject;
+    public Note renderObject;
+
+    public UnityEvent<Grade> onHit;
+
+    public NotesData()
+    {
+        onHit = new();
+    }
 }
 
 public static class NoteTest {
@@ -44,6 +55,34 @@ public static class NoteTest {
                 laneNumbers.Add(laneNumber);
             }
         }
+
+        int upperLaneCount  = 0;
+        int lowerLaneCount = 0;
+
+        NotesData.ForEach(note => {
+            if (note.RowNumber == 0)
+            {
+                upperLaneCount++;
+            }
+            else if (note.RowNumber == 1)
+            {
+                lowerLaneCount++;
+            }
+
+            if (note.TimestampEnd != note.TimestampStart)
+            {
+                // Later
+            }
+            else
+            {
+                NormalNote noteTiming = new(note.TimestampStart, 1 - note.RowNumber);
+                Timeline.instance.lanes[1 - note.RowNumber].stream.Add(noteTiming);
+
+                note.timingObject = noteTiming;
+                noteTiming.noteData = note;
+            }
+        });
+
         return NotesData;
     }
 }
