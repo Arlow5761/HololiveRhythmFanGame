@@ -59,6 +59,7 @@ public class Song : MonoBehaviour
     void PlayAudio()
     {
         audioSource.Play();
+        Timeline.instance.Run();
     }
 
     public static double GetAudioSourceTime() 
