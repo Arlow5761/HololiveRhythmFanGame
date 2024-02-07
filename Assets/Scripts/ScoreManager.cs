@@ -1,35 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
 
-    public int score;
-    public int combo;
+    [HideInInspector] public int score;
+    [HideInInspector] public int combo;
+
+    [SerializeField] public UnityEvent<int> onScoreChanged = new();
+    [SerializeField] public UnityEvent<int> onComboChanged = new();
 
     public void AddScoreRaw(int additionalScore)
     {
         score += additionalScore;
+        onScoreChanged.Invoke(score);
     }
 
     public void AddScoreWithCombo(int additionalScore)
     {
         score += additionalScore * combo;
-        Debug.Log(score);
+        onScoreChanged.Invoke(score);
     }
 
     public void IncrementCombo()
     {
         combo++;
-        Debug.Log(combo);
+        onComboChanged.Invoke(combo);
     }
 
     public void BreakCombo()
     {
         combo = 0;
-        Debug.Log(combo);
+        onComboChanged.Invoke(combo);
     }
 
     public void Initialize()
