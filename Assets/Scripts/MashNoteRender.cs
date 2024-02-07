@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class MashNoteRender : NoteRender
 {
-    double timeInstantiated;
-    public int index;
-    public NotesData noteData;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +24,7 @@ public class Note : MonoBehaviour
         float t = (float)(timeSinceInstantiated / Song.Instance.noteTime);
 
         // Debug.Log("Current t " + index + " : " + t);
-        transform.localPosition = Vector3.LerpUnclamped(
+        transform.localPosition = Vector3.Lerp(
             new Vector3(Song.Instance.noteSpawnX, transform.localPosition.y, 0), 
             new Vector3(Song.Instance.noteTapX, transform.localPosition.y, 0), 
             t
@@ -37,7 +33,7 @@ public class Note : MonoBehaviour
         // Debug.Log("x " + index + " : " + transform.localPosition.x);
         // Debug.Log("y " + index + " : " + transform.localPosition.y);
 
-        if (transform.localPosition.x <= Song.Instance.noteDespawnX)
+        if (Song.GetAudioSourceTime() > noteData.TimestampEnd)
         {
             CleanUp();
         }
@@ -46,7 +42,6 @@ public class Note : MonoBehaviour
     void OnHit(Grade grade)
     {
         PlayerController.instance.whiff = false;
-        CleanUp();
     }
 
     void CleanUp()

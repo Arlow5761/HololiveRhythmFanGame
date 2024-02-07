@@ -25,7 +25,7 @@ public class NotesSerialData // Used to save note data
 public class NotesData : NotesSerialData // Used for in game note data
 {
     public BaseNote timingObject;
-    public Note renderObject;
+    public NoteRender renderObject;
 
     public UnityEvent<Grade> onHit;
 
@@ -35,7 +35,7 @@ public class NotesData : NotesSerialData // Used for in game note data
     }
 }
 
-public static class NoteTest {
+[Obsolete] public static class NoteTest {
     private static readonly List<NotesData> NotesData = new();
     public static List<NotesData> GenerateNotes() {
         for (int i = 0; i < 40; i+=2) {

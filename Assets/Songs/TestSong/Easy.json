@@ -33,5 +33,19 @@
         "NoteId" : 0,
         "RowNumber" : 0,
         "NoteType" : "Normal"
+    },
+    {
+        "TimestampStart" : 10,
+        "TimestampEnd" : 13,
+        "NoteId" : 2,
+        "RowNumber" : 0,
+        "NoteType" : "Hold"
+    },
+    {
+        "TimestampStart" : 14,
+        "TimestampEnd" : 16,
+        "NoteId" : 3,
+        "RowNumber" : 0,
+        "NoteType" : "Mash"
     }
 ]

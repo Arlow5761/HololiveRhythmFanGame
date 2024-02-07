@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Lane : MonoBehaviour
 {
-    readonly List<Note> notes = new();
+    readonly List<NoteRender> notes = new();
 
     int spawnIndex = 0;
     readonly int inputIndex = 0;
@@ -46,10 +46,10 @@ public class Lane : MonoBehaviour
         if (spawnIndex < Song.Instance.NotesData.Count) {
             if (Song.GetAudioSourceTime() >= Song.Instance.NotesData[spawnIndex].TimestampStart - Song.Instance.noteTime) {
                 GameObject note = SpawnNote(Song.Instance.NotesData[spawnIndex].NoteId, Song.Instance.NotesData[spawnIndex].RowNumber);
-                notes.Add(note.AddComponent<Note>());
+                
 //                Debug.Log("Note " + spawnIndex + " : " + note.transform.position.x + " " + note.transform.position.y);
-                note.GetComponent<Note>().index = spawnIndex;
-                note.GetComponent<Note>().noteData = Song.Instance.NotesData[spawnIndex];
+                note.GetComponent<NoteRender>().index = spawnIndex;
+                note.GetComponent<NoteRender>().noteData = Song.Instance.NotesData[spawnIndex];
                 spawnIndex++;
             }
         }
