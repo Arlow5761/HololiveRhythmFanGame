@@ -37,7 +37,9 @@ public class NormalNote : BaseNote
     {
         if (currentTime < timing || Threshold.instance.GetGrade(currentTime - timing).score != 0) return;
 
-        Debug.Log("Miss!"); // Register miss here
+        ScoreManager.instance.BreakCombo();
+
+        noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
 
         CleanUp();
     }
@@ -52,7 +54,8 @@ public class NormalNote : BaseNote
 
         if (result.score == 0) return;
 
-        Debug.Log(result.score); // Add score here
+        ScoreManager.instance.IncrementCombo();
+        ScoreManager.instance.AddScoreWithCombo(result.score);
 
         noteData.onHit.Invoke(result);
 
@@ -95,7 +98,11 @@ public class SliderNote : BaseNote
         {
             Grade tickGrade = Threshold.instance.GetSpecialGrade("SliderTick");
 
-            Debug.Log(tickGrade.score * (newTicks - ticks)); // Add score here
+            for (int i = 0; i < newTicks - ticks; i++)
+            {
+                ScoreManager.instance.IncrementCombo();
+                ScoreManager.instance.AddScoreWithCombo(tickGrade.score);
+            }
 
             ticks = newTicks;
         }
@@ -105,7 +112,9 @@ public class SliderNote : BaseNote
     {
         if (currentTime < timing || Threshold.instance.GetGrade(currentTime - timing).score != 0) return;
 
-        Debug.Log("Miss!"); // Register miss here
+        ScoreManager.instance.BreakCombo();
+
+        noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         Timeline.instance.updateEvent.RemoveListener(CheckMissStart);
@@ -117,7 +126,9 @@ public class SliderNote : BaseNote
     {
         if (currentTime < endTiming || Threshold.instance.GetGrade(currentTime - endTiming).score != 0) return;
 
-        Debug.Log("Miss!"); // Register miss here
+        ScoreManager.instance.BreakCombo();
+
+        noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(CheckMissEnd);
@@ -134,7 +145,8 @@ public class SliderNote : BaseNote
 
         if (result.score == 0) return;
 
-        Debug.Log(result.score); // Add score here
+        ScoreManager.instance.IncrementCombo();
+        ScoreManager.instance.AddScoreWithCombo(result.score);
 
         noteData.onHit.Invoke(result);
 
@@ -155,7 +167,8 @@ public class SliderNote : BaseNote
 
         Grade result = Threshold.instance.GetGrade(currentTime - endTiming);
 
-        Debug.Log(result.score); // Add score here
+        ScoreManager.instance.IncrementCombo();
+        ScoreManager.instance.AddScoreWithCombo(result.score);
 
         noteData.onHit.Invoke(result);
 
@@ -206,7 +219,8 @@ public class MashNote : BaseNote
 
         Grade mashGrade = Threshold.instance.GetSpecialGrade("MashGrade");
 
-        Debug.Log(mashGrade.score); // Add score here
+        ScoreManager.instance.IncrementCombo();
+        ScoreManager.instance.AddScoreWithCombo(mashGrade.score);
 
         noteData.onHit.Invoke(mashGrade);
     }

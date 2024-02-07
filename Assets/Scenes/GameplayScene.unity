@@ -485,6 +485,52 @@ MonoBehaviour:
   - name: MashGrade
     margin: 0
     score: 100
+--- !u!1 &551566369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551566371}
+  - component: {fileID: 551566370}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &551566370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551566369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8811e0f23c314d043aaba5a5f5eb5f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  combo: 0
+--- !u!4 &551566371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551566369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.2139227, y: -0.6427882, z: -0.029894829}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &824335342
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +626,7 @@ MonoBehaviour:
   noteSpawnX: 11.5
   noteDespawnX: -11.5
   noteTapX: -4.5
+  NotesData: []
 --- !u!1 &1301197368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,3 +1369,4 @@ SceneRoots:
   - {fileID: 1418008401}
   - {fileID: 340854603}
   - {fileID: 1449540574}
+  - {fileID: 551566371}
