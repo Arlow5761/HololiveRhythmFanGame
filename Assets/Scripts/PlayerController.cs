@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     //Movement Variables
     [SerializeField] 
     private float verticalUp;
@@ -11,18 +13,19 @@ public class PlayerController : MonoBehaviour
     private float verticalDown;
     [SerializeField]
     private float delay;
-    private float xFixedPos = -9.5f;
+    private float xFixedPos = -7;
 
     //PlayerController's Combo and Health Variables
     [SerializeField]
     private int hitDamage;
     [HideInInspector]
     public int health = 100;
-    [HideInInspector]
-    public int comboBeat = 0;
 
     // How much air time the player has left before falling back down
     private float airTime;
+    
+    // Whether or not an air attack whiffs
+    public bool whiff;
 
     // Update is called once per frame
     void Update()
@@ -30,8 +33,22 @@ public class PlayerController : MonoBehaviour
         DownDelay();
     }
 
+    void Awake()
+    {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        if (instance != this && instance != null) return;
+
+        instance = this;
+    }
+
     private void Jump()
     {
+        if (whiff) return;
+        whiff = true;
         transform.position = new Vector2(xFixedPos, verticalUp);
         if(Time.time - Time.deltaTime >= 0.5f) // Idk what this if does
         {
@@ -41,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     private void Land()
     {
+        whiff = false;
         transform.position = new Vector2(xFixedPos, -verticalDown);
         airTime = 0;
     }
@@ -55,16 +73,6 @@ public class PlayerController : MonoBehaviour
             {
                 Land();
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Beat")
-        {
-            comboBeat = 0;
-            Destroy(collision.gameObject);
-            health -= hitDamage;
         }
     }
 

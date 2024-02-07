@@ -756,7 +756,7 @@ Transform:
   m_GameObject: {fileID: 1418008399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.5, y: 0, z: 0}
+  m_LocalPosition: {x: -7, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -779,7 +779,7 @@ MonoBehaviour:
   delay: 1
   hitDamage: 0
   health: 100
-  comboBeat: 0
+  whiff: 0
 --- !u!50 &1418008403
 Rigidbody2D:
   serializedVersion: 4

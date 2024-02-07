@@ -45,6 +45,7 @@ public class Note : MonoBehaviour
 
     void OnHit(Grade grade)
     {
+        PlayerController.instance.whiff = false;
         CleanUp();
     }
 
