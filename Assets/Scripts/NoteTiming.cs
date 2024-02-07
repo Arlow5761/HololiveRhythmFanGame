@@ -17,6 +17,7 @@ public abstract class BaseNote
     public NoteType type;
     public bool noteLocked;
     public int lane;
+    public NotesData noteData;
 
     public abstract void LockNote();
 
@@ -52,6 +53,8 @@ public class NormalNote : BaseNote
         if (result.score == 0) return;
 
         Debug.Log(result.score); // Add score here
+
+        noteData.onHit.Invoke(result);
 
         CleanUp();
     }
@@ -133,6 +136,8 @@ public class SliderNote : BaseNote
 
         Debug.Log(result.score); // Add score here
 
+        noteData.onHit.Invoke(result);
+
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         ProcessInput.instance.inputEvent.AddListener(Release);
         Timeline.instance.updateEvent.RemoveListener(CheckMissStart);
@@ -151,6 +156,8 @@ public class SliderNote : BaseNote
         Grade result = Threshold.instance.GetGrade(currentTime - endTiming);
 
         Debug.Log(result.score); // Add score here
+
+        noteData.onHit.Invoke(result);
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(SliderTick);
@@ -200,6 +207,8 @@ public class MashNote : BaseNote
         Grade mashGrade = Threshold.instance.GetSpecialGrade("MashGrade");
 
         Debug.Log(mashGrade.score); // Add score here
+
+        noteData.onHit.Invoke(mashGrade);
     }
 
     public override void LockNote()

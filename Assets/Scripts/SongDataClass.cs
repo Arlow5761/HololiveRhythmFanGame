@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SongData {
     public string SongName {get; set;}
@@ -9,14 +11,28 @@ public class SongData {
     public Dictionary<string, List<NotesData>> NotesData {get; set;}
 }
 
+[Serializable]
+public class NotesSerialData // Used to save note data
+{
+    public int TimestampStart;
+    public int TimestampEnd;
+    public int NoteId;
+    public int RowNumber;
+    public string NoteType;
+}
 
+[Serializable]
+public class NotesData : NotesSerialData // Used for in game note data
+{
+    public BaseNote timingObject;
+    public Note renderObject;
 
-public class NotesData {
-    public int TimestampStart {get; set;}
-    public int TimestampEnd {get; set;}
-    public int NoteId {get; set;}
-    public int RowNumber {get; set;}
-    public string NoteType {get; set;}
+    public UnityEvent<Grade> onHit;
+
+    public NotesData()
+    {
+        onHit = new();
+    }
 }
 
 public static class NoteTest {
@@ -24,10 +40,10 @@ public static class NoteTest {
     public static List<NotesData> GenerateNotes() {
         for (int i = 0; i < 40; i+=2) {
             List<int> laneNumbers = new();
-            for (int j = 0; j < Random.Range(1,2); j++) {
+            for (int j = 0; j < UnityEngine.Random.Range(1,2); j++) {
                 int laneNumber;
                 do {
-                    laneNumber = Random.Range(0,2);
+                    laneNumber = UnityEngine.Random.Range(0,2);
                     if (laneNumbers.Contains(laneNumber)) {
                         laneNumber = -1;
                         continue;
@@ -35,7 +51,7 @@ public static class NoteTest {
                     NotesData.Add(new NotesData {
                         TimestampStart = i,
                         TimestampEnd = i,
-                        NoteId = Random.Range(0,2),
+                        NoteId = UnityEngine.Random.Range(0,2),
                         RowNumber = laneNumber,
                         NoteType = "Normal"
                     });
@@ -44,6 +60,34 @@ public static class NoteTest {
                 laneNumbers.Add(laneNumber);
             }
         }
+
+        int upperLaneCount  = 0;
+        int lowerLaneCount = 0;
+
+        NotesData.ForEach(note => {
+            if (note.RowNumber == 0)
+            {
+                upperLaneCount++;
+            }
+            else if (note.RowNumber == 1)
+            {
+                lowerLaneCount++;
+            }
+
+            if (note.TimestampEnd != note.TimestampStart)
+            {
+                // Later
+            }
+            else
+            {
+                NormalNote noteTiming = new(note.TimestampStart, 1 - note.RowNumber);
+                Timeline.instance.lanes[1 - note.RowNumber].stream.Add(noteTiming);
+
+                note.timingObject = noteTiming;
+                noteTiming.noteData = note;
+            }
+        });
+
         return NotesData;
     }
 }
