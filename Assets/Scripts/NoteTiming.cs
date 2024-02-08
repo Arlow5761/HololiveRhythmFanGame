@@ -244,3 +244,93 @@ public class MashNote : BaseNote
         Timeline.instance.updateEvent.AddListener(Start);
     }
 }
+
+public class HealNote : BaseNote
+{
+    public HealNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
+
+    public void CheckForCollision(double currentTime)
+    {
+        if (currentTime < timing) return;
+
+        if (PlayerController.instance.GetLane() == lane)
+        {
+            PlayerController.instance.Heal(Song.Instance.baseDamage); // Change heal amount later
+            noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
+        }
+
+        CleanUp();
+    }
+
+    private void CleanUp()
+    {
+        Timeline.instance.updateEvent.RemoveListener(CheckForCollision);
+        noteLocked = false;
+    }
+
+    public override void LockNote()
+    {
+        noteLocked = false;
+        Timeline.instance.updateEvent.AddListener(CheckForCollision);
+    }
+}
+
+public class ObstacleNote : BaseNote
+{
+    public ObstacleNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
+
+    public void CheckForCollision(double currentTime)
+    {
+        if (currentTime < timing) return;
+
+        if (PlayerController.instance.GetLane() == lane)
+        {
+            PlayerController.instance.Damage(Song.Instance.baseDamage);
+            noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
+        }
+
+        CleanUp();
+    }
+
+    private void CleanUp()
+    {
+        Timeline.instance.updateEvent.RemoveListener(CheckForCollision);
+        noteLocked = false;
+    }
+
+    public override void LockNote()
+    {
+        noteLocked = false;
+        Timeline.instance.updateEvent.AddListener(CheckForCollision);
+    }
+}
+
+public class ScoreNote : BaseNote
+{
+    public ScoreNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
+
+    public void CheckForCollision(double currentTime)
+    {
+        if (currentTime < timing) return;
+
+        if (PlayerController.instance.GetLane() == lane)
+        {
+            ScoreManager.instance.AddScoreWithCombo(50); // Change the added score
+            noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
+        }
+
+        CleanUp();
+    }
+
+    private void CleanUp()
+    {
+        Timeline.instance.updateEvent.RemoveListener(CheckForCollision);
+        noteLocked = false;
+    }
+
+    public override void LockNote()
+    {
+        noteLocked = false;
+        Timeline.instance.updateEvent.AddListener(CheckForCollision);
+    }
+}

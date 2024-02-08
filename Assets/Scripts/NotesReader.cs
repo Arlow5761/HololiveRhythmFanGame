@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore;
 
 [Serializable]
 public class LevelData
@@ -39,7 +40,13 @@ public static class NotesReader
             }
             else
             {
-                noteTiming = new NormalNote(note.TimestampStart, note.RowNumber);
+                noteTiming = note.NoteType switch
+                {
+                    "Normal" => new NormalNote(note.TimestampStart, note.RowNumber),
+                    "Heal" => new HealNote(note.TimestampStart, note.RowNumber),
+                    "Obstacle" => new ObstacleNote(note.TimestampStart, note.RowNumber),
+                    _ => null
+                };
             }
 
             Timeline.instance.lanes[note.RowNumber].stream.Add(noteTiming);

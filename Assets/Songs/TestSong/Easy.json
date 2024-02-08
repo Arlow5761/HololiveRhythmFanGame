@@ -109,6 +109,20 @@
             "NoteId" : 3,
             "RowNumber" : 0,
             "NoteType" : "Mash"
+        },
+        {
+            "TimestampStart" : 17,
+            "TimestampEnd" : 17,
+            "NoteId" : 4,
+            "RowNumber" : 0,
+            "NoteType" : "Heal"
+        },
+        {
+            "TimestampStart" : 18,
+            "TimestampEnd" : 18,
+            "NoteId" : 5,
+            "RowNumber" : 0,
+            "NoteType" : "Obstacle"
         }
     ]
 }
