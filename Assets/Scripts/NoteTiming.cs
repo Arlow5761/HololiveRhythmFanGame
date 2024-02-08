@@ -319,8 +319,10 @@ public class ScoreNote : BaseNote
 
         if (PlayerController.instance.GetLane() == lane)
         {
-            ScoreManager.instance.AddScoreWithCombo(50); // Change the added score
-            noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
+            Grade grade = Threshold.instance.GetSpecialGrade("ScoreNote");
+
+            ScoreManager.instance.AddScoreWithCombo(grade.score); // Change the added score
+            noteData.onHit.Invoke(grade);
         }
 
         CleanUp();

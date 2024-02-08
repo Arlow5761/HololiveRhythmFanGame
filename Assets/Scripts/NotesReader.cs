@@ -47,6 +47,7 @@ public static class NotesReader
                     "Normal" => new NormalNote(note.TimestampStart, note.RowNumber),
                     "Heal" => new HealNote(note.TimestampStart, note.RowNumber),
                     "Obstacle" => new ObstacleNote(note.TimestampStart, note.RowNumber),
+                    "ScoreNote" => new ScoreNote(note.TimestampStart, note.RowNumber),
                     _ => null
                 };
             }

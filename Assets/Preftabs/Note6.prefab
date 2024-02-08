@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6979698697797674390}
   - component: {fileID: 517216985852646580}
-  - component: {fileID: 2538420162268391691}
+  - component: {fileID: 4152051277617148856}
   m_Layer: 0
-  m_Name: Note4
+  m_Name: Note6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.02215743, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.02678299, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2538420162268391691
+--- !u!114 &4152051277617148856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,13 +96,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5508833136404466240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71dfb4d550708bb48910ffe2f9a76227, type: 3}
+  m_Script: {fileID: 11500000, guid: f741d94d3a2223845874dbe8ea80bd05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
-  noteData:
-    TimestampStart: 0
-    TimestampEnd: 0
-    NoteId: 0
-    RowNumber: 0
-    NoteType: 

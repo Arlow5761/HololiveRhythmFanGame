@@ -33,10 +33,15 @@
             "name" : "MashGrade",
             "margin" : 0,
             "score" : 100
+        },
+        {
+            "name" : "ScoreNote",
+            "margin" : 0,
+            "score" : 50
         }
     ],
     "TickSpeed" : 0.5,
-    "NoteSpeed" : 1,
+    "NoteSpeed" : 2,
     "BaseDamage" : 20,
     "BaseHeal" : 15,
     "BaseFeverIncrease" : 10,
@@ -125,6 +130,13 @@
             "NoteId" : 5,
             "RowNumber" : 0,
             "NoteType" : "Obstacle"
+        },
+        {
+            "TimestampStart" : 19,
+            "TimestampEnd" : 19,
+            "NoteId" : 6,
+            "RowNumber" : 0,
+            "NoteType" : "ScoreNote"
         }
     ]
 }

@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.08695984, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,9 +106,5 @@ MonoBehaviour:
     NoteId: 0
     RowNumber: 0
     NoteType: 
-    renderObject: {fileID: 0}
-    onHit:
-      m_PersistentCalls:
-        m_Calls: []
   trailPrefab: {fileID: 7518051861089309280, guid: aeecc374ee232da42ad27c53cbf2ec48, type: 3}
   endPrefab: {fileID: 5508833136404466240, guid: bd9a98dc2d698c245823b377df4fdfdf, type: 3}
