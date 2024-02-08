@@ -38,6 +38,8 @@
     "TickSpeed" : 0.5,
     "NoteSpeed" : 1,
     "BaseDamage" : 20,
+    "BaseHeal" : 15,
+    "BaseFeverIncrease" : 10,
     "Notes" :
     [
         {

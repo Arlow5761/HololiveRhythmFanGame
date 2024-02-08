@@ -64,6 +64,7 @@ public class NormalNote : BaseNote
 
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
+        PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
 
         CleanUp();
     }
@@ -160,6 +161,7 @@ public class SliderNote : BaseNote
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
         PlayerController.instance.SetSliding(lane, true);
+        PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         ProcessInput.instance.inputEvent.AddListener(Release);
@@ -184,6 +186,7 @@ public class SliderNote : BaseNote
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
         PlayerController.instance.SetSliding(lane, false);
+        PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(SliderTick);
@@ -234,6 +237,7 @@ public class MashNote : BaseNote
 
         ScoreManager.instance.IncrementCombo();
         ScoreManager.instance.AddScoreWithCombo(mashGrade.score);
+        PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease / 3);
 
         noteData.onHit.Invoke(mashGrade);
     }

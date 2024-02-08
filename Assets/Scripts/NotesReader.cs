@@ -14,6 +14,8 @@ public class LevelData
     public double TickSpeed;
     public double NoteSpeed;
     public int BaseDamage;
+    public int BaseHeal;
+    public int BaseFeverIncrease;
     public NoteData[] Notes;
 }
 

@@ -21,6 +21,16 @@ public class PlayerController : MonoBehaviour
     public int health = 100;
     public UnityEvent<int> onHealthChanged;
 
+    // Fever Variables
+    public float feverDuration;
+    [HideInInspector]
+    public int maxFever;
+    public int fever;
+    public UnityEvent<int> onFeverChanged;
+    public UnityEvent onFeverStarted;
+    public UnityEvent onFeverEnded;
+    private float feverTime;
+
     // How much air time the player has left before falling back down
     private float airTime;
     
@@ -32,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         DownDelay();
+        FeverDelay();
     }
 
     void Awake()
@@ -87,6 +98,21 @@ public class PlayerController : MonoBehaviour
             if (airTime <= 0)
             {
                 Land();
+            }
+        }
+    }
+
+    private void FeverDelay()
+    {
+        if (feverTime > 0)
+        {
+            feverTime -= Time.deltaTime;
+
+            if (feverTime <= 0)
+            {
+                feverTime = 0;
+                fever = 0;
+                onFeverEnded.Invoke();
             }
         }
     }
@@ -166,13 +192,23 @@ public class PlayerController : MonoBehaviour
     {
         health = math.clamp(health - damage, 0, maxHealth);
         onHealthChanged.Invoke(health);
-        Debug.Log(health);
     }
 
     public void Heal(int amount)
     {
         health = math.clamp(health + amount, 0, maxHealth);
         onHealthChanged.Invoke(health);
-        Debug.Log(health);
+    }
+
+    public void IncreaseFever(int amount)
+    {
+        fever = math.clamp(fever + amount, 0, maxFever);
+        onFeverChanged.Invoke(fever);
+
+        if (fever == maxFever)
+        {
+            feverTime = feverDuration;
+            onFeverStarted.Invoke();
+        }
     }
 }

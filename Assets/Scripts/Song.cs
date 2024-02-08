@@ -15,6 +15,8 @@ public class Song : MonoBehaviour
     public double noteTime;
     public double tickSpeed;
     public int baseDamage;
+    public int baseHeal;
+    public int baseFeverIncrease;
     public List<NoteData> NotesData;
 
     // Start is called before the first frame update
@@ -56,6 +58,9 @@ public class Song : MonoBehaviour
         NotesData = levelData.Notes.ToList();
         noteTime = levelData.NoteSpeed;
         tickSpeed = levelData.TickSpeed;
+        baseDamage = levelData.BaseDamage;
+        baseHeal = levelData.BaseHeal;
+        baseFeverIncrease = levelData.BaseFeverIncrease;
 
         Threshold.instance.grades = levelData.NormalThresholds;
         Threshold.instance.specialGrades = levelData.SpecialThresholds;
