@@ -7,7 +7,7 @@ public class NoteRender : MonoBehaviour
 {
     protected double timeInstantiated;
     public int index;
-    public NotesData noteData;
+    public NoteData noteData;
 
     // Start is called before the first frame update
     void Start()

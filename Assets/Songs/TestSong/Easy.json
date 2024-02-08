@@ -1,72 +1,114 @@
-[
-    {
-        "TimestampStart" : 5,
-        "TimestampEnd" : 5,
-        "NoteId" : 0,
-        "RowNumber" : 0,
-        "NoteType" : "Normal"
-    },
-    {
-        "TimestampStart" : 6,
-        "TimestampEnd" : 6,
-        "NoteId" : 1,
-        "RowNumber" : 0,
-        "NoteType" : "Normal"
-    },
-    {
-        "TimestampStart" : 7,
-        "TimestampEnd" : 7,
-        "NoteId" : 0,
-        "RowNumber" : 0,
-        "NoteType" : "Normal"
-    },
-    {
-        "TimestampStart" : 7,
-        "TimestampEnd" : 7,
-        "NoteId" : 0,
-        "RowNumber" : 1,
-        "NoteType" : "Normal"
-    },
-    {
-        "TimestampStart" : 8,
-        "TimestampEnd" : 8,
-        "NoteId" : 1,
-        "RowNumber" : 0,
-        "NoteType" : "Normal"
-    },
-    {
-        "TimestampStart" : 9,
-        "TimestampEnd" : 9,
-        "NoteId" : 0,
-        "RowNumber" : 0,
-        "NoteType" : "Normal"
-    },
-    {
-        "TimestampStart" : 10,
-        "TimestampEnd" : 13,
-        "NoteId" : 2,
-        "RowNumber" : 0,
-        "NoteType" : "Hold"
-    },
-    {
-        "TimestampStart" : 10,
-        "TimestampEnd" : 11,
-        "NoteId" : 2,
-        "RowNumber" : 1,
-        "NoteType" : "Hold"
-    },
-    {
-        "TimestampStart" : 12,
-        "TimestampEnd" : 12,
-        "NoteId" : 0,
-        "RowNumber" : 1,
-        "NoteType" : "Normal"
-    },
-    {
-        "TimestampStart" : 14,
-        "TimestampEnd" : 16,
-        "NoteId" : 3,
-        "RowNumber" : 0,
-        "NoteType" : "Mash"
-    }
-]
+{
+    "NormalThresholds" :
+    [
+        {
+            "name" : "Perfect",
+            "margin" : 0.05,
+            "score" : 300
+        },
+        {
+            "name" : "Great",
+            "margin" : 0.1,
+            "score" : 100
+        },
+        {
+            "name" : "Okay",
+            "margin" : 0.2,
+            "score" : 50
+        }
+    ],
+    "SpecialThresholds" :
+    [
+        {
+            "name" : "Miss",
+            "margin" : 0,
+            "score" : 0
+        },
+        {
+            "name" : "SliderTick",
+            "margin" : 0,
+            "score" : 10
+        },
+        {
+            "name" : "MashGrade",
+            "margin" : 0,
+            "score" : 100
+        }
+    ],
+    "TickSpeed" : 0.5,
+    "NoteSpeed" : 1,
+    "BaseDamage" : 20,
+    "Notes" :
+    [
+        {
+            "TimestampStart" : 5,
+            "TimestampEnd" : 5,
+            "NoteId" : 0,
+            "RowNumber" : 0,
+            "NoteType" : "Normal"
+        },
+        {
+            "TimestampStart" : 6,
+            "TimestampEnd" : 6,
+            "NoteId" : 1,
+            "RowNumber" : 0,
+            "NoteType" : "Normal"
+        },
+        {
+            "TimestampStart" : 7,
+            "TimestampEnd" : 7,
+            "NoteId" : 0,
+            "RowNumber" : 0,
+            "NoteType" : "Normal"
+        },
+        {
+            "TimestampStart" : 7,
+            "TimestampEnd" : 7,
+            "NoteId" : 0,
+            "RowNumber" : 1,
+            "NoteType" : "Normal"
+        },
+        {
+            "TimestampStart" : 8,
+            "TimestampEnd" : 8,
+            "NoteId" : 1,
+            "RowNumber" : 0,
+            "NoteType" : "Normal"
+        },
+        {
+            "TimestampStart" : 9,
+            "TimestampEnd" : 9,
+            "NoteId" : 0,
+            "RowNumber" : 0,
+            "NoteType" : "Normal"
+        },
+        {
+            "TimestampStart" : 10,
+            "TimestampEnd" : 13,
+            "NoteId" : 2,
+            "RowNumber" : 0,
+            "NoteType" : "Hold"
+        },
+        {
+            "TimestampStart" : 10,
+            "TimestampEnd" : 11,
+            "NoteId" : 2,
+            "RowNumber" : 1,
+            "NoteType" : "Hold"
+        },
+        {
+            "TimestampStart" : 12,
+            "TimestampEnd" : 12,
+            "NoteId" : 0,
+            "RowNumber" : 1,
+            "NoteType" : "Normal"
+        },
+        {
+            "TimestampStart" : 14,
+            "TimestampEnd" : 16,
+            "NoteId" : 3,
+            "RowNumber" : 0,
+            "NoteType" : "Mash"
+        }
+    ]
+}

@@ -1,28 +1,31 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+
+[Serializable]
+public class LevelData
+{
+    public Grade[] NormalThresholds;
+    public Grade[] SpecialThresholds;
+    public double TickSpeed;
+    public double NoteSpeed;
+    public int BaseDamage;
+    public NoteData[] Notes;
+}
 
 public static class NotesReader
 {
-    public static List<NotesData> ReadNotesFromFile(string path)
+    public static LevelData ReadLevelDataFromFile(string path)
     {
         string json = File.ReadAllText(path);
         
-        List<NotesSerialData> rawData = JsonParser.OpenArray<NotesSerialData>(json).ToList();
-        List<NotesData> data = new(rawData.Count);
+        LevelData rawData = JsonParser.OpenObject<LevelData>(json);
 
-        rawData.ForEach( serialNote => {
-            data.Add(new() {
-                TimestampStart = serialNote.TimestampStart,
-                TimestampEnd = serialNote.TimestampEnd,
-                NoteId = serialNote.NoteId,
-                RowNumber = serialNote.RowNumber,
-                NoteType = serialNote.NoteType
-            });
-        });
-
-        data.ForEach(note => {
+        foreach (NoteData note in rawData.Notes)
+        {
             BaseNote noteTiming;
 
             if (note.TimestampEnd != note.TimestampStart)
@@ -43,8 +46,8 @@ public static class NotesReader
 
             note.timingObject = noteTiming;
             noteTiming.noteData = note;
-        });
+        };
 
-        return data;
+        return rawData;
     }
 }

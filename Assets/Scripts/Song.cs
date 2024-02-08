@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -11,9 +12,10 @@ public class Song : MonoBehaviour
     public AudioSource audioSource;
     public float songDelayInSeconds;
     public int inputDelayInMiliseconds;
-    public float noteTime;
+    public double noteTime;
+    public double tickSpeed;
     public int baseDamage;
-    public List<NotesData> NotesData;
+    public List<NoteData> NotesData;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +51,16 @@ public class Song : MonoBehaviour
 
     private void ReadSongAndMetadata()
     {
-        NotesData = NotesReader.ReadNotesFromFile(Path.Combine(Application.dataPath, "Songs", "TestSong", "Easy.json"));
+        LevelData levelData = NotesReader.ReadLevelDataFromFile(Path.Combine(Application.dataPath, "Songs", "TestSong", "Easy.json"));
+
+        NotesData = levelData.Notes.ToList();
+        noteTime = levelData.NoteSpeed;
+        tickSpeed = levelData.TickSpeed;
+
+        Threshold.instance.grades = levelData.NormalThresholds;
+        Threshold.instance.specialGrades = levelData.SpecialThresholds;
+        Threshold.instance.SortGrades();
+
         string path = Path.Combine(Application.dataPath, "Audio", "sample.ogg");
         StartCoroutine(LoadAudioAndPlay(path));
     }

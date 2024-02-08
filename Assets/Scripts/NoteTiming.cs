@@ -17,7 +17,7 @@ public abstract class BaseNote
     public NoteType type;
     public bool noteLocked;
     public int lane;
-    public NotesData noteData;
+    public NoteData noteData;
 
     public abstract void LockNote();
 
@@ -98,9 +98,9 @@ public class SliderNote : BaseNote
     {
         if (currentTime <= timing || currentTime >= endTiming) return;
 
-        int newTicks = (int) Math.Floor(currentTime - timing / 1);
+        int newTicks = (int) Math.Floor((currentTime - timing) / Song.Instance.tickSpeed);
 
-        if (newTicks > ticks) // Change tick distance from 1 later
+        if (newTicks > ticks)
         {
             Grade tickGrade = Threshold.instance.GetSpecialGrade("SliderTick");
 

@@ -15,6 +15,7 @@ public class SliderNoteRender : NoteRender
     double timeEnd;
     double holdTime = 0;
     bool isHit = false;
+    bool missed = false;
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class SliderNoteRender : NoteRender
 
     void RenderStart()
     {
-        if (isHit)
+        if (isHit && !missed)
         {
             holdTime = Song.GetAudioSourceTime() - noteData.TimestampStart;
             transform.localPosition = new Vector3(GameplayLayout.hitPosX, transform.localPosition.y, 0);
@@ -87,7 +88,7 @@ public class SliderNoteRender : NoteRender
 
         if (endObject.transform.position.x < GameplayLayout.hitPosX)
         {
-            isHit = false;
+            missed = true;
         }
 
         if (endObject.transform.position.x < GameplayLayout.noteDespawnX)
@@ -108,7 +109,7 @@ public class SliderNoteRender : NoteRender
     {
         if (grade.name == "Miss")
         {
-            isHit = false;
+            missed = true;
         }
         else if (isHit)
         {

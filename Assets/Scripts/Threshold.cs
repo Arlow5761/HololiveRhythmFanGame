@@ -33,8 +33,6 @@ public class Threshold : MonoBehaviour
         }
 
         instance = this;
-
-        SortGrades();
     }
 
     public void SortGrades()
