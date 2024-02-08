@@ -137,6 +137,8 @@ public class SliderNote : BaseNote
 
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
 
+        PlayerController.instance.SetSliding(lane, false);
+
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(CheckMissEnd);
         Timeline.instance.updateEvent.RemoveListener(SliderTick);
@@ -157,6 +159,7 @@ public class SliderNote : BaseNote
 
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
+        PlayerController.instance.SetSliding(lane, true);
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         ProcessInput.instance.inputEvent.AddListener(Release);
@@ -180,6 +183,7 @@ public class SliderNote : BaseNote
 
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
+        PlayerController.instance.SetSliding(lane, false);
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(SliderTick);

@@ -24,8 +24,9 @@ public class PlayerController : MonoBehaviour
     // How much air time the player has left before falling back down
     private float airTime;
     
-    // Whether or not an air attack whiffs
+    // Player state
     private bool whiff;
+    private bool[] isSliding = {false, false};
 
     // Update is called once per frame
     void Update()
@@ -47,17 +48,24 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if (isSliding[0])
+        {
+            return;
+        }
+
         whiff = true;
         lane = 1;
         transform.position = new Vector2(GameplayLayout.playerPosX, GameplayLayout.airLaneY);
-        if(Time.time - Time.deltaTime >= 0.5f) // Idk what this if does
-        {
-            airTime = delay;
-        }
+        airTime = delay;
     }
 
     private void Land()
     {
+        if (isSliding[1])
+        {
+            return;
+        }
+
         whiff = false;
         lane = 0;
         transform.position = new Vector2(GameplayLayout.playerPosX, GameplayLayout.groundLaneY);
@@ -66,6 +74,12 @@ public class PlayerController : MonoBehaviour
 
     private void DownDelay()
     {
+        if (isSliding[1])
+        {
+            airTime = delay;
+            return;
+        }
+
         if (airTime > 0)
         {
             airTime -= Time.deltaTime;
@@ -111,6 +125,41 @@ public class PlayerController : MonoBehaviour
     public void OnHitNote(Grade grade)
     {
         whiff = false;
+    }
+
+    public void SetSliding(int slidingLane, bool sliding)
+    {
+        isSliding[slidingLane] = sliding;
+
+        if (isSliding[0] && isSliding[1])
+        {
+            transform.position = new Vector2(
+                GameplayLayout.playerPosX, 
+                (GameplayLayout.airLaneY + GameplayLayout.groundLaneY) / 2
+            );
+
+            return;
+        }
+
+        if (!isSliding[0] && !isSliding[1])
+        {
+            Land();
+        }
+
+        if (!sliding && isSliding[1 - slidingLane])
+        {
+            switch (slidingLane)
+            {
+                case 0:
+                    Jump();
+                    break;
+                case 1:
+                    Land();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public void Damage(int damage)

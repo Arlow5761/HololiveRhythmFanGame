@@ -21,6 +21,13 @@
         "NoteType" : "Normal"
     },
     {
+        "TimestampStart" : 7,
+        "TimestampEnd" : 7,
+        "NoteId" : 0,
+        "RowNumber" : 1,
+        "NoteType" : "Normal"
+    },
+    {
         "TimestampStart" : 8,
         "TimestampEnd" : 8,
         "NoteId" : 1,
@@ -40,6 +47,20 @@
         "NoteId" : 2,
         "RowNumber" : 0,
         "NoteType" : "Hold"
+    },
+    {
+        "TimestampStart" : 10,
+        "TimestampEnd" : 11,
+        "NoteId" : 2,
+        "RowNumber" : 1,
+        "NoteType" : "Hold"
+    },
+    {
+        "TimestampStart" : 12,
+        "TimestampEnd" : 12,
+        "NoteId" : 0,
+        "RowNumber" : 1,
+        "NoteType" : "Normal"
     },
     {
         "TimestampStart" : 14,
