@@ -25,8 +25,8 @@ public class MashNoteRender : NoteRender
 
         // Debug.Log("Current t " + index + " : " + t);
         transform.localPosition = Vector3.Lerp(
-            new Vector3(Song.Instance.noteSpawnX, transform.localPosition.y, 0), 
-            new Vector3(Song.Instance.noteTapX, transform.localPosition.y, 0), 
+            new Vector3(GameplayLayout.noteSpawnX, transform.localPosition.y, 0), 
+            new Vector3(GameplayLayout.hitPosX, transform.localPosition.y, 0), 
             t
         );
         // transform.localPosition -= new Vector3(beatTempo * Time.deltaTime, 0, 0);
@@ -41,7 +41,7 @@ public class MashNoteRender : NoteRender
 
     void OnHit(Grade grade)
     {
-        PlayerController.instance.whiff = false;
+        PlayerController.instance.OnHitNote();
     }
 
     void CleanUp()

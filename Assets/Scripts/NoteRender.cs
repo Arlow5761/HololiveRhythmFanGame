@@ -29,15 +29,15 @@ public class NoteRender : MonoBehaviour
 
         // Debug.Log("Current t " + index + " : " + t);
         transform.localPosition = Vector3.LerpUnclamped(
-            new Vector3(Song.Instance.noteSpawnX, transform.localPosition.y, 0), 
-            new Vector3(Song.Instance.noteTapX, transform.localPosition.y, 0), 
+            new Vector3(GameplayLayout.noteSpawnX, transform.localPosition.y, 0), 
+            new Vector3(GameplayLayout.hitPosX, transform.localPosition.y, 0), 
             t
         );
         // transform.localPosition -= new Vector3(beatTempo * Time.deltaTime, 0, 0);
         // Debug.Log("x " + index + " : " + transform.localPosition.x);
         // Debug.Log("y " + index + " : " + transform.localPosition.y);
 
-        if (transform.localPosition.x <= Song.Instance.noteDespawnX)
+        if (transform.localPosition.x <= GameplayLayout.noteDespawnX)
         {
             CleanUp();
         }
@@ -45,7 +45,7 @@ public class NoteRender : MonoBehaviour
 
     void OnHit(Grade grade)
     {
-        PlayerController.instance.whiff = false;
+        PlayerController.instance.OnHitNote();
         CleanUp();
     }
 

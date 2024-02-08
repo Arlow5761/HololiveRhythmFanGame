@@ -29,17 +29,17 @@ public static class NotesReader
             {
                 noteTiming = note.NoteType switch
                 {
-                    "Hold" => new SliderNote(note.TimestampStart, note.TimestampEnd, 1 - note.RowNumber),
-                    "Mash" => new MashNote(note.TimestampStart, note.TimestampEnd, 1 - note.RowNumber),
+                    "Hold" => new SliderNote(note.TimestampStart, note.TimestampEnd, note.RowNumber),
+                    "Mash" => new MashNote(note.TimestampStart, note.TimestampEnd, note.RowNumber),
                     _ => null
                 };
             }
             else
             {
-                noteTiming = new NormalNote(note.TimestampStart, 1 - note.RowNumber);
+                noteTiming = new NormalNote(note.TimestampStart, note.RowNumber);
             }
 
-            Timeline.instance.lanes[1 - note.RowNumber].stream.Add(noteTiming);
+            Timeline.instance.lanes[note.RowNumber].stream.Add(noteTiming);
 
             note.timingObject = noteTiming;
             noteTiming.noteData = note;

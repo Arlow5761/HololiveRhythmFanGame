@@ -12,9 +12,6 @@ public class Song : MonoBehaviour
     public float songDelayInSeconds;
     public int inputDelayInMiliseconds;
     public float noteTime;
-    public float noteSpawnX;
-    public float noteDespawnX;
-    public float noteTapX;
     public List<NotesData> NotesData;
 
     // Start is called before the first frame update
@@ -64,6 +61,7 @@ public class Song : MonoBehaviour
 
     public static double GetAudioSourceTime() 
     {
+        if (Instance.audioSource.clip == null) return 0;
         return Instance.audioSource.timeSamples / (double)Instance.audioSource.clip.frequency;
     }
 

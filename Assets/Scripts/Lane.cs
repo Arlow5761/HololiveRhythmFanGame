@@ -32,9 +32,9 @@ public class Lane : MonoBehaviour
         GameObject preftab = LoadPrefabFromFile("Note" + index);
         Vector3 position = rowNumber switch
         {
-            0 => new Vector3(Song.Instance.noteSpawnX, 3f, 0),
-            1 => new Vector3(Song.Instance.noteSpawnX, -3f, 0),
-            _ => new Vector3(Song.Instance.noteSpawnX, 0, 0),
+            0 => new Vector3(GameplayLayout.noteSpawnX, GameplayLayout.groundLaneY, 0),
+            1 => new Vector3(GameplayLayout.noteSpawnX, GameplayLayout.airLaneY, 0),
+            _ => new Vector3(GameplayLayout.noteSpawnX, 0, 0),
         };
         return Instantiate(preftab, position, new Quaternion(0, 0, 0, 1));
     }

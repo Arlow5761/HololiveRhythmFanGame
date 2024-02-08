@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SliderNoteRender : NoteRender
@@ -41,8 +43,8 @@ public class SliderNoteRender : NoteRender
 
         // Debug.Log("Current t " + index + " : " + t);
         transform.localPosition = Vector3.LerpUnclamped(
-            new Vector3(Song.Instance.noteSpawnX, transform.localPosition.y, 0), 
-            new Vector3(Song.Instance.noteTapX, transform.localPosition.y, 0), 
+            new Vector3(GameplayLayout.noteSpawnX, transform.localPosition.y, 0), 
+            new Vector3(GameplayLayout.hitPosX, transform.localPosition.y, 0), 
             t
         );
         // transform.localPosition -= new Vector3(beatTempo * Time.deltaTime, 0, 0);
@@ -66,17 +68,30 @@ public class SliderNoteRender : NoteRender
 
         // Debug.Log("Current t " + index + " : " + t);
         endObject.transform.localPosition = Vector3.LerpUnclamped(
-            new Vector3(Song.Instance.noteSpawnX, transform.localPosition.y, 0), 
-            new Vector3(Song.Instance.noteTapX, transform.localPosition.y, 0), 
+            new Vector3(GameplayLayout.noteSpawnX, transform.localPosition.y, 0), 
+            new Vector3(GameplayLayout.hitPosX, transform.localPosition.y, 0), 
             t
         );
         // transform.localPosition -= new Vector3(beatTempo * Time.deltaTime, 0, 0);
         // Debug.Log("x " + index + " : " + transform.localPosition.x);
         // Debug.Log("y " + index + " : " + transform.localPosition.y);
+
+        if (endObject.transform.position.x < GameplayLayout.noteDespawnX)
+        {
+            CleanUp();
+        }
+    }
+
+    void CleanUp()
+    {
+        noteData.onHit.RemoveListener(OnHit);
+        Destroy(endObject);
+        Destroy(trailObject);
+        Destroy(gameObject);
     }
 
     void OnHit(Grade grade)
     {
-
+        
     }
 }

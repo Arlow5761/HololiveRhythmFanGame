@@ -7,13 +7,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     //Movement Variables
-    [SerializeField] 
-    private float verticalUp;
-    [SerializeField]
-    private float verticalDown;
     [SerializeField]
     private float delay;
-    private float xFixedPos = -7;
 
     //PlayerController's Combo and Health Variables
     [SerializeField]
@@ -49,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         if (whiff) return;
         whiff = true;
-        transform.position = new Vector2(xFixedPos, verticalUp);
+        transform.position = new Vector2(GameplayLayout.playerPosX, GameplayLayout.airLaneY);
         if(Time.time - Time.deltaTime >= 0.5f) // Idk what this if does
         {
             airTime = delay;
@@ -59,7 +54,7 @@ public class PlayerController : MonoBehaviour
     private void Land()
     {
         whiff = false;
-        transform.position = new Vector2(xFixedPos, -verticalDown);
+        transform.position = new Vector2(GameplayLayout.playerPosX, GameplayLayout.groundLaneY);
         airTime = 0;
     }
 
@@ -98,5 +93,10 @@ public class PlayerController : MonoBehaviour
     public void ReleaseDown()
     {
         ProcessInput.instance.PollInputUp(0);
+    }
+
+    public void OnHitNote()
+    {
+        whiff = false;
     }
 }
