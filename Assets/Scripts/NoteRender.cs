@@ -45,8 +45,14 @@ public class NoteRender : MonoBehaviour
 
     void OnHit(Grade grade)
     {
-        PlayerController.instance.OnHitNote();
-        CleanUp();
+        if (grade.name == "Miss")
+        {
+            
+        }
+        else
+        {
+            CleanUp();
+        }
     }
 
     void CleanUp()

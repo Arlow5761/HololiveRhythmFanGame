@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,18 +11,21 @@ public class PlayerController : MonoBehaviour
     //Movement Variables
     [SerializeField]
     private float delay;
-
-    //PlayerController's Combo and Health Variables
     [SerializeField]
-    private int hitDamage;
+    private int lane;
+
+
+    //PlayerController's Health Variables
+    public int maxHealth;
     [HideInInspector]
     public int health = 100;
+    public UnityEvent<int> onHealthChanged;
 
     // How much air time the player has left before falling back down
     private float airTime;
     
     // Whether or not an air attack whiffs
-    public bool whiff;
+    private bool whiff;
 
     // Update is called once per frame
     void Update()
@@ -42,8 +47,8 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (whiff) return;
         whiff = true;
+        lane = 1;
         transform.position = new Vector2(GameplayLayout.playerPosX, GameplayLayout.airLaneY);
         if(Time.time - Time.deltaTime >= 0.5f) // Idk what this if does
         {
@@ -54,6 +59,7 @@ public class PlayerController : MonoBehaviour
     private void Land()
     {
         whiff = false;
+        lane = 0;
         transform.position = new Vector2(GameplayLayout.playerPosX, GameplayLayout.groundLaneY);
         airTime = 0;
     }
@@ -71,10 +77,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public int GetLane()
+    {
+        return lane;
+    }
+
     // The following functions are used to respond inputs from InputHandler
 
     public void PressUp()
     {
+        if (whiff) return;
         Jump();
         ProcessInput.instance.PollInputDown(1);
     }
@@ -95,8 +107,23 @@ public class PlayerController : MonoBehaviour
         ProcessInput.instance.PollInputUp(0);
     }
 
-    public void OnHitNote()
+    // This function is called when the player hits a note
+    public void OnHitNote(Grade grade)
     {
         whiff = false;
+    }
+
+    public void Damage(int damage)
+    {
+        health = math.clamp(health - damage, 0, maxHealth);
+        onHealthChanged.Invoke(health);
+        Debug.Log(health);
+    }
+
+    public void Heal(int amount)
+    {
+        health = math.clamp(health + amount, 0, maxHealth);
+        onHealthChanged.Invoke(health);
+        Debug.Log(health);
     }
 }

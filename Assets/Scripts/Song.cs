@@ -12,6 +12,7 @@ public class Song : MonoBehaviour
     public float songDelayInSeconds;
     public int inputDelayInMiliseconds;
     public float noteTime;
+    public int baseDamage;
     public List<NotesData> NotesData;
 
     // Start is called before the first frame update

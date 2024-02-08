@@ -13,6 +13,8 @@ public class SliderNoteRender : NoteRender
     GameObject endObject;
 
     double timeEnd;
+    double holdTime = 0;
+    bool isHit = false;
 
     void Start()
     {
@@ -38,7 +40,14 @@ public class SliderNoteRender : NoteRender
 
     void RenderStart()
     {
-        double timeSinceInstantiated = Song.GetAudioSourceTime() - timeInstantiated;
+        if (isHit)
+        {
+            holdTime = Song.GetAudioSourceTime() - noteData.TimestampStart;
+            transform.localPosition = new Vector3(GameplayLayout.hitPosX, transform.localPosition.y, 0);
+            return;
+        }
+
+        double timeSinceInstantiated = Song.GetAudioSourceTime() - timeInstantiated - holdTime;
         float t = (float)(timeSinceInstantiated / Song.Instance.noteTime);
 
         // Debug.Log("Current t " + index + " : " + t);
@@ -76,6 +85,11 @@ public class SliderNoteRender : NoteRender
         // Debug.Log("x " + index + " : " + transform.localPosition.x);
         // Debug.Log("y " + index + " : " + transform.localPosition.y);
 
+        if (endObject.transform.position.x < GameplayLayout.hitPosX)
+        {
+            isHit = false;
+        }
+
         if (endObject.transform.position.x < GameplayLayout.noteDespawnX)
         {
             CleanUp();
@@ -92,6 +106,17 @@ public class SliderNoteRender : NoteRender
 
     void OnHit(Grade grade)
     {
-        
+        if (grade.name == "Miss")
+        {
+            isHit = false;
+        }
+        else if (isHit)
+        {
+            CleanUp();
+        }
+        else
+        {
+            isHit = true;
+        }
     }
 }

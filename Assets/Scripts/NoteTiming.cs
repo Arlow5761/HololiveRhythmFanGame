@@ -39,6 +39,11 @@ public class NormalNote : BaseNote
 
         ScoreManager.instance.BreakCombo();
 
+        if (PlayerController.instance.GetLane() == lane)
+        {
+            PlayerController.instance.Damage(Song.Instance.baseDamage);
+        }
+
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
 
         CleanUp();
@@ -58,6 +63,7 @@ public class NormalNote : BaseNote
         ScoreManager.instance.AddScoreWithCombo(result.score);
 
         noteData.onHit.Invoke(result);
+        PlayerController.instance.OnHitNote(result);
 
         CleanUp();
     }
@@ -102,6 +108,7 @@ public class SliderNote : BaseNote
             {
                 ScoreManager.instance.IncrementCombo();
                 ScoreManager.instance.AddScoreWithCombo(tickGrade.score);
+                PlayerController.instance.OnHitNote(tickGrade);
             }
 
             ticks = newTicks;
@@ -149,6 +156,7 @@ public class SliderNote : BaseNote
         ScoreManager.instance.AddScoreWithCombo(result.score);
 
         noteData.onHit.Invoke(result);
+        PlayerController.instance.OnHitNote(result);
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         ProcessInput.instance.inputEvent.AddListener(Release);
@@ -171,6 +179,7 @@ public class SliderNote : BaseNote
         ScoreManager.instance.AddScoreWithCombo(result.score);
 
         noteData.onHit.Invoke(result);
+        PlayerController.instance.OnHitNote(result);
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(SliderTick);

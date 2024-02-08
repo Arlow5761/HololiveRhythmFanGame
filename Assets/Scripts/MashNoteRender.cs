@@ -41,7 +41,7 @@ public class MashNoteRender : NoteRender
 
     void OnHit(Grade grade)
     {
-        PlayerController.instance.OnHitNote();
+        
     }
 
     void CleanUp()
