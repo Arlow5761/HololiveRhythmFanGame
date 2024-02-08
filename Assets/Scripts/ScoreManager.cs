@@ -24,6 +24,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScoreRaw(int additionalScore)
     {
         score += (int) (additionalScore * math.max(0, multiplier) + math.max(0, bonus));
+        GameData.score = score;
         onScoreChanged.Invoke(score);
     }
 
@@ -35,6 +36,7 @@ public class ScoreManager : MonoBehaviour
     public void IncrementCombo()
     {
         combo++;
+        if (GameData.combo < combo) GameData.combo = combo;
         onComboChanged.Invoke(combo);
     }
 

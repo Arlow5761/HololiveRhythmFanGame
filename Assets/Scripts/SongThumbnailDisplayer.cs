@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SongThumbnailDisplayer : MonoBehaviour
@@ -16,7 +18,19 @@ public class SongThumbnailDisplayer : MonoBehaviour
         set
         {
             _displayedSong = value;
-            // Update thumbnail here
+            
+            void OnBackgroundLoaded(string receivedPath, Texture2D texture)
+            {
+                if (receivedPath != Path.Combine(Application.dataPath, displayedSong.metadata.coverPath)) return;
+
+                Sprite sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new(0.5f, 0.5f), math.min(texture.width, texture.height), 0, SpriteMeshType.FullRect);
+                spriteRenderer.sprite = sprite;
+                ImageLoader.onImageLoaded.RemoveListener(OnBackgroundLoaded);
+            }
+
+            ImageLoader.onImageLoaded.AddListener(OnBackgroundLoaded);
+
+            StartCoroutine(ImageLoader.LoadImageFromFile(Path.Combine(Application.dataPath, displayedSong.metadata.coverPath)));
         }
     }
     public Vector3 unfocusedScale;

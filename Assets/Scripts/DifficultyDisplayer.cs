@@ -14,7 +14,7 @@ public class DifficultyDisplayer : MonoBehaviour
         for (; i < song.metadata.difficulties.Length; i++)
         {
             
-            difficultyBars[i].ChangeDifficulty(song.metadata.difficulties[i], 0, "S");
+            difficultyBars[i].ChangeDifficulty(song.metadata.difficulties[i]);
             difficultyBars[i].Display();
         }
 

@@ -55,7 +55,10 @@ public class Threshold : MonoBehaviour
     {
         for (int i = 0; i < grades.Length; i++)
         {
-            if (math.abs(error) < grades[i].margin) return grades[i];
+            if (math.abs(error) < grades[i].margin)
+            {
+                return grades[i];
+            }
         }
 
         return Array.Find(specialGrades, grade => grade.name == "Miss");

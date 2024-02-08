@@ -21,6 +21,7 @@ public class SongSelector : MonoBehaviour
         set
         {
             _selectedSong = value;
+            GameData.songInfo = _selectedSong;
             onSelectedSongChanged.Invoke(_selectedSong);
         }
     }

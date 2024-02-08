@@ -53,7 +53,7 @@ public class Song : MonoBehaviour
 
     private void ReadSongAndMetadata()
     {
-        LevelData levelData = NotesReader.ReadLevelDataFromFile(Path.Combine(Application.dataPath, "Songs", "TestSong", "Easy.json"));
+        LevelData levelData = NotesReader.ReadLevelDataFromFile(Path.Combine(Application.dataPath, GameData.selectedDifficulty.notePath));
 
         NotesData = levelData.Notes.ToList();
         noteTime = levelData.NoteSpeed;
@@ -66,7 +66,7 @@ public class Song : MonoBehaviour
         Threshold.instance.specialGrades = levelData.SpecialThresholds;
         Threshold.instance.SortGrades();
 
-        string path = Path.Combine(Application.dataPath, "Audio", "sample.ogg");
+        string path = Path.Combine(Application.dataPath, GameData.songInfo.metadata.songPath);
         StartCoroutine(LoadAudioAndPlay(path));
     }
 

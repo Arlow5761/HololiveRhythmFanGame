@@ -21,11 +21,15 @@ public class DifficultyBarDisplayer : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ChangeDifficulty(string name, float rating, string grade)
+    public void ChangeDifficulty(Difficulty difficulty)
     {
-        nameField.SetText(name);
-        ratingField.SetText(rating.ToString());
-        gradeField.SetText(grade);
-        button.onClick.AddListener(() => { SceneHandler.instance.LoadScene("GameplayScene"); });
+        button.onClick.RemoveAllListeners();
+        nameField.SetText(difficulty.name);
+        ratingField.SetText(difficulty.rating.ToString());
+        gradeField.SetText("S");
+        button.onClick.AddListener(() => {
+            GameData.selectedDifficulty = difficulty;
+            SceneHandler.instance.LoadScene("GameplayScene");
+        });
     }
 }

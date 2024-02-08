@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -54,6 +55,7 @@ public class Timeline : MonoBehaviour
     public double currentTime;
     [SerializeField] public TimingLane[] lanes;
     public TimestampEvent updateEvent = new TimestampEvent();
+    public UnityEvent onLevelEnded;
 
     private bool started = false;
 
@@ -104,6 +106,12 @@ public class Timeline : MonoBehaviour
         currentTime = time;
         UpdateNotes();
         updateEvent.Invoke(currentTime);
+
+        if (time > Song.Instance.NotesData.Last().TimestampEnd)
+        {
+            onLevelEnded.Invoke();
+            started = false;
+        }
     }
 
     public void UpdateNotes()

@@ -5,46 +5,90 @@
         "artist" : "Arlow5761",
         "bpm" : 167,
         "difficulties" : [
-          "Easy",
-          "Medium",
-          "Hard"
+          {
+            "name" : "Easy",
+            "rating" : 1,
+            "notePath" : "Songs//TestSong1//Easy.json"
+          },
+          {
+            "name" : "Medium",
+            "rating" : 2,
+            "notePath" : "Songs//TestSong1//Easy.json"
+          },
+          {
+            "name" : "Hard",
+            "rating" : 3,
+            "notePath" : "Songs//TestSong1//Easy.json"
+          }
         ],
-        "notePath" : "",
-        "songPath" : "Audio//sample.ogg"
+        "songPath" : "Songs//TestSong1//sample.ogg",
+        "coverPath" : "Songs//TestSong1//background.jpg"
     },
     {
         "songName" : "Test Song 2",
         "artist" : "Arlow5762",
         "bpm" : 222,
         "difficulties" : [
-          "Basic",
-          "Hell"
+          {
+            "name" : "Basic",
+            "rating" : 3.4,
+            "notePath" : "Songs//TestSong2//Easy.json"
+          },
+          {
+            "name" : "Hell",
+            "rating" : 9.9,
+            "notePath" : "Songs//TestSong2//Easy.json"
+          }
         ],
-        "notePath" : "",
-        "songPath" : "Audio//sample2.ogg"
+        "songPath" : "Songs//TestSong2//sample2.ogg",
+        "coverPath" : "Songs//TestSong2//background.jpg"
     },
     {
         "songName" : "Test Song 3",
         "artist" : "Arlow5763",
         "bpm" : 180,
         "difficulties" : [
-          "Easy",
-          "Medium",
-          "Hard",
-          "Expert",
-          "Demon"
+          {
+            "name" : "Easy",
+            "rating" : 1,
+            "notePath" : "Songs//TestSong3//Easy.json"
+          },
+          {
+            "name" : "Medium",
+            "rating" : 2,
+            "notePath" : "Songs//TestSong3//Easy.json"
+          },
+          {
+            "name" : "Hard",
+            "rating" : 3.1,
+            "notePath" : "Songs//TestSong3//Easy.json"
+          },
+          {
+            "name" : "Expert",
+            "rating" : 4.7,
+            "notePath" : "Songs//TestSong3//Easy.json"
+          },
+          {
+            "name" : "Demon",
+            "rating" : 5.5,
+            "notePath" : "Songs//TestSong3//Easy.json"
+          }
         ],
-        "notePath" : "",
-        "songPath" : "Audio//sample3.ogg"
+        "songPath" : "Songs//TestSong3//sample3.ogg",
+        "coverPath" : "Songs//TestSong3//background.jpg"
     },
     {
         "songName" : "Test Song 4",
         "artist" : "Arlow5764",
         "bpm" : 666,
         "difficulties" : [
-          "Supreme"
+          {
+            "name" : "Supreme",
+            "rating" : 10,
+            "notePath" : "Songs//TestSong4//Easy.json"
+          }
         ],
-        "notePath" : "",
-        "songPath" : "Audio//sample4.ogg"
+        "songPath" : "Songs//TestSong4//sample4.ogg",
+        "coverPath" : "Songs//TestSong4//background.jpg"
     }
 ]

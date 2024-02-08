@@ -46,6 +46,8 @@ public class NormalNote : BaseNote
 
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
 
+        GameData.grades["Miss"]++;
+
         CleanUp();
     }
 
@@ -61,6 +63,7 @@ public class NormalNote : BaseNote
 
         ScoreManager.instance.IncrementCombo();
         ScoreManager.instance.AddScoreWithCombo(result.score);
+        GameData.grades[result.name]++;
 
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
@@ -121,7 +124,7 @@ public class SliderNote : BaseNote
         if (currentTime < timing || Threshold.instance.GetGrade(currentTime - timing).score != 0) return;
 
         ScoreManager.instance.BreakCombo();
-
+        GameData.grades["Miss"]++;
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
@@ -135,7 +138,7 @@ public class SliderNote : BaseNote
         if (currentTime < endTiming || Threshold.instance.GetGrade(currentTime - endTiming).score != 0) return;
 
         ScoreManager.instance.BreakCombo();
-
+        GameData.grades["Miss"]++;
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
 
         PlayerController.instance.SetSliding(lane, false);
@@ -157,6 +160,7 @@ public class SliderNote : BaseNote
 
         ScoreManager.instance.IncrementCombo();
         ScoreManager.instance.AddScoreWithCombo(result.score);
+        GameData.grades[result.name]++;
 
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
@@ -182,6 +186,7 @@ public class SliderNote : BaseNote
 
         ScoreManager.instance.IncrementCombo();
         ScoreManager.instance.AddScoreWithCombo(result.score);
+        GameData.grades[result.name]++;
 
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
@@ -289,8 +294,10 @@ public class ObstacleNote : BaseNote
 
         if (PlayerController.instance.GetLane() == lane)
         {
+            ScoreManager.instance.BreakCombo();
             PlayerController.instance.Damage(Song.Instance.baseDamage);
             noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
+            GameData.grades["Miss"]++;
         }
 
         CleanUp();
