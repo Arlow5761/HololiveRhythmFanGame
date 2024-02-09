@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private bool whiff;
     private bool[] isSliding = {false, false};
 
+    [SerializeField] private Animator animator;
+
     // Update is called once per frame
     void Update()
     {
@@ -64,6 +67,8 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
+        animator.SetTrigger("Jump");
 
         whiff = true;
         lane = 1;
@@ -99,6 +104,7 @@ public class PlayerController : MonoBehaviour
             if (airTime <= 0)
             {
                 Land();
+                animator.SetTrigger("Run");
             }
         }
     }
@@ -141,6 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         Land();
         ProcessInput.instance.PollInputDown(0);
+        animator.SetTrigger("Hit");
     }
 
     public void ReleaseDown()
@@ -165,12 +172,16 @@ public class PlayerController : MonoBehaviour
                 (GameplayLayout.airLaneY + GameplayLayout.groundLaneY) / 2
             );
 
+            animator.SetTrigger("Hold");
+
             return;
         }
 
         if (!isSliding[0] && !isSliding[1])
         {
             Land();
+
+            animator.SetTrigger("Run");
         }
 
         if (!sliding && isSliding[1 - slidingLane])
@@ -186,6 +197,8 @@ public class PlayerController : MonoBehaviour
                 default:
                     break;
             }
+
+            animator.SetTrigger("Hold");
         }
     }
 

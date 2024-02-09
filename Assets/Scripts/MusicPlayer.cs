@@ -11,6 +11,13 @@ public class MusicPlayer : MonoBehaviour
 
     [SerializeField] private Slider musicProgressSlider;
     [SerializeField] private TextMeshProUGUI musicTimeStamp;
+    [SerializeField] private Button button;
+    [SerializeField] private Image buttonImage;
+
+    [SerializeField] private Sprite playingNormal;
+    [SerializeField] private Sprite playingSelected;
+    [SerializeField] private Sprite pausedNormal;
+    [SerializeField] private Sprite pausedSelected;
 
     public void ChangeMusic(SongInfo newSong)
     {
@@ -21,18 +28,45 @@ public class MusicPlayer : MonoBehaviour
 
     public void PlayMusic()
     {
+        button.interactable = false;
+        button.spriteState = new SpriteState() {
+            pressedSprite = pausedSelected,
+            highlightedSprite = pausedSelected,
+            disabledSprite = pausedSelected
+            };
+        buttonImage.sprite = pausedNormal;
+        button.interactable = true;
+
         isPlaying = true;
         AudioHandler.instance.PlayMusic();
     }
 
     public void PauseMusic()
     {
+        button.interactable = false;
+        button.spriteState = new SpriteState() {
+            pressedSprite = playingSelected,
+            highlightedSprite = playingSelected,
+            disabledSprite = playingSelected
+            };
+        buttonImage.sprite = playingNormal;
+        button.interactable = true;
+
         isPlaying = false;
         AudioHandler.instance.PauseMusic();
     }
 
     public void UnpauseMusic()
     {
+        button.interactable = false;
+        button.spriteState = new SpriteState() {
+            pressedSprite = pausedSelected,
+            highlightedSprite = pausedSelected,
+            disabledSprite = pausedSelected
+            };
+        buttonImage.sprite = pausedNormal;
+        button.interactable = true;
+
         isPlaying = true;
         AudioHandler.instance.UnpauseMusic();
     }

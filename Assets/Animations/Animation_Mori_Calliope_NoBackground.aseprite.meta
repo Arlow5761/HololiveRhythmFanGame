@@ -1,0 +1,1106 @@
+fileFormatVersion: 2
+guid: c39c61eab6727a24f92328be78a34ae0
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Ground Attack Vers 1
+    second: {fileID: 7400000, guid: d0dcedc1591cc9241b1af8498ebedcbf, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Jumping Att Vers 1
+    second: {fileID: 7400000, guid: 6c09a22539bcc6747910c59fd223f4c4, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Jumping Att Vers 2
+    second: {fileID: 7400000, guid: 7a09eeb1d3a4cca47958354f2b4ec7be, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Jumping Att Vers 3
+    second: {fileID: 7400000, guid: 5ce64be3e66992d4e839321334fec34b, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Long Note Att
+    second: {fileID: 7400000, guid: acacdd7e25a3a1147ae3b3bc0bf15bcb, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Running
+    second: {fileID: 7400000, guid: 7f2af002933fced4fa86ba779f6f43bf, type: 2}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 0
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 43
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 1
+    defaultPivotAlignment: 0
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 1
+    defaultPivotAlignment: 0
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638431082955624481
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Animation_Mori_Calliope_NoBackground_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 106
+      width: 43
+      height: 43
+    spriteID: a7d3b67192fdc1b4da606e2eca4f8d49
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 106}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 324
+      width: 44
+      height: 46
+    spriteID: 4035512ce707867449d7588afcc36bb0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 324}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 426
+      width: 46
+      height: 47
+    spriteID: 6709903f1e8a78146b209179e3c118e0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 426}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 165
+      width: 46
+      height: 45
+    spriteID: a7b4ad0e49f74d14eb5b11aa79f27ba2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 165}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 218
+      width: 46
+      height: 45
+    spriteID: f94d1c620fdf7eb4bbb561e53afb4942
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 218}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 378
+      width: 43
+      height: 47
+    spriteID: 92043ea5ce831904a8d61729718a4f11
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 378}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 433
+      width: 43
+      height: 46
+    spriteID: 67f5a84fc993bd147b3f8d1685fa2ec3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 433}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_9
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 4
+      width: 44
+      height: 43
+    spriteID: 62e9f2e72411dda458a128f7e4064c2e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 4}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_10
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 55
+      width: 44
+      height: 43
+    spriteID: 2e2eb217338fa414189ad90fd1f90190
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 55}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 54
+      width: 49
+      height: 44
+    spriteID: 9755725246814944bb1f3a5854bbcc63
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 54}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_12
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 4
+      width: 58
+      height: 42
+    spriteID: bb499991307ac414e8d71299a347a705
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 4}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_13
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 122
+      width: 47
+      height: 54
+    spriteID: 899bd0abc0ede4142a83e45dd7c27571
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 122}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_14
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 61
+      width: 48
+      height: 53
+    spriteID: 61a18748cd26ee34082c39c29cf83705
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 61}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_15
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 271
+      width: 45
+      height: 45
+    spriteID: 3a90e73bdf3299949ad1eee25eec5418
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 271}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_16
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 157
+      width: 45
+      height: 41
+    spriteID: 6a91836d554818048823871e6e7f0449
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 157}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_17
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 135
+      y: 59
+      width: 39
+      height: 49
+    spriteID: f3c6ad20e7158bb499bde7cbb6bc76ba
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 135, y: 59}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_18
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 456
+      width: 26
+      height: 47
+    spriteID: 34ddf5123d9ff4a46a22d5d1001b3d4a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 456}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_19
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 226
+      y: 406
+      width: 26
+      height: 47
+    spriteID: 3b258a6d43224574db3f50903b2ac577
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 226, y: 406}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_20
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 406
+      width: 33
+      height: 42
+    spriteID: beb2e0f2f8404de46ab66d6364984f10
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 406}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_21
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 481
+      width: 47
+      height: 26
+    spriteID: f1df5cfb8b8b12a438546da8d3aaee47
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 481}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_22
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 135
+      y: 4
+      width: 42
+      height: 47
+    spriteID: dd7febba3f51cb8449fe151c892bdfa9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 135, y: 4}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_23
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 57
+      height: 49
+    spriteID: f87d125cdc2bb51459c2b257b2019bc9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_24
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 308
+      width: 44
+      height: 51
+    spriteID: c5ad62a3d90d2074d8d6db9496ba3310
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 308}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_27
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 206
+      width: 43
+      height: 42
+    spriteID: f0d0f76dfc3822446829f37a8fbb1335
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 206}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_28
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 256
+      width: 43
+      height: 42
+    spriteID: 7dfe92915fe662145bec1ae84f17f4e4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 256}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_29
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 306
+      width: 43
+      height: 42
+    spriteID: 1eb96174c2d557d45ba7f157a216aac4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 306}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_30
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 356
+      width: 43
+      height: 42
+    spriteID: e39c77c7c93e623448d517a22f521aec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 356}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_25
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 367
+      width: 44
+      height: 51
+    spriteID: d35576800eb79674285476139418f284
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 367}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_26
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 69
+      y: 106
+      width: 41
+      height: 51
+    spriteID: 5348627e05682ab4181d63759c56a4aa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 69, y: 106}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 184
+      width: 45
+      height: 54
+    spriteID: 0fabdc3843125c94b9c37884ff60e56c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 184}
+  - name: Animation_Mori_Calliope_NoBackground_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 246
+      width: 45
+      height: 54
+    spriteID: 03eb1746d0afb7e499791787ac93132b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 246}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1475060812
+    name: Animation_Mori_Calliope_NoBackground
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Animation_Mori_Calliope_NoBackground_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 17
+        y: 30
+        width: 43
+        height: 43
+      spriteId: a7d3b67192fdc1b4da606e2eca4f8d49
+    - name: Animation_Mori_Calliope_NoBackground_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 17
+        y: 28
+        width: 44
+        height: 46
+      spriteId: 4035512ce707867449d7588afcc36bb0
+    - name: Animation_Mori_Calliope_NoBackground_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 17
+        y: 27
+        width: 46
+        height: 47
+      spriteId: 6709903f1e8a78146b209179e3c118e0
+    - name: Animation_Mori_Calliope_NoBackground_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 17
+        y: 28
+        width: 46
+        height: 45
+      spriteId: a7b4ad0e49f74d14eb5b11aa79f27ba2
+    - name: Animation_Mori_Calliope_NoBackground_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 17
+        y: 29
+        width: 46
+        height: 45
+      spriteId: f94d1c620fdf7eb4bbb561e53afb4942
+    - name: Animation_Mori_Calliope_NoBackground_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 17
+        y: 27
+        width: 43
+        height: 47
+      spriteId: 92043ea5ce831904a8d61729718a4f11
+    - name: Animation_Mori_Calliope_NoBackground_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 17
+        y: 27
+        width: 43
+        height: 46
+      spriteId: 67f5a84fc993bd147b3f8d1685fa2ec3
+    - name: Animation_Mori_Calliope_NoBackground_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 17
+        y: 29
+        width: 44
+        height: 43
+      spriteId: 62e9f2e72411dda458a128f7e4064c2e
+    - name: Animation_Mori_Calliope_NoBackground_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 17
+        y: 29
+        width: 44
+        height: 43
+      spriteId: 2e2eb217338fa414189ad90fd1f90190
+    - name: Animation_Mori_Calliope_NoBackground_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 27
+        y: 37
+        width: 49
+        height: 44
+      spriteId: 9755725246814944bb1f3a5854bbcc63
+    - name: Animation_Mori_Calliope_NoBackground_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 17
+        y: 40
+        width: 58
+        height: 42
+      spriteId: bb499991307ac414e8d71299a347a705
+    - name: Animation_Mori_Calliope_NoBackground_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 21
+        y: 27
+        width: 47
+        height: 54
+      spriteId: 899bd0abc0ede4142a83e45dd7c27571
+    - name: Animation_Mori_Calliope_NoBackground_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 25
+        y: 41
+        width: 48
+        height: 53
+      spriteId: 61a18748cd26ee34082c39c29cf83705
+    - name: Animation_Mori_Calliope_NoBackground_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 25
+        y: 33
+        width: 45
+        height: 45
+      spriteId: 3a90e73bdf3299949ad1eee25eec5418
+    - name: Animation_Mori_Calliope_NoBackground_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 25
+        y: 33
+        width: 45
+        height: 41
+      spriteId: 6a91836d554818048823871e6e7f0449
+    - name: Animation_Mori_Calliope_NoBackground_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 38
+        y: 23
+        width: 39
+        height: 49
+      spriteId: f3c6ad20e7158bb499bde7cbb6bc76ba
+    - name: Animation_Mori_Calliope_NoBackground_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 33
+        y: 41
+        width: 26
+        height: 47
+      spriteId: 34ddf5123d9ff4a46a22d5d1001b3d4a
+    - name: Animation_Mori_Calliope_NoBackground_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 33
+        y: 41
+        width: 26
+        height: 47
+      spriteId: 3b258a6d43224574db3f50903b2ac577
+    - name: Animation_Mori_Calliope_NoBackground_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 17
+        y: 40
+        width: 33
+        height: 42
+      spriteId: beb2e0f2f8404de46ab66d6364984f10
+    - name: Animation_Mori_Calliope_NoBackground_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 22
+        y: 34
+        width: 47
+        height: 26
+      spriteId: f1df5cfb8b8b12a438546da8d3aaee47
+    - name: Animation_Mori_Calliope_NoBackground_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 21
+        y: 25
+        width: 42
+        height: 47
+      spriteId: dd7febba3f51cb8449fe151c892bdfa9
+    - name: Animation_Mori_Calliope_NoBackground_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 22
+        y: 23
+        width: 57
+        height: 49
+      spriteId: f87d125cdc2bb51459c2b257b2019bc9
+    - name: Animation_Mori_Calliope_NoBackground_Frame_24
+      frameIndex: 24
+      cellRect:
+        x: 35
+        y: 25
+        width: 44
+        height: 51
+      spriteId: c5ad62a3d90d2074d8d6db9496ba3310
+    - name: Animation_Mori_Calliope_NoBackground_Frame_27
+      frameIndex: 27
+      cellRect:
+        x: 21
+        y: 30
+        width: 43
+        height: 42
+      spriteId: f0d0f76dfc3822446829f37a8fbb1335
+    - name: Animation_Mori_Calliope_NoBackground_Frame_28
+      frameIndex: 28
+      cellRect:
+        x: 21
+        y: 30
+        width: 43
+        height: 42
+      spriteId: 7dfe92915fe662145bec1ae84f17f4e4
+    - name: Animation_Mori_Calliope_NoBackground_Frame_29
+      frameIndex: 29
+      cellRect:
+        x: 21
+        y: 29
+        width: 43
+        height: 42
+      spriteId: 1eb96174c2d557d45ba7f157a216aac4
+    - name: Animation_Mori_Calliope_NoBackground_Frame_30
+      frameIndex: 30
+      cellRect:
+        x: 21
+        y: 29
+        width: 43
+        height: 42
+      spriteId: e39c77c7c93e623448d517a22f521aec
+    - name: Animation_Mori_Calliope_NoBackground_Frame_25
+      frameIndex: 25
+      cellRect:
+        x: 35
+        y: 25
+        width: 44
+        height: 51
+      spriteId: d35576800eb79674285476139418f284
+    - name: Animation_Mori_Calliope_NoBackground_Frame_26
+      frameIndex: 26
+      cellRect:
+        x: 35
+        y: 25
+        width: 41
+        height: 51
+      spriteId: 5348627e05682ab4181d63759c56a4aa
+    - name: Animation_Mori_Calliope_NoBackground_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 42
+        y: 23
+        width: 45
+        height: 54
+      spriteId: 0fabdc3843125c94b9c37884ff60e56c
+    - name: Animation_Mori_Calliope_NoBackground_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 42
+        y: 23
+        width: 45
+        height: 54
+      spriteId: 03eb1746d0afb7e499791787ac93132b
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Windows Store Apps
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 100, y: 100}

@@ -11,6 +11,7 @@ public class SliderNoteRender : NoteRender
 
     GameObject trailObject;
     GameObject endObject;
+    SpriteRenderer trailRenderer;
 
     double timeEnd;
     double holdTime = 0;
@@ -25,6 +26,8 @@ public class SliderNoteRender : NoteRender
         timeInstantiated = noteData.TimestampStart - Song.Instance.noteTime;
         timeEnd = noteData.TimestampEnd - Song.Instance.noteTime;
         noteData.onHit.AddListener(OnHit);
+
+        trailRenderer = trailObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -65,7 +68,7 @@ public class SliderNoteRender : NoteRender
     void RenderTrail()
     {
         float length = endObject.transform.position.x - transform.position.x;
-        trailObject.transform.localScale = new Vector3(length, trailObject.transform.localScale.y, 1);
+        trailRenderer.size = new Vector2(length, trailRenderer.size.y);
 
         float pos = (endObject.transform.position.x + transform.position.x) / 2;
         trailObject.transform.position = new Vector3(pos, transform.localPosition.y, 0);
