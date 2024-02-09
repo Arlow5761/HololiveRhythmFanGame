@@ -193,4 +193,9 @@ public class SongSelector : MonoBehaviour
 
         return c;
     }
+
+    public void OnSceneLoaded()
+    {
+        Scores.ClearScores();
+    }
 }

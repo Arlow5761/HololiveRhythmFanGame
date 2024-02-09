@@ -1,5 +1,8 @@
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 
 public static class GameData
 {
@@ -8,8 +11,4 @@ public static class GameData
     public static string character = "Test";
     public static string pet;
     public static double offset;
-
-    public static int score = 0;
-    public static int combo = 0;
-    public static Dictionary<string, int> grades = new() { {"Perfect", 0}, {"Great", 0}, {"Okay", 0}, {"Miss", 0} };
 }

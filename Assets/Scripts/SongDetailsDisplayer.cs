@@ -10,6 +10,7 @@ public class SongDetailsDisplayer : MonoBehaviour
     public TextMeshProUGUI songNameField;
     public TextMeshProUGUI songArtistField;
     public TextMeshProUGUI songBPMField;
+    public TextMeshProUGUI songLengthField;
 
     public void ChangeSong(SongInfo newSong)
     {
@@ -17,5 +18,31 @@ public class SongDetailsDisplayer : MonoBehaviour
         songNameField.SetText(displayedSong.metadata.songName);
         songArtistField.SetText("By " + displayedSong.metadata.artist);
         songBPMField.SetText("BPM : " + displayedSong.metadata.bpm);
+    }
+
+    public void ChangeSongLength(AudioContainer newAudioContainer)
+    {
+        float clipLength = newAudioContainer.GetClipLength();
+
+        int seconds = (int) (clipLength % 60);
+        int minutes = (int) (clipLength / 60 % 60);
+        int hours = (int) (clipLength / 360 % 60);
+
+        string timeStamp;
+
+        if (hours > 0)
+        {
+            timeStamp = string.Format("{0}h {1}m {2}s", hours, minutes, seconds);
+        }
+        if (minutes > 0)
+        {
+            timeStamp = string.Format("{0}m {1}s", minutes, seconds);
+        }
+        else
+        {
+            timeStamp = string.Format("{0}s", seconds);
+        }
+
+        songLengthField.SetText("Length: " + timeStamp);
     }
 }

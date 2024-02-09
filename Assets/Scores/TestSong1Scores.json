@@ -1,0 +1,22 @@
+{
+    "songName" : "Test Song 1",
+    "difficulties" :
+    [
+        {
+            "name" : "Easy",
+            "scores" :
+            [
+                {
+                    "grade" : "SS",
+                    "score" : 1800000,
+                    "combo" : 44,
+                    "accuracy" : 100,
+                    "perfect" : 44,
+                    "great" : 0,
+                    "okay" : 0,
+                    "miss" : 0
+                }
+            ]
+        }
+    ]
+}

@@ -19,6 +19,20 @@ public static class JsonParser
         return JsonUtility.FromJson<ArrayWrapper<T>>(formatedData).array;
     }
 
+    public static string WriteObject<T>(T data)
+    {
+        return JsonUtility.ToJson(data);
+    }
+
+    public static string WriteArray<T>(T[] data)
+    {
+        ArrayWrapper<T> wrappedObject = new() {array = data};
+        string rawResult = JsonUtility.ToJson(wrappedObject);
+        string result = rawResult.TrimStart(("{\"array\":").ToCharArray()).TrimEnd(("}").ToCharArray());
+        return result;
+    }
+
+    [Serializable]
     private class ArrayWrapper<T>
     {
         public T[] array;

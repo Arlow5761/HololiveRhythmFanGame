@@ -8,7 +8,7 @@ public class DifficultyBarDisplayer : MonoBehaviour
 {
     public TextMeshProUGUI nameField;
     public TextMeshProUGUI ratingField;
-    public TextMeshProUGUI gradeField;
+    public Image gradeField;
     public Button button;
 
     public void Display()
@@ -21,12 +21,23 @@ public class DifficultyBarDisplayer : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ChangeDifficulty(Difficulty difficulty)
+    public void ChangeDifficulty(Difficulty difficulty, Sprite gradeSprite)
     {
         button.onClick.RemoveAllListeners();
+
         nameField.SetText(difficulty.name);
         ratingField.SetText(difficulty.rating.ToString());
-        gradeField.SetText("S");
+        gradeField.sprite = gradeSprite;
+
+        if (gradeSprite == null)
+        {
+            gradeField.color = new(255, 255, 255, 0);
+        }
+        else
+        {
+            gradeField.color = new(255, 255, 255, 1);
+        }
+
         button.onClick.AddListener(() => {
             GameData.selectedDifficulty = difficulty;
             SceneHandler.instance.LoadScene("GameplayScene");

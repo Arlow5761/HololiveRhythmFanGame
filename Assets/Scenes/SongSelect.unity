@@ -1032,6 +1032,7 @@ MonoBehaviour:
   - {fileID: 1698794648}
   - {fileID: 728134006}
   - {fileID: 118220955}
+  gradeSprites: {fileID: 11400000, guid: 8a120cf54b8d8b74484d6a1f1c35dc6f, type: 2}
 --- !u!114 &416411777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,7 +1297,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onSceneLoaded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 108835268}
+        m_TargetAssemblyTypeName: SongSelector, Assembly-CSharp
+        m_MethodName: OnSceneLoaded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onSceneUnloaded:
     m_PersistentCalls:
       m_Calls: []
@@ -1691,8 +1704,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Super Long Song Name Here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c5104d158717f94a8a51f71c13f1a7b, type: 2}
+  m_sharedMaterial: {fileID: -3336163342776701082, guid: 5c5104d158717f94a8a51f71c13f1a7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1716,7 +1729,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.55
+  m_fontSize: 61.7
   m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1724,7 +1737,7 @@ MonoBehaviour:
   m_fontSizeMax: 256
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1754,7 +1767,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 10, z: 0, w: 5}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1989,6 +2002,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1851918441}
         m_TargetAssemblyTypeName: MusicPlayer, Assembly-CSharp
         m_MethodName: StartMusic
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1500898910}
+        m_TargetAssemblyTypeName: SongDetailsDisplayer, Assembly-CSharp
+        m_MethodName: ChangeSongLength
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2777,8 +2802,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00:00:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 12e8965cb27809c499fe77633bf5060a, type: 2}
+  m_sharedMaterial: {fileID: -7242973889459995923, guid: 12e8965cb27809c499fe77633bf5060a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2802,7 +2827,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58
+  m_fontSize: 73.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3071,6 +3096,7 @@ MonoBehaviour:
   songNameField: {fileID: 868487341}
   songArtistField: {fileID: 1659041514}
   songBPMField: {fileID: 1600892768}
+  songLengthField: {fileID: 1587944953}
 --- !u!1 &1528062509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,7 +3177,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -3
   m_TargetDisplay: 0
 --- !u!224 &1528062513
 RectTransform:
@@ -3342,8 +3368,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1500898907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.05, y: 0.69}
-  m_AnchorMax: {x: 0.5, y: 0.74}
+  m_AnchorMin: {x: 0.05, y: 0.71}
+  m_AnchorMax: {x: 0.575, y: 0.74}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
@@ -3367,10 +3393,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Length : 1m 30s'
+  m_text: 'Length: 1m 30s'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c5104d158717f94a8a51f71c13f1a7b, type: 2}
+  m_sharedMaterial: {fileID: -3336163342776701082, guid: 5c5104d158717f94a8a51f71c13f1a7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3394,7 +3420,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.65
+  m_fontSize: 25.9
   m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3483,7 +3509,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1500898907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.69}
+  m_AnchorMin: {x: 0.65, y: 0.71}
   m_AnchorMax: {x: 0.95, y: 0.74}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -3508,10 +3534,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'BPM : 180'
+  m_text: 'BPM: 180'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c5104d158717f94a8a51f71c13f1a7b, type: 2}
+  m_sharedMaterial: {fileID: -3336163342776701082, guid: 5c5104d158717f94a8a51f71c13f1a7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3535,7 +3561,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.65
+  m_fontSize: 25.9
   m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3782,8 +3808,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: By Super Long Artist Name Here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c5104d158717f94a8a51f71c13f1a7b, type: 2}
+  m_sharedMaterial: {fileID: -3336163342776701082, guid: 5c5104d158717f94a8a51f71c13f1a7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3807,7 +3833,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.65
+  m_fontSize: 28.8
   m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4936,7 +4962,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -10
   m_Sprite: {fileID: -7443756053782179069, guid: 26d9080f44d9bcf458f4fec4e18bcc27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
