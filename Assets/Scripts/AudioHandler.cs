@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
 using UnityEngine;
@@ -10,6 +11,13 @@ using UnityEngine.Networking;
 [Serializable]
 public class AudioContainer
 {
+    public enum State
+    {
+        Stopped,
+        Playing,
+        Paused
+    }
+
     public string name = "";
     public bool loops {get; private set;}
     public AudioClip audioClip
@@ -34,24 +42,43 @@ public class AudioContainer
     public AudioSource audioSource = null;
 
     [SerializeField] private AudioClip _audioClip = null;
+    private bool isFrozen;
+    private State state;
+
+    public void PlayOneShot()
+    {
+        if (isFrozen) return;
+        audioSource.PlayOneShot(audioClip);
+    }
 
     public void Play()
     {
         audioSource.Play();
+        state = State.Playing;
+
+        if (isFrozen)
+        {
+            audioSource.Pause();
+        }
     }
 
     public void Stop()
     {
         audioSource.Stop();
+        state = State.Stopped;
     }
 
     public void Pause()
     {
+        state = State.Paused;
+        if (isFrozen) return;
         audioSource.Pause();
     }
 
     public void Unpause()
     {
+        state = State.Playing;
+        if (isFrozen) return;
         audioSource.UnPause();
     }
 
@@ -87,6 +114,21 @@ public class AudioContainer
     public float GetTimePosition()
     {
         return audioSource.time;
+    }
+
+    public void SetFrozen(bool frozen)
+    {
+        isFrozen = frozen;
+
+        if (isFrozen && state == State.Playing)
+        {
+            audioSource.Pause();
+        }
+        else
+        if (!isFrozen && state == State.Playing)
+        {
+            audioSource.UnPause();
+        }
     }
 }
 
@@ -140,6 +182,43 @@ public class AudioHandler : MonoBehaviour
     public void PlaySfx(string name)
     {
         Array.Find(sfxClips, clip => clip.name == name).Play();
+    }
+
+    public AudioContainer GetSFX(string name)
+    {
+        return Array.Find(sfxClips, clip => clip.name == name);
+    }
+
+    public void SetFrozenAll(bool isFrozen)
+    {
+        SetFrozenMusic(isFrozen);
+        SetFrozenSfx(isFrozen);
+    }
+
+    public void SetFrozenMusic(bool isFrozen)
+    {
+        musicClip.SetFrozen(true);
+    }
+
+    public void SetFrozenSfx(bool isFrozen)
+    {
+        for (int i = 0; i < sfxClips.Count(); i++)
+        {
+            sfxClips[i].SetFrozen(isFrozen);
+        }
+    }
+
+    public void onMusicVolumeChanged(float newVolume)
+    {
+        musicClip.SetVolume(newVolume);
+    }
+
+    public void onSfxVolumeChanged(float newVolume)
+    {
+        for (int i = 0; i < sfxClips.Count(); i++)
+        {
+            sfxClips[i].SetVolume(newVolume);
+        }
     }
 
     public IEnumerator LoadMusicClip(string name, string path)

@@ -69,6 +69,8 @@ public class NormalNote : BaseNote
         PlayerController.instance.OnHitNote(result);
         PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
 
+        AudioHandler.instance.GetSFX("mezzo").PlayOneShot();
+
         CleanUp();
     }
 
@@ -167,6 +169,8 @@ public class SliderNote : BaseNote
         PlayerController.instance.SetSliding(lane, true);
         PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
 
+        AudioHandler.instance.GetSFX("holdstart").PlayOneShot();
+
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         ProcessInput.instance.inputEvent.AddListener(Release);
         Timeline.instance.updateEvent.RemoveListener(CheckMissStart);
@@ -184,14 +188,22 @@ public class SliderNote : BaseNote
 
         Grade result = Threshold.instance.GetGrade(currentTime - endTiming);
 
-        ScoreManager.instance.IncrementCombo();
-        ScoreManager.instance.AddScoreWithCombo(result.score);
-        Scores.grades[result.name]++;
+        if (result.score != 0)
+        {
+            ScoreManager.instance.IncrementCombo();
+            ScoreManager.instance.AddScoreWithCombo(result.score);
+            PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
+            
+        }
+        else
+        {
+            ScoreManager.instance.BreakCombo();
+        }
 
+        Scores.grades[result.name]++;
         noteData.onHit.Invoke(result);
         PlayerController.instance.OnHitNote(result);
         PlayerController.instance.SetSliding(lane, false);
-        PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(SliderTick);
@@ -245,6 +257,7 @@ public class MashNote : BaseNote
         PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease / 3);
 
         noteData.onHit.Invoke(mashGrade);
+        AudioHandler.instance.GetSFX("mezzo").PlayOneShot();
     }
 
     public override void LockNote()

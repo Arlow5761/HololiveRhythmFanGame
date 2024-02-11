@@ -11,6 +11,8 @@ public class SceneHandler : MonoBehaviour
     public UnityEvent onSceneLoaded = new UnityEvent();
     public UnityEvent onSceneUnloaded = new UnityEvent();
 
+    private int unloadBlockers;
+
     public void Initialize()
     {
         if (instance != null && instance != this) return;
@@ -21,13 +23,40 @@ public class SceneHandler : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         onSceneUnloaded.Invoke();
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(Utility.WaitUntil(
+            () => {return unloadBlockers <= 0;},
+            () => {SceneManager.LoadScene(sceneName);}
+        ));
     }
 
     public void LoadSceneAsync(string sceneName)
     {
         onSceneUnloaded.Invoke();
-        SceneManager.LoadSceneAsync(sceneName);
+
+        StartCoroutine(Utility.WaitUntil(
+            () => {return unloadBlockers <= 0;},
+            () => {SceneManager.LoadSceneAsync(sceneName);}
+        ));
+    }
+
+    public void OpenLoadingScene()
+    {
+        LoadingSceneManager.LoadLoadingScene();
+    }
+
+    public void CloseLoadingScene()
+    {
+        LoadingSceneManager.UnloadLoadingScene();
+    }
+
+    public void BlockUnload()
+    {
+        unloadBlockers++;
+    }
+
+    public void UnblockUnload()
+    {
+        unloadBlockers--;
     }
 
     void Awake()
@@ -35,5 +64,11 @@ public class SceneHandler : MonoBehaviour
         Initialize();
 
         onSceneLoaded.Invoke();
+    }
+
+    public void Start()
+    {
+        if (!LoadingSceneManager.instance.loadingObject.activeSelf) return;
+        CloseLoadingScene();
     }
 }

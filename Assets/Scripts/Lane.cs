@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 
 public class Lane : MonoBehaviour
@@ -20,7 +19,7 @@ public class Lane : MonoBehaviour
         try {
 //            Debug.Log("Trying to load LevelPrefab from file ("+filename+ ")...");
 //            Debug.Log(Path.Combine("file://", Application.dataPath, "Preftabs", filename + ".prefab"));
-            GameObject loadedObject = (GameObject)AssetDatabase.LoadAssetAtPath(Path.Combine("Assets/Preftabs", filename + ".prefab"),typeof(GameObject));
+            GameObject loadedObject = Resources.Load<GameObject>(filename);
             return loadedObject;
         } catch (IOException e) {
             Debug.LogError("Error loading LevelPrefab from file (" + filename + "): " + e.Message);

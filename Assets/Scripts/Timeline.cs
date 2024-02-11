@@ -2,9 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+
+public static class Utility
+{
+    static public IEnumerator Wait(float delay, Action function)
+    {
+        yield return new WaitForSeconds(delay);
+        function();
+    }
+
+    static public IEnumerator WaitUntil(Func<bool> predicate, Action function)
+    {
+        yield return new WaitUntil(predicate);
+        function();
+    }
+}
 
 public class TimestampEvent : UnityEvent<double> {}
 
@@ -58,6 +74,7 @@ public class Timeline : MonoBehaviour
     public UnityEvent onLevelEnded;
 
     private bool started = false;
+    private bool finished = false;
 
     void Awake()
     {
@@ -107,10 +124,12 @@ public class Timeline : MonoBehaviour
         UpdateNotes();
         updateEvent.Invoke(currentTime);
 
-        if (time > Song.Instance.NotesData.Last().TimestampEnd)
+        if (time > Song.Instance.NotesData.Last().TimestampEnd && !finished)
         {
-            onLevelEnded.Invoke();
-            started = false;
+            finished = true;
+            StartCoroutine(Utility.Wait(4, () => {
+                onLevelEnded.Invoke();
+            }));
         }
     }
 

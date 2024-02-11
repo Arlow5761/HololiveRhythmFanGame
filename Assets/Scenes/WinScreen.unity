@@ -486,7 +486,19 @@ MonoBehaviour:
         m_CallState: 2
   onSceneUnloaded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 152809625}
+        m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
+        m_MethodName: OpenLoadingScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &152809626
 Transform:
   m_ObjectHideFlags: 0
@@ -774,6 +786,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218846646}
   m_CullTransparentMesh: 1
+--- !u!1 &307667444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307667446}
+  - component: {fileID: 307667445}
+  m_Layer: 0
+  m_Name: AudioHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &307667445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307667444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40efebe79e4e2cf48b23cc95312651ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClip:
+    name: 
+    audioSource: {fileID: 0}
+    _audioClip: {fileID: 0}
+  sfxClips:
+  - name: keypress4
+    audioSource: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: ce5e526a4b2a1a4498d411e9bb663411, type: 3}
+  - name: click1
+    audioSource: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: d15e35846574cd84086e3f1bf73d37af, type: 3}
+  onMusicClipChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &307667446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307667444}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352608699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1376,8 @@ GameObject:
   - component: {fileID: 566674686}
   - component: {fileID: 566674685}
   - component: {fileID: 566674684}
+  - component: {fileID: 566674687}
+  - component: {fileID: 566674688}
   m_Layer: 5
   m_Name: Retry
   m_TagString: Untagged
@@ -1352,7 +1424,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1427,6 +1499,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566674682}
   m_CullTransparentMesh: 1
+--- !u!114 &566674687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566674682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af7871b7be90b344a0c7b93a003d8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverAudioName: keypress4
+  clickAudioName: click1
+--- !u!95 &566674688
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566674682}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8e18bdb4efa6e14e821e0c7fad25255, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &635722855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,6 +1998,8 @@ GameObject:
   - component: {fileID: 1068063866}
   - component: {fileID: 1068063865}
   - component: {fileID: 1068063864}
+  - component: {fileID: 1068063867}
+  - component: {fileID: 1068063868}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -1936,7 +2046,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2011,6 +2121,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068063862}
   m_CullTransparentMesh: 1
+--- !u!114 &1068063867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068063862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af7871b7be90b344a0c7b93a003d8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverAudioName: keypress4
+  clickAudioName: click1
+--- !u!95 &1068063868
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068063862}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d66bb218e3b16aa4aa4027a0661ec3c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1206760528
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,3 +3764,4 @@ SceneRoots:
   - {fileID: 152809626}
   - {fileID: 1576904436}
   - {fileID: 1233477878}
+  - {fileID: 307667446}

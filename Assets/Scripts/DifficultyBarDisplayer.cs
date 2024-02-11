@@ -10,6 +10,7 @@ public class DifficultyBarDisplayer : MonoBehaviour
     public TextMeshProUGUI ratingField;
     public Image gradeField;
     public Button button;
+    public Animator animator;
 
     public void Display()
     {
@@ -40,7 +41,7 @@ public class DifficultyBarDisplayer : MonoBehaviour
 
         button.onClick.AddListener(() => {
             GameData.selectedDifficulty = difficulty;
-            SceneHandler.instance.LoadScene("GameplayScene");
+            SceneHandler.instance.LoadSceneAsync("GameplayScene");
         });
     }
 }

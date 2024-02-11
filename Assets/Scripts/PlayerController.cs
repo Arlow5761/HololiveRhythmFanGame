@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -68,7 +68,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        animator.SetInteger("RandomAttack", (animator.GetInteger("RandomAttack") + 1) % 3);
         animator.SetTrigger("Jump");
+        AudioHandler.instance.GetSFX("airattack").PlayOneShot();
 
         whiff = true;
         lane = 1;
@@ -82,6 +84,8 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
+        AudioHandler.instance.GetSFX("groundattack").PlayOneShot();
 
         whiff = false;
         lane = 0;
@@ -165,23 +169,15 @@ public class PlayerController : MonoBehaviour
     {
         isSliding[slidingLane] = sliding;
 
-        if (isSliding[0] && isSliding[1])
-        {
-            transform.position = new Vector2(
-                GameplayLayout.playerPosX, 
-                (GameplayLayout.airLaneY + GameplayLayout.groundLaneY) / 2
-            );
-
-            animator.SetTrigger("Hold");
-
-            return;
-        }
-
         if (!isSliding[0] && !isSliding[1])
         {
             Land();
 
+            animator.SetBool("Hold", false);
             animator.SetTrigger("Run");
+            AudioHandler.instance.GetSFX("holdloop").Stop();
+
+            return;
         }
 
         if (!sliding && isSliding[1 - slidingLane])
@@ -197,9 +193,18 @@ public class PlayerController : MonoBehaviour
                 default:
                     break;
             }
-
-            animator.SetTrigger("Hold");
         }
+
+        if (isSliding[0] && isSliding[1])
+        {
+            transform.position = new Vector2(
+                GameplayLayout.playerPosX, 
+                (GameplayLayout.airLaneY + GameplayLayout.groundLaneY) / 2
+            );
+        }
+
+        animator.SetBool("Hold", true);
+        AudioHandler.instance.GetSFX("holdloop").Play();
     }
 
     public void Damage(int damage)

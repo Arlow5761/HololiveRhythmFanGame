@@ -137,6 +137,8 @@ public class SongSelector : MonoBehaviour
         selectedSong = songList[currentSong];
 
         UpdateSlots();
+
+        AudioHandler.instance.GetSFX("confirmmusic").PlayOneShot();
     }
 
     public void MoveCCW()
@@ -153,6 +155,8 @@ public class SongSelector : MonoBehaviour
         selectedSong = songList[currentSong];
 
         UpdateSlots();
+
+        AudioHandler.instance.GetSFX("confirmmusic").PlayOneShot();
     }
 
     public void UpdateSlots()

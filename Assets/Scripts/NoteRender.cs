@@ -9,11 +9,24 @@ public class NoteRender : MonoBehaviour
     public int index;
     public NoteData noteData;
 
+    [SerializeField] private Sprite upSprite;
+    [SerializeField] private Sprite downSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
         timeInstantiated = noteData.TimestampStart - Song.Instance.noteTime;
         noteData.onHit.AddListener(OnHit);
+
+        if (noteData.RowNumber == 1)
+        {
+            spriteRenderer.sprite = upSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = downSprite;
+        }
     }
 
     // Update is called once per frame
@@ -51,6 +64,7 @@ public class NoteRender : MonoBehaviour
         }
         else
         {
+            
             CleanUp();
         }
     }

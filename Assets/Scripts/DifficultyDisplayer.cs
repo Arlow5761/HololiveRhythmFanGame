@@ -17,6 +17,8 @@ public class DifficultyDisplayer : MonoBehaviour
 
         for (; i < song.metadata.difficulties.Length; i++)
         {
+            difficultyBars[i].Display();
+
             Sprite gradeSprite = null;
 
             if (songScores != null)
@@ -40,7 +42,6 @@ public class DifficultyDisplayer : MonoBehaviour
             }
             
             difficultyBars[i].ChangeDifficulty(song.metadata.difficulties[i], gradeSprite);
-            difficultyBars[i].Display();
         }
 
         for (; i < difficultyBars.Length; i++)

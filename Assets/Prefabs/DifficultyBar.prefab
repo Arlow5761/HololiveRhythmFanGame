@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 922773755737736530}
   - component: {fileID: 3960765760969975649}
   - component: {fileID: 7597908228166827614}
+  - component: {fileID: 7293187442165817424}
   m_Layer: 5
   m_Name: DifficultyBar
   m_TagString: Untagged
@@ -413,6 +414,7 @@ MonoBehaviour:
   ratingField: {fileID: 2996848237998326072}
   gradeField: {fileID: 1211959444194297527}
   button: {fileID: 922773755737736530}
+  animator: {fileID: 7597908228166827614}
 --- !u!95 &7597908228166827614
 Animator:
   serializedVersion: 7
@@ -435,6 +437,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7293187442165817424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8516629266063209094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af7871b7be90b344a0c7b93a003d8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverAudioName: keypress4
+  clickAudioName: start
 --- !u!1 &8875267800051289750
 GameObject:
   m_ObjectHideFlags: 0
