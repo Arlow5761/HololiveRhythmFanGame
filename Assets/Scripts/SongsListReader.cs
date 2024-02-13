@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.IO;
 using UnityEngine;
 
+// Utility class to parse json using unity's jsonutility
 public static class JsonParser
 {
     public static T OpenObject<T>(string data)
@@ -39,6 +40,7 @@ public static class JsonParser
     }
 }
 
+// Singleton class to read the songlist file
 public class SongsListReader : MonoBehaviour
 {
     public static SongsListReader instance;

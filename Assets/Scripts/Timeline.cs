@@ -24,6 +24,7 @@ public static class Utility
 
 public class TimestampEvent : UnityEvent<double> {}
 
+// Class that handles note timings on a single lane
 [Serializable]
 public class TimingLane
 {
@@ -65,6 +66,7 @@ public class TimingLane
     }
 }
 
+// Class that handles timings on all lanes
 public class Timeline : MonoBehaviour
 {
     public static Timeline instance;

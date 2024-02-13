@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
+// Class that holds an AudioSource with an AudioClip
 [Serializable]
 public class AudioContainer
 {
@@ -132,6 +132,7 @@ public class AudioContainer
     }
 }
 
+// Singleton class that manages audio
 public class AudioHandler : MonoBehaviour
 {
     public static AudioHandler instance;

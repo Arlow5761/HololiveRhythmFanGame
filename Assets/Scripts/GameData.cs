@@ -1,9 +1,4 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
-
+// Static class to store general game data
 public static class GameData
 {
     public static SongInfo songInfo;

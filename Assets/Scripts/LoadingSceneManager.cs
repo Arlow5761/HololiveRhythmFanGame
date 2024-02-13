@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Static class that manages the loading scene;
 public class LoadingSceneManager : MonoBehaviour
 {
     public static LoadingSceneManager instance;

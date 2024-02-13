@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
+// Class that handles image loading
 public static class ImageLoader
 {
     private static Dictionary<string, Texture2D> imageCache = new();

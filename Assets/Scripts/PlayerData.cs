@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+// Static class that stores serializable data (Mostly settings)
 public static class PlayerData
 {
     // Settings

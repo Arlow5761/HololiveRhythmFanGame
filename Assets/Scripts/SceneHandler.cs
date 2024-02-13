@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+// Class that handles scene management
 public class SceneHandler : MonoBehaviour
 {
     public static SceneHandler instance;

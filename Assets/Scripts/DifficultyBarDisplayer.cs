@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Class that handles difficulty bars
 public class DifficultyBarDisplayer : MonoBehaviour
 {
     public TextMeshProUGUI nameField;

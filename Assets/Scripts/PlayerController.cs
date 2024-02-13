@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
+// Class that controls player behaviour
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;

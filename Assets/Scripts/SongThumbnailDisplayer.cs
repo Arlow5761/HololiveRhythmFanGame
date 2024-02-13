@@ -5,6 +5,7 @@ using System.IO;
 using Unity.Mathematics;
 using UnityEngine;
 
+// Class to display the song thumbnail during song selection
 public class SongThumbnailDisplayer : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;

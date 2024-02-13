@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
+// Singleton class that handles score, combo, and fever
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;

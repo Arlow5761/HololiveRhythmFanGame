@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
+// Singleton class that handles playing the song during gameplay
 public class Song : MonoBehaviour
 {
     public static Song Instance;

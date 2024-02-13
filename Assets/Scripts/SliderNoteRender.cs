@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Class to render hold notes
 public class SliderNoteRender : NoteRender
 {
     [SerializeField] GameObject trailPrefab;

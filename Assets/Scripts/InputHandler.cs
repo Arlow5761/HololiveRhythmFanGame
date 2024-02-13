@@ -19,6 +19,7 @@ public struct KeyBinding
     public UnityEvent onTriggered;
 }
 
+// Singleton class that manages inputs and keybindings
 public class InputHandler : MonoBehaviour
 {
     public static InputHandler instance;

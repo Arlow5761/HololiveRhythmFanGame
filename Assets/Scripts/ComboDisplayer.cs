@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Class that handles displaying the combo in ScoreManager
 public class ComboDisplayer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI comboField;

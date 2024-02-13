@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Class to handle the music player in song select
 public class MusicPlayer : MonoBehaviour
 {
     public SongInfo displayedSong;

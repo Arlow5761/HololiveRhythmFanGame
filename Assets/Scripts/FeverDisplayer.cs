@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Class that handles the fever bar
 public class FeverDisplayer : MonoBehaviour
 {
     [SerializeField] private RectTransform feverSlider;

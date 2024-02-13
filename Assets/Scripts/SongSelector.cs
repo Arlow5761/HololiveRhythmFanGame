@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+// Class that handles song selection in the song selection screen
 public class SongSelector : MonoBehaviour
 {
     public static SongSelector instance;

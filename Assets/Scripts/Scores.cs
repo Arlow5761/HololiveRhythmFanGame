@@ -38,6 +38,7 @@ public class SongScoresPath
     public string path;
 }
 
+// Static class that handles score calculations, saving, and loading scores
 public static class Scores
 {
     public static int score = 0;

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
+// Class that handles displaying results in the win scene
 public class ResultDisplayer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreField;

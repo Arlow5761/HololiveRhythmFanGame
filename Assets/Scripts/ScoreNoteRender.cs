@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Class that handles score note rendering
 public class ScoreNoteRender : NoteRender
 {
     void Start()

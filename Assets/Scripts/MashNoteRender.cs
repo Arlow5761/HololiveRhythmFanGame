@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
+// Class that handles rendering of mash notes
 public class MashNoteRender : NoteRender
 {
     // Start is called before the first frame update

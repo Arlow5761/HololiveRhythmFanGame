@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Class to render heal notes
 public class HealNoteRender : NoteRender
 {
     void Start()

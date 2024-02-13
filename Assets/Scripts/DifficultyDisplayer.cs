@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Class that handles how difficulty bars should be shown;
 public class DifficultyDisplayer : MonoBehaviour
 {
     [SerializeField] private DifficultyBarDisplayer[] difficultyBars;

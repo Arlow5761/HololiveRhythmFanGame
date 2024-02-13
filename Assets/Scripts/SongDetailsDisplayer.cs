@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Class that handles displaying song details in the song select screen
 public class SongDetailsDisplayer : MonoBehaviour
 {
     public SongInfo displayedSong;

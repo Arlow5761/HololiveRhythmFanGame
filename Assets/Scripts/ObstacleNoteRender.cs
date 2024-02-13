@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Class to render obstacle notes
 public class ObstacleNoteRender : NoteRender
 {
     void Start()

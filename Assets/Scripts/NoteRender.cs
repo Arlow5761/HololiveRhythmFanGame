@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
+// Class that handles rendering of a normal note
 public class NoteRender : MonoBehaviour
 {
     protected double timeInstantiated;

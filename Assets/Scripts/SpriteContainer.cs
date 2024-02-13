@@ -14,6 +14,7 @@ public struct SpriteElement
     public static implicit operator string(SpriteElement element) => element.name;
 }
 
+// Class that hold multiple sprites in a scriptable object for easy referencing
 [Serializable, CreateAssetMenu(fileName = "SpriteContainer", menuName = "Collections/SpriteContainer")]
 public class SpriteContainer : ScriptableObject
 {

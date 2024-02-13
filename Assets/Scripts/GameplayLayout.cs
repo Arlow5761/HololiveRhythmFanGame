@@ -1,3 +1,4 @@
+// Static class to store the layout of the gameplay scene
 public static class GameplayLayout
 {
     public static float noteSpawnX = 15;

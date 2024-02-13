@@ -19,6 +19,7 @@ public class LevelData
     public NoteData[] Notes;
 }
 
+// Static class to read level data
 public static class NotesReader
 {
     public static LevelData ReadLevelDataFromFile(string path)

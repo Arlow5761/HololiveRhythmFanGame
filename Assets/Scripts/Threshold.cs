@@ -13,6 +13,7 @@ public struct Grade
     public int score;
 }
 
+// Singleton class that handles the score thresholds on a level
 public class Threshold : MonoBehaviour
 {
     public static Threshold instance;

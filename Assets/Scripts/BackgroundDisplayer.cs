@@ -4,6 +4,7 @@ using System.IO;
 using Unity.Mathematics;
 using UnityEngine;
 
+// Class that handles the blurry background movement for song select
 public class Background : MonoBehaviour
 {
     public Vector2 anchor;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// Class that handles playing Audio on buttons
 public class ButtonAudio : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
     [SerializeField] private string hoverAudioName;

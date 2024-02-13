@@ -11,6 +11,7 @@ public enum NoteType
     Mash,
 }
 
+// Base class for all note timings
 public abstract class BaseNote
 {
     public double timing;
@@ -29,6 +30,7 @@ public abstract class BaseNote
     }
 }
 
+// Class for normal note timings
 public class NormalNote : BaseNote
 {
     public NormalNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
@@ -89,6 +91,7 @@ public class NormalNote : BaseNote
     }
 }
 
+// Class for slider note timings
 public class SliderNote : BaseNote
 {
     public double endTiming;
@@ -218,6 +221,7 @@ public class SliderNote : BaseNote
     }
 }
 
+// Class for mash note timings
 public class MashNote : BaseNote
 {
     public double endTiming;
@@ -267,6 +271,7 @@ public class MashNote : BaseNote
     }
 }
 
+// Class for heal note timings
 public class HealNote : BaseNote
 {
     public HealNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
@@ -297,6 +302,7 @@ public class HealNote : BaseNote
     }
 }
 
+// Class for obstacle note timings
 public class ObstacleNote : BaseNote
 {
     public ObstacleNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
@@ -329,6 +335,7 @@ public class ObstacleNote : BaseNote
     }
 }
 
+// Class for score note timings
 public class ScoreNote : BaseNote
 {
     public ScoreNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
