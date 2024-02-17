@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 // Class to handle the music player in song select
 public class MusicPlayer : MonoBehaviour
 {
+    public static MusicPlayer instance;
+
     public SongInfo displayedSong;
     public bool isPlaying = true;
+    public UnityEvent<AudioClip> onMusicChanged;
 
     [SerializeField] private Slider musicProgressSlider;
     [SerializeField] private TextMeshProUGUI musicTimeStamp;
@@ -20,11 +25,28 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] private Sprite pausedNormal;
     [SerializeField] private Sprite pausedSelected;
 
+    private AudioSource musicSource;
+
     public void ChangeMusic(SongInfo newSong)
     {
+        if (musicSource == null) GetMusicSource();
+
         displayedSong = newSong;
-        PauseMusic();
-        StartCoroutine(AudioHandler.instance.LoadMusicClip(displayedSong.metadata.songName, Application.dataPath + @"\" + displayedSong.metadata.songPath));
+        musicSource.Stop();
+
+        void OnMusicLoaded(string path, AudioClip audioClip)
+        {
+            if (path == Path.Combine(Application.dataPath, displayedSong.metadata.songPath))
+            {
+                musicSource.clip = audioClip;
+                PlayMusic();
+                onMusicChanged.Invoke(audioClip);
+                AudioLoader.onAudioLoaded.RemoveListener(OnMusicLoaded);
+            }
+        }
+
+        AudioLoader.onAudioLoaded.AddListener(OnMusicLoaded);
+        StartCoroutine(AudioLoader.LoadAudioFromFile(Path.Combine(Application.dataPath, newSong.metadata.songPath)));
     }
 
     public void PlayMusic()
@@ -39,7 +61,7 @@ public class MusicPlayer : MonoBehaviour
         button.interactable = true;
 
         isPlaying = true;
-        AudioHandler.instance.PlayMusic();
+        musicSource.Play();
     }
 
     public void PauseMusic()
@@ -54,7 +76,7 @@ public class MusicPlayer : MonoBehaviour
         button.interactable = true;
 
         isPlaying = false;
-        AudioHandler.instance.PauseMusic();
+        musicSource.Pause();
     }
 
     public void UnpauseMusic()
@@ -69,7 +91,7 @@ public class MusicPlayer : MonoBehaviour
         button.interactable = true;
 
         isPlaying = true;
-        AudioHandler.instance.UnpauseMusic();
+        musicSource.UnPause();
     }
 
     public void ToggleMusic()
@@ -84,21 +106,13 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    public void StartMusic(AudioContainer audioContainer)
-    {
-        if (audioContainer.name == displayedSong.metadata.songName)
-        {
-            PlayMusic();
-        }
-    }
-
     public void UpdateMusicTimePosition(float value)
     {
-        if (AudioHandler.instance.musicClip.audioClip == null) return;
+        if (musicSource.clip == null) return;
 
-        float clipLength = AudioHandler.instance.musicClip.GetClipLength();
+        float clipLength = musicSource.clip.length;
 
-        AudioHandler.instance.musicClip.audioSource.time = clipLength * value;
+        musicSource.time = clipLength * value;
     }
     
     void Update()
@@ -109,19 +123,19 @@ public class MusicPlayer : MonoBehaviour
 
     private void UpdateBarLength()
     {
-        if (AudioHandler.instance.musicClip.audioClip == null) return;
+        if (musicSource.clip == null) return;
 
-        float currentTime = AudioHandler.instance.musicClip.GetTimePosition();
-        float clipLength = AudioHandler.instance.musicClip.GetClipLength();
+        float currentTime = musicSource.time;
+        float clipLength = musicSource.clip.length;
 
         musicProgressSlider.SetValueWithoutNotify(currentTime/clipLength);
     }
 
     private void UpdateMusicTimeStamp()
     {
-        if (AudioHandler.instance.musicClip.audioClip == null) return;
+        if (musicSource.clip == null) return;
 
-        float currentTime = AudioHandler.instance.musicClip.GetTimePosition();
+        float currentTime = musicSource.time;
 
         int seconds = (int) (currentTime % 60);
         int minutes = (int) (currentTime / 60 % 60);
@@ -129,5 +143,22 @@ public class MusicPlayer : MonoBehaviour
 
         string timeStamp = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
         musicTimeStamp.SetText(timeStamp);
+    }
+
+    public void GetMusicSource()
+    {
+        musicSource = AudioSystem.instance.GetAudio("music", "music");
+    }
+
+    public void Initialize()
+    {
+        if (instance != null && instance != this) return;
+
+        instance = this;
+    }
+
+    void Awake()
+    {
+        Initialize();
     }
 }
