@@ -139,7 +139,8 @@ public class SongSelector : MonoBehaviour
 
         UpdateSlots();
 
-        AudioHandler.instance.GetSFX("confirmmusic").PlayOneShot();
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "confirmmusic");
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public void MoveCCW()
@@ -157,7 +158,8 @@ public class SongSelector : MonoBehaviour
 
         UpdateSlots();
 
-        AudioHandler.instance.GetSFX("confirmmusic").PlayOneShot();
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "confirmmusic");
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public void UpdateSlots()

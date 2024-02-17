@@ -71,7 +71,8 @@ public class NormalNote : BaseNote
         PlayerController.instance.OnHitNote(result);
         PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
 
-        AudioHandler.instance.GetSFX("mezzo").PlayOneShot();
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
+        audioSource.PlayOneShot(audioSource.clip);
 
         CleanUp();
     }
@@ -172,7 +173,8 @@ public class SliderNote : BaseNote
         PlayerController.instance.SetSliding(lane, true);
         PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
 
-        AudioHandler.instance.GetSFX("holdstart").PlayOneShot();
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "holdstart");
+        audioSource.PlayOneShot(audioSource.clip);
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         ProcessInput.instance.inputEvent.AddListener(Release);
@@ -261,7 +263,9 @@ public class MashNote : BaseNote
         PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease / 3);
 
         noteData.onHit.Invoke(mashGrade);
-        AudioHandler.instance.GetSFX("mezzo").PlayOneShot();
+        
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
     public override void LockNote()

@@ -71,7 +71,9 @@ public class PlayerController : MonoBehaviour
 
         animator.SetInteger("RandomAttack", (animator.GetInteger("RandomAttack") + 1) % 3);
         animator.SetTrigger("Jump");
-        AudioHandler.instance.GetSFX("airattack").PlayOneShot();
+
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "airattack");
+        audioSource.PlayOneShot(audioSource.clip);
 
         whiff = true;
         lane = 1;
@@ -86,7 +88,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        AudioHandler.instance.GetSFX("groundattack").PlayOneShot();
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "groundattack");
+        audioSource.PlayOneShot(audioSource.clip);
 
         whiff = false;
         lane = 0;
@@ -176,7 +179,8 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("Hold", false);
             animator.SetTrigger("Run");
-            AudioHandler.instance.GetSFX("holdloop").Stop();
+            
+            AudioSystem.instance.GetAudio("sfx", "holdloop").Stop();
 
             return;
         }
@@ -205,7 +209,8 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetBool("Hold", true);
-        AudioHandler.instance.GetSFX("holdloop").Play();
+        
+        AudioSystem.instance.GetAudio("sfx", "holdloop").Play();
     }
 
     public void Damage(int damage)
