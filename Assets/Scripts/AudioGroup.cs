@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Container class for multiple audio sources
@@ -28,6 +29,14 @@ public class AudioGroup : Dictionary<string, AudioSource>
     public void ChangeVolumeAll(float newVolume)
     {
         this.AsParallel().ForAll(audio => audio.Value.volume = newVolume);
+    }
+}
+
+public static class AudioSourceExtensions
+{
+    public static void PlayOneShot(this AudioSource audioSource)
+    {
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }
 

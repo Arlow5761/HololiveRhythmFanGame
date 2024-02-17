@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,8 @@ public class Song : MonoBehaviour
 {
     public static Song Instance;
     public AudioSource audioSource;
+
+    // Level data
     public float songDelayInSeconds;
     public int inputDelayInMiliseconds;
     public double noteTime;
@@ -18,15 +21,35 @@ public class Song : MonoBehaviour
     public int baseDamage;
     public int baseHeal;
     public int baseFeverIncrease;
+
+    // Notes data
     public List<NoteData> NotesData;
 
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
+        audioSource = AudioSystem.instance.GetAudio("music", "music");
         ReadSongAndMetadata();
     }
 
+    void FetchAudioAndPlay(string audioFilePath)
+    {
+        void OnAudioLoaded(string path, AudioClip audioClip)
+        {
+            if (path == audioFilePath)
+            {
+                audioSource.clip = audioClip;
+                Invoke(nameof(PlayAudio), songDelayInSeconds);
+                AudioLoader.onAudioLoaded.RemoveListener(OnAudioLoaded);
+            }
+        }
+
+        AudioLoader.onAudioLoaded.AddListener(OnAudioLoaded);
+        StartCoroutine(AudioLoader.LoadAudioFromFile(audioFilePath));
+    }
+
+    [Obsolete]
     IEnumerator LoadAudioAndPlay(string audioFilePath)
     {
         using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + audioFilePath, AudioType.OGGVORBIS);
@@ -68,7 +91,7 @@ public class Song : MonoBehaviour
         Threshold.instance.SortGrades();
 
         string path = Path.Combine(Application.dataPath, GameData.songInfo.metadata.songPath);
-        StartCoroutine(LoadAudioAndPlay(path));
+        FetchAudioAndPlay(path);
     }
 
     void PlayAudio()
