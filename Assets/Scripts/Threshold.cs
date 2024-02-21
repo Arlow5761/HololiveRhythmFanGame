@@ -11,6 +11,8 @@ public struct Grade
     public string name;
     public double margin;
     public int score;
+
+    public static Grade Null = new(){ name = "Null", margin = 0, score = 0 };
 }
 
 // Singleton class that handles the score thresholds on a level
