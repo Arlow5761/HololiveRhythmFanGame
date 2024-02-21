@@ -163,12 +163,6 @@ public class PlayerController : MonoBehaviour
         ProcessInput.instance.PollInputUp(0);
     }
 
-    // This function is called when the player hits a note
-    public void OnHitNote(Grade grade)
-    {
-        whiff = false;
-    }
-
     public void SetSliding(int slidingLane, bool sliding)
     {
         isSliding[slidingLane] = sliding;
@@ -239,6 +233,58 @@ public class PlayerController : MonoBehaviour
         {
             feverTime = feverDuration;
             onFeverStarted.Invoke();
+        }
+    }
+
+    // Function that is fired when the player misses a note
+    public void OnNoteMiss(NoteData noteData, Grade grade)
+    {
+
+    }
+
+    // Function that is fired when the player releases a note
+    public void OnNoteRelease(NoteData noteData, Grade grade)
+    {
+        switch (noteData.NoteType)
+        {
+            case "Hold":
+                SetSliding(noteData.RowNumber, false);
+                if (grade.name != "Miss")
+                {
+                    IncreaseFever(Song.Instance.baseFeverIncrease);
+                }
+            break;
+            default:
+            break;
+        }
+    }
+
+    // Function that is fired when the player presses a note
+    public void OnNotePress(NoteData noteData, Grade grade)
+    {
+        switch (noteData.NoteType)
+        {
+            case "Hold":
+                SetSliding(noteData.RowNumber, true);
+                IncreaseFever(Song.Instance.baseFeverIncrease);
+            break;
+            default:
+            break;
+        }
+
+        whiff = false;
+    }
+
+    // Function that is fired when the player passes a note
+    public void OnNotePass(NoteData noteData, Grade grade)
+    {
+        switch (noteData.NoteType)
+        {
+            case "Normal":
+                if (noteData.RowNumber == lane) Damage(Song.Instance.baseDamage);
+            break;
+            default:
+            break;
         }
     }
 }

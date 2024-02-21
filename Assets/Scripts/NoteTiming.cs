@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
+using JetBrains.Annotations;
 
 public enum NoteType
 {
     Normal,
     Slider,
     Mash,
+    Heal,
+    Score,
+    Obstacle
 }
 
 // Base class for all note timings
@@ -41,14 +45,14 @@ public class NormalNote : BaseNote
 
         ScoreManager.instance.BreakCombo();
 
-        if (PlayerController.instance.GetLane() == lane)
-        {
-            PlayerController.instance.Damage(Song.Instance.baseDamage);
-        }
+        //if (PlayerController.instance.GetLane() == lane)
+        //{
+        //    PlayerController.instance.Damage(Song.Instance.baseDamage);
+        //}
 
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
-
-        Scores.grades["Miss"]++;
+        NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
+        NotesManager.instance.onNotePass.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         CleanUp();
     }
@@ -63,16 +67,12 @@ public class NormalNote : BaseNote
 
         if (result.score == 0) return;
 
-        ScoreManager.instance.IncrementCombo();
-        ScoreManager.instance.AddScoreWithCombo(result.score);
-        Scores.grades[result.name]++;
-
         noteData.onHit.Invoke(result);
-        PlayerController.instance.OnHitNote(result);
-        PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
+        NotesManager.instance.onNotePress.Invoke(noteData, result);
+        NotesManager.instance.onGetGrade.Invoke(noteData, result);
 
-        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
-        audioSource.PlayOneShot(audioSource.clip);
+        //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
+        //audioSource.PlayOneShot(audioSource.clip);
 
         CleanUp();
     }
@@ -116,9 +116,7 @@ public class SliderNote : BaseNote
 
             for (int i = 0; i < newTicks - ticks; i++)
             {
-                ScoreManager.instance.IncrementCombo();
-                ScoreManager.instance.AddScoreWithCombo(tickGrade.score);
-                PlayerController.instance.OnHitNote(tickGrade);
+                NotesManager.instance.onGetGrade.Invoke(noteData, tickGrade);
             }
 
             ticks = newTicks;
@@ -129,9 +127,8 @@ public class SliderNote : BaseNote
     {
         if (currentTime < timing || Threshold.instance.GetGrade(currentTime - timing).score != 0) return;
 
-        ScoreManager.instance.BreakCombo();
-        Scores.grades["Miss"]++;
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
+        NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         Timeline.instance.updateEvent.RemoveListener(CheckMissStart);
@@ -143,11 +140,9 @@ public class SliderNote : BaseNote
     {
         if (currentTime < endTiming || Threshold.instance.GetGrade(currentTime - endTiming).score != 0) return;
 
-        ScoreManager.instance.BreakCombo();
-        Scores.grades["Miss"]++;
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
-
-        PlayerController.instance.SetSliding(lane, false);
+        NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
+        NotesManager.instance.onNoteRelease.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(CheckMissEnd);
@@ -164,17 +159,12 @@ public class SliderNote : BaseNote
 
         if (result.score == 0) return;
 
-        ScoreManager.instance.IncrementCombo();
-        ScoreManager.instance.AddScoreWithCombo(result.score);
-        Scores.grades[result.name]++;
-
         noteData.onHit.Invoke(result);
-        PlayerController.instance.OnHitNote(result);
-        PlayerController.instance.SetSliding(lane, true);
-        PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
+        NotesManager.instance.onNotePress.Invoke(noteData, result);
+        NotesManager.instance.onGetGrade.Invoke(noteData, result);
 
-        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "holdstart");
-        audioSource.PlayOneShot(audioSource.clip);
+        //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "holdstart");
+        //audioSource.PlayOneShot(audioSource.clip);
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         ProcessInput.instance.inputEvent.AddListener(Release);
@@ -195,20 +185,15 @@ public class SliderNote : BaseNote
 
         if (result.score != 0)
         {
-            ScoreManager.instance.IncrementCombo();
-            ScoreManager.instance.AddScoreWithCombo(result.score);
-            PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease);
-            
+            NotesManager.instance.onGetGrade.Invoke(noteData, result);
         }
         else
         {
-            ScoreManager.instance.BreakCombo();
+            NotesManager.instance.onNoteMiss.Invoke(noteData, result);
         }
 
-        Scores.grades[result.name]++;
         noteData.onHit.Invoke(result);
-        PlayerController.instance.OnHitNote(result);
-        PlayerController.instance.SetSliding(lane, false);
+        NotesManager.instance.onNoteRelease.Invoke(noteData, result);
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(SliderTick);
@@ -258,14 +243,16 @@ public class MashNote : BaseNote
 
         Grade mashGrade = Threshold.instance.GetSpecialGrade("MashGrade");
 
-        ScoreManager.instance.IncrementCombo();
-        ScoreManager.instance.AddScoreWithCombo(mashGrade.score);
-        PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease / 3);
+        //ScoreManager.instance.IncrementCombo();
+        //ScoreManager.instance.AddScoreWithCombo(mashGrade.score);
+        //PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease / 3);
 
         noteData.onHit.Invoke(mashGrade);
+        NotesManager.instance.onNotePress.Invoke(noteData, mashGrade);
+        NotesManager.instance.onGetGrade.Invoke(noteData, mashGrade);
         
-        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
-        audioSource.PlayOneShot(audioSource.clip);
+        //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
+        //audioSource.PlayOneShot(audioSource.clip);
     }
 
     public override void LockNote()
@@ -278,17 +265,18 @@ public class MashNote : BaseNote
 // Class for heal note timings
 public class HealNote : BaseNote
 {
-    public HealNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
+    public HealNote(double timing, int Lane) : base(timing, NoteType.Heal, Lane) {}
 
     public void CheckForCollision(double currentTime)
     {
         if (currentTime < timing) return;
 
-        if (PlayerController.instance.GetLane() == lane)
-        {
-            PlayerController.instance.Heal(Song.Instance.baseDamage); // Change heal amount later
-            noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
-        }
+        Grade healGrade =  Threshold.instance.GetSpecialGrade("Miss");
+
+        //PlayerController.instance.Heal(Song.Instance.baseDamage);
+        noteData.onHit.Invoke(healGrade);
+        NotesManager.instance.onNoteHit.Invoke(noteData, healGrade);
+        NotesManager.instance.onGetGrade.Invoke(noteData, healGrade);
 
         CleanUp();
     }
@@ -309,19 +297,20 @@ public class HealNote : BaseNote
 // Class for obstacle note timings
 public class ObstacleNote : BaseNote
 {
-    public ObstacleNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
+    public ObstacleNote(double timing, int Lane) : base(timing, NoteType.Obstacle, Lane) {}
 
     public void CheckForCollision(double currentTime)
     {
         if (currentTime < timing) return;
 
-        if (PlayerController.instance.GetLane() == lane)
-        {
-            ScoreManager.instance.BreakCombo();
-            PlayerController.instance.Damage(Song.Instance.baseDamage);
-            noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
-            Scores.grades["Miss"]++;
-        }
+        Grade obstacleGrade = Threshold.instance.GetSpecialGrade("Miss");
+
+        //ScoreManager.instance.BreakCombo();
+        //PlayerController.instance.Damage(Song.Instance.baseDamage);
+        noteData.onHit.Invoke(obstacleGrade);
+        NotesManager.instance.onNoteHit.Invoke(noteData, obstacleGrade);
+        NotesManager.instance.onGetGrade.Invoke(noteData, obstacleGrade);
+        //Scores.grades["Miss"]++;
 
         CleanUp();
     }
@@ -342,19 +331,17 @@ public class ObstacleNote : BaseNote
 // Class for score note timings
 public class ScoreNote : BaseNote
 {
-    public ScoreNote(double timing, int Lane) : base(timing, NoteType.Normal, Lane) {}
+    public ScoreNote(double timing, int Lane) : base(timing, NoteType.Score, Lane) {}
 
     public void CheckForCollision(double currentTime)
     {
         if (currentTime < timing) return;
 
-        if (PlayerController.instance.GetLane() == lane)
-        {
-            Grade grade = Threshold.instance.GetSpecialGrade("ScoreNote");
+        Grade grade = Threshold.instance.GetSpecialGrade("ScoreNote");
 
-            ScoreManager.instance.AddScoreWithCombo(grade.score); // Change the added score
-            noteData.onHit.Invoke(grade);
-        }
+        //ScoreManager.instance.AddScoreWithCombo(grade.score); // Change the added score
+        noteData.onHit.Invoke(grade);
+        NotesManager.instance.onGetGrade.Invoke(noteData, grade);
 
         CleanUp();
     }

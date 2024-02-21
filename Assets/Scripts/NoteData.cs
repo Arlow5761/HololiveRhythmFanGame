@@ -16,13 +16,14 @@ public class NoteSerialData // Used to save note data
 [Serializable]
 public class NoteData : NoteSerialData // Used for in game note data
 {
-    [NonSerialized] public BaseNote timingObject;
-    [NonSerialized] public NoteRender renderObject;
-
+    // Event for commmunicating between different systems of the same note (timing and rendering)
     [NonSerialized] public UnityEvent<Grade> onHit;
+
+    [NonSerialized] public Grade resultGrade;
 
     public NoteData()
     {
         onHit = new();
+        resultGrade = Grade.Null;
     }
 }
