@@ -54,7 +54,7 @@ public class SongSelector : MonoBehaviour
         songList = SongsListReader.instance.songList;
 
         Draw();
-        selectedSong = songList[currentSong];
+        //selectedSong = songList[currentSong];
         slotObjects[currentSlot].Focus();
         UpdateSlots();
     }
@@ -162,10 +162,10 @@ public class SongSelector : MonoBehaviour
 
     public void UpdateSlots()
     {
-        for (int i = 0; i < slotObjects.Length; i++)
-        {
-            slotObjects[i].displayedSong = songList[Modulo(i - currentSlot + currentSong, songList.Length)];
-        }
+        //for (int i = 0; i < slotObjects.Length; i++)
+        //{
+        //    slotObjects[i].displayedSong = songList[Modulo(i - currentSlot + currentSong, songList.Length)];
+        //}
     }
 
     private float GetRelativeRotation(int slot)
