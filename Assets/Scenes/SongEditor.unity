@@ -719,18 +719,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyBindings:
-  - name: LaneUpStart
+  - name: PauseToggle
+    keyInputs:
+    - keyCode: 32
+      isDown: 1
+    onTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 843032973}
+          m_TargetAssemblyTypeName: EditorTimeController, Assembly-CSharp
+          m_MethodName: TogglePause
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: Forward
     keyInputs:
     - keyCode: 100
       isDown: 1
-    - keyCode: 102
-      isDown: 1
     onTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-          m_MethodName: PressUp
+        - m_Target: {fileID: 843032973}
+          m_TargetAssemblyTypeName: EditorTimeController, Assembly-CSharp
+          m_MethodName: ScrollForward
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -740,18 +757,35 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: LaneUpRelease
+  - name: Backward
+    keyInputs:
+    - keyCode: 97
+      isDown: 1
+    onTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 843032973}
+          m_TargetAssemblyTypeName: EditorTimeController, Assembly-CSharp
+          m_MethodName: ScrollBackward
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: StopForward
     keyInputs:
     - keyCode: 100
       isDown: 0
-    - keyCode: 102
-      isDown: 0
     onTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-          m_MethodName: ReleaseUp
+        - m_Target: {fileID: 843032973}
+          m_TargetAssemblyTypeName: EditorTimeController, Assembly-CSharp
+          m_MethodName: StopScrollForward
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -761,39 +795,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: LaneDownStart
+  - name: StopBackward
     keyInputs:
-    - keyCode: 106
-      isDown: 1
-    - keyCode: 107
-      isDown: 1
-    onTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-          m_MethodName: PressDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - name: LaneDownRelease
-    keyInputs:
-    - keyCode: 106
-      isDown: 0
-    - keyCode: 107
+    - keyCode: 97
       isDown: 0
     onTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-          m_MethodName: ReleaseDown
+        - m_Target: {fileID: 843032973}
+          m_TargetAssemblyTypeName: EditorTimeController, Assembly-CSharp
+          m_MethodName: StopScrollBackward
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1125,6 +1136,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1575062743}
+  - {fileID: 843032970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1786,6 +1798,95 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812396587}
   m_CullTransparentMesh: 1
+--- !u!1 &843032969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 843032970}
+  - component: {fileID: 843032972}
+  - component: {fileID: 843032971}
+  - component: {fileID: 843032973}
+  m_Layer: 5
+  m_Name: BottomBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &843032970
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843032969}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 476252617}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &843032971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843032969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &843032972
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843032969}
+  m_CullTransparentMesh: 1
+--- !u!114 &843032973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843032969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36beddeb26765b74ca8dbca3f65c044f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickLength: 0.1
 --- !u!1 &868113460
 GameObject:
   m_ObjectHideFlags: 0

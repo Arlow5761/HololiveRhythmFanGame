@@ -33,6 +33,7 @@ public class Song : MonoBehaviour
         Instance = this;
         audioSource = AudioSystem.instance.GetAudio("music", "music");
         ReadSongAndMetadata();
+        EditorTimeController.instance.SetFirstTimestampFromNotesData();
     }
 
     void FetchAudioAndPlay(string audioFilePath)
