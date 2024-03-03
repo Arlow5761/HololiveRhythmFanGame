@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EditorLane : MonoBehaviour
 {
-    List<NoteRender> renderedNotes;
+    private List<NoteRender> renderedNotes = new();
 
     // Start is called before the first frame update
     void Start()
@@ -49,10 +49,16 @@ public class EditorLane : MonoBehaviour
             }
         }
 
-
         for (int spawnIndex = 0; spawnIndex < Song.Instance.NotesData.Count; spawnIndex++)
         {
-            if (Song.GetAudioSourceTime() >= Song.Instance.NotesData[spawnIndex].TimestampStart - Song.Instance.noteTime)
+            bool alreadySpawned = false;
+            renderedNotes.ForEach(renderNote => {
+                if (renderNote.noteData == Song.Instance.NotesData[spawnIndex]) alreadySpawned = true;
+            });
+
+            if (alreadySpawned) continue;
+
+            if (Song.GetAudioSourceTime() <= Song.Instance.NotesData[spawnIndex].TimestampStart + Song.Instance.noteTime && Song.GetAudioSourceTime() >= Song.Instance.NotesData[spawnIndex].TimestampStart - Song.Instance.noteTime)
             {
                 GameObject note = SpawnNote(Song.Instance.NotesData[spawnIndex].NoteId, Song.Instance.NotesData[spawnIndex].RowNumber);
                 
@@ -62,7 +68,7 @@ public class EditorLane : MonoBehaviour
 
                 renderedNotes.Add(noteRender);
             }
-            else if (Song.GetAudioSourceTime() >= Song.Instance.NotesData[spawnIndex].TimestampEnd - Song.Instance.noteTime)
+            else if (Song.GetAudioSourceTime() <= Song.Instance.NotesData[spawnIndex].TimestampEnd + Song.Instance.noteTime && Song.GetAudioSourceTime() >= Song.Instance.NotesData[spawnIndex].TimestampEnd - Song.Instance.noteTime)
             {
                 GameObject note = SpawnNote(Song.Instance.NotesData[spawnIndex].NoteId, Song.Instance.NotesData[spawnIndex].RowNumber);
                 

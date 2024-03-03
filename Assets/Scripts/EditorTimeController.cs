@@ -129,8 +129,6 @@ public class EditorTimeController : MonoBehaviour
         double timeInBeats = normalizedTime * bpm / divisor;
         double snapDelta = timeInBeats % 1;
 
-        Debug.Log(snapDelta);
-
         if (math.abs(snapDelta) <= 0.01 || math.abs(snapDelta) >= 0.99)
         {
             return (timeInBeats + 1) * divisor / bpm + firstTimestamp;
