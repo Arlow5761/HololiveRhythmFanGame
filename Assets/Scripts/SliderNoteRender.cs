@@ -36,6 +36,12 @@ public class SliderNoteRender : NoteRender
         RenderNote();
     }
 
+    void OnDestroy()
+    {
+        Destroy(trailObject);
+        Destroy(endObject);
+    }
+
     void RenderNote()
     {
         RenderStart();
