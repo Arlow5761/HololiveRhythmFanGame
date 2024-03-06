@@ -13,6 +13,8 @@ public class Song : MonoBehaviour
     public static Song Instance;
     public AudioSource audioSource;
 
+    public bool inEditor;
+
     // Level data
     public float songDelayInSeconds;
     public int inputDelayInMiliseconds;
@@ -31,6 +33,7 @@ public class Song : MonoBehaviour
         Instance = this;
         audioSource = AudioSystem.instance.GetAudio("music", "music");
         ReadSongAndMetadata();
+        EditorTimeController.instance.SetFirstTimestampFromNotesData();
     }
 
     void FetchAudioAndPlay(string audioFilePath)
@@ -97,6 +100,7 @@ public class Song : MonoBehaviour
     void PlayAudio()
     {
         audioSource.Play();
+        if (inEditor) return;
         Timeline.instance.Run();
     }
 

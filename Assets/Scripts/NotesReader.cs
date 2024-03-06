@@ -28,7 +28,7 @@ public static class NotesReader
         
         LevelData rawData = JsonParser.OpenObject<LevelData>(json);
 
-        foreach (NoteData note in rawData.Notes)
+        if (Timeline.instance != null) foreach (NoteData note in rawData.Notes)
         {
             BaseNote noteTiming;
 
@@ -52,7 +52,7 @@ public static class NotesReader
                     _ => null
                 };
             }
-
+            
             Timeline.instance.lanes[note.RowNumber].stream.Add(noteTiming);
 
             noteTiming.noteData = note;
