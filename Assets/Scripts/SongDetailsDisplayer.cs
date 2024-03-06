@@ -21,9 +21,9 @@ public class SongDetailsDisplayer : MonoBehaviour
         songBPMField.SetText("BPM : " + displayedSong.metadata.bpm);
     }
 
-    public void ChangeSongLength(AudioContainer newAudioContainer)
+    public void ChangeSongLength(AudioClip clip)
     {
-        float clipLength = newAudioContainer.GetClipLength();
+        float clipLength = clip.length;
 
         int seconds = (int) (clipLength % 60);
         int minutes = (int) (clipLength / 60 % 60);

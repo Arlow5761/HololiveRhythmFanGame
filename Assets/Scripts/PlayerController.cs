@@ -71,7 +71,9 @@ public class PlayerController : MonoBehaviour
 
         animator.SetInteger("RandomAttack", (animator.GetInteger("RandomAttack") + 1) % 3);
         animator.SetTrigger("Jump");
-        AudioHandler.instance.GetSFX("airattack").PlayOneShot();
+
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "airattack");
+        audioSource.PlayOneShot(audioSource.clip);
 
         whiff = true;
         lane = 1;
@@ -86,7 +88,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        AudioHandler.instance.GetSFX("groundattack").PlayOneShot();
+        AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "groundattack");
+        audioSource.PlayOneShot(audioSource.clip);
 
         whiff = false;
         lane = 0;
@@ -160,12 +163,6 @@ public class PlayerController : MonoBehaviour
         ProcessInput.instance.PollInputUp(0);
     }
 
-    // This function is called when the player hits a note
-    public void OnHitNote(Grade grade)
-    {
-        whiff = false;
-    }
-
     public void SetSliding(int slidingLane, bool sliding)
     {
         isSliding[slidingLane] = sliding;
@@ -176,7 +173,8 @@ public class PlayerController : MonoBehaviour
 
             animator.SetBool("Hold", false);
             animator.SetTrigger("Run");
-            AudioHandler.instance.GetSFX("holdloop").Stop();
+            
+            AudioSystem.instance.GetAudio("sfx", "holdloop").Stop();
 
             return;
         }
@@ -205,7 +203,8 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetBool("Hold", true);
-        AudioHandler.instance.GetSFX("holdloop").Play();
+        
+        AudioSystem.instance.GetAudio("sfx", "holdloop").Play();
     }
 
     public void Damage(int damage)
@@ -234,6 +233,58 @@ public class PlayerController : MonoBehaviour
         {
             feverTime = feverDuration;
             onFeverStarted.Invoke();
+        }
+    }
+
+    // Function that is fired when the player misses a note
+    public void OnNoteMiss(NoteData noteData, Grade grade)
+    {
+
+    }
+
+    // Function that is fired when the player releases a note
+    public void OnNoteRelease(NoteData noteData, Grade grade)
+    {
+        switch (noteData.NoteType)
+        {
+            case "Hold":
+                SetSliding(noteData.RowNumber, false);
+                if (grade.name != "Miss")
+                {
+                    IncreaseFever(Song.Instance.baseFeverIncrease);
+                }
+            break;
+            default:
+            break;
+        }
+    }
+
+    // Function that is fired when the player presses a note
+    public void OnNotePress(NoteData noteData, Grade grade)
+    {
+        switch (noteData.NoteType)
+        {
+            case "Hold":
+                SetSliding(noteData.RowNumber, true);
+                IncreaseFever(Song.Instance.baseFeverIncrease);
+            break;
+            default:
+            break;
+        }
+
+        whiff = false;
+    }
+
+    // Function that is fired when the player passes a note
+    public void OnNotePass(NoteData noteData, Grade grade)
+    {
+        switch (noteData.NoteType)
+        {
+            case "Normal":
+                if (noteData.RowNumber == lane) Damage(Song.Instance.baseDamage);
+            break;
+            default:
+            break;
         }
     }
 }

@@ -55,7 +55,6 @@ public static class NotesReader
 
             Timeline.instance.lanes[note.RowNumber].stream.Add(noteTiming);
 
-            note.timingObject = noteTiming;
             noteTiming.noteData = note;
         };
 
