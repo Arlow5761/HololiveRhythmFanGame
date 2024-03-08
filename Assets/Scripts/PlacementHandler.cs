@@ -55,6 +55,7 @@ public class PlacementHandler : MonoBehaviour
     public void SwitchHeldObject(string newHeldObjectName)
     {
         heldObjectName = newHeldObjectName;
+        DeletionHandler.instance.Deactivate();
     }
 
     public void HoldNothing()
