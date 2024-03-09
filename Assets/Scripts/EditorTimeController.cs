@@ -122,7 +122,7 @@ public class EditorTimeController : MonoBehaviour
 
     public void UnPause()
     {
-        audioSource.UnPause();
+        audioSource.Play();
     }
 
     public double GetNextStep(double current)
