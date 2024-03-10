@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EditorTimeController : MonoBehaviour
 {
     public static EditorTimeController instance;
     public float tickLength;
+    public UnityEvent<double> onFirstTimestampChanged;
+    public UnityEvent<int> onBeatDivisorChanged;
 
     private AudioSource audioSource;
-    private double firstTimestamp;
-    private bool scrollForward;
-    private bool scrollBackward;
-    private float internalTimer;
+    private double firstTimestamp = 0;
+    private int beatDivisor = 4;
+    private bool scrollForward = false;
+    private bool scrollBackward = false;
+    private float internalTimer = 0;
 
     void Awake()
     {
@@ -118,14 +122,14 @@ public class EditorTimeController : MonoBehaviour
 
     public void UnPause()
     {
-        audioSource.UnPause();
+        audioSource.Play();
     }
 
     public double GetNextStep(double current)
     {
         double bpm = int.Parse(GameData.songInfo.metadata.bpm);
         double normalizedTime = current - firstTimestamp;
-        int divisor = 15;
+        double divisor = 60d / beatDivisor;
         double timeInBeats = normalizedTime * bpm / divisor;
         double snapDelta = timeInBeats % 1;
 
@@ -143,7 +147,7 @@ public class EditorTimeController : MonoBehaviour
     {
         double bpm = int.Parse(GameData.songInfo.metadata.bpm);
         double normalizedTime = current - firstTimestamp;
-        int divisor = 15;
+        double divisor = 60d / beatDivisor;
         double timeInBeats = normalizedTime * bpm / divisor;
         double snapDelta = timeInBeats % 1;
 
@@ -160,6 +164,7 @@ public class EditorTimeController : MonoBehaviour
     public void SetFirstTimestamp(double timestamp)
     {
         firstTimestamp = timestamp;
+        onFirstTimestampChanged.Invoke(firstTimestamp);
     }
 
     public void SetFirstTimestampFromNotesData()
@@ -172,5 +177,11 @@ public class EditorTimeController : MonoBehaviour
         {
             SetFirstTimestamp(0);
         }
+    }
+
+    public void SetBeatDivisor(int divisor)
+    {
+        beatDivisor = divisor;
+        onBeatDivisorChanged.Invoke(beatDivisor);
     }
 }

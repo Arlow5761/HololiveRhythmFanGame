@@ -6,6 +6,7 @@ using UnityEngine;
 public class EditorLane : MonoBehaviour
 {
     private List<NoteRender> renderedNotes = new();
+    [SerializeField] private Transform notesParent;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class EditorLane : MonoBehaviour
             1 => new Vector3(GameplayLayout.noteSpawnX, GameplayLayout.airLaneY, 0),
             _ => new Vector3(GameplayLayout.noteSpawnX, 0, 0),
         };
-        return Instantiate(preftab, position, new Quaternion(0, 0, 0, 1));
+        return Instantiate(preftab, position, new Quaternion(0, 0, 0, 1), notesParent);
     }
 
     // Update is called once per frame
@@ -65,6 +66,9 @@ public class EditorLane : MonoBehaviour
                 NoteRender noteRender = note.GetComponent<NoteRender>();
                 noteRender.index = spawnIndex;
                 noteRender.noteData = Song.Instance.NotesData[spawnIndex];
+
+                CircleCollider2D noteCollider = note.AddComponent<CircleCollider2D>();
+                noteCollider.isTrigger = true;
 
                 renderedNotes.Add(noteRender);
             }
