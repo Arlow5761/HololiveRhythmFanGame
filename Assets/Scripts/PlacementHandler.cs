@@ -101,6 +101,7 @@ public class PlacementHandler : MonoBehaviour
     {
         switch (temporaryNoteData.NoteType)
         {
+            case "Mash":
             case "Hold":
                 if (!editingTail)
                 {
@@ -118,7 +119,7 @@ public class PlacementHandler : MonoBehaviour
                     temporaryNoteData = new()
                     {
                         TimestampStart = temporaryNoteData.TimestampStart,
-                        TimestampEnd = temporaryNoteData.TimestampEnd,
+                        TimestampEnd = temporaryNoteData.TimestampStart,
                         NoteId = temporaryNoteData.NoteId,
                         RowNumber = temporaryNoteData.RowNumber,
                         NoteType = temporaryNoteData.NoteType
@@ -126,6 +127,8 @@ public class PlacementHandler : MonoBehaviour
 
                     Destroy(heldObject.gameObject);
                     heldObject = GenerateNote(temporaryNoteData);
+
+                    editingTail = false;
                 }
             break;
             default:
