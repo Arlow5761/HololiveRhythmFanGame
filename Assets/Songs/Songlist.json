@@ -8,10 +8,10 @@
           {
             "name" : "Standard",
             "rating" : 7,
-            "notePath" : "Songs//ShinySmilyStory//Standard.json"
+            "notePath" : "Songs//Shiny Smily Story (2022 ver.)//Standard.json"
           }
         ],
-        "songPath" : "Songs//ShinySmilyStory//ShinySmilyStory.ogg",
-        "coverPath" : "Songs//ShinySmilyStory//background.jpg"
+        "songPath" : "Songs//Shiny Smily Story (2022 ver.)//ShinySmilyStory.ogg",
+        "coverPath" : "Songs//Shiny Smily Story (2022 ver.)//background.jpg"
     }
 ]
