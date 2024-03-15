@@ -80,6 +80,9 @@ public class EditorLane : MonoBehaviour
                 noteRender.index = spawnIndex;
                 noteRender.noteData = Song.Instance.NotesData[spawnIndex];
 
+                CircleCollider2D noteCollider = note.AddComponent<CircleCollider2D>();
+                noteCollider.isTrigger = true;
+
                 renderedNotes.Add(noteRender);
             }
         }
