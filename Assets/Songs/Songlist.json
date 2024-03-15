@@ -13,5 +13,19 @@
         ],
         "songPath" : "Songs//ShinySmilyStory//ShinySmilyStory.ogg",
         "coverPath" : "Songs//ShinySmilyStory//background.jpg"
-    }
+    },
+    {
+      "songName" : "Mantra Hujan",
+      "artist" : "Kobo Kanaeru",
+      "bpm" : 160,
+      "difficulties" : [
+        {
+          "name" : "Banjir",
+          "rating" : 7,
+          "notePath" : "Songs//MantraHujan//Banjir.json"
+        }
+      ],
+      "songPath" : "Songs//MantraHujan//Mantra-Hujan-Kobo-Kanaeru.ogg",
+      "coverPath" : "Songs//MantraHujan//background.jpg"
+  }
 ]

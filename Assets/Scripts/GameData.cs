@@ -7,20 +7,20 @@ public static class GameData
     {
         metadata = new()
         {
-            songName = "Shiny Smily Story (2022 ver.)",
-            artist = "holoJP",
-            bpm = "163",
+            songName = "Mantra Hujan",
+            artist = "Kobo Kanaeru",
+            bpm = "160",
             difficulties = new Difficulty[]
             {
                 new()
                 {
-                    name = "Standard",
+                    name = "Banjir",
                     rating = 7,
-                    notePath = "Songs//ShinySmilyStory//Standard.json"
+                    notePath = "Songs//MantraHujan//Banjir.json"
                 }
             },
-            songPath = "Songs//ShinySmilyStory//ShinySmilyStory.ogg",
-            coverPath = "Songs//ShinySmilyStory//background.jpg"
+            songPath = "Songs//MantraHujan//Mantra-Hujan-Kobo-Kanaeru.ogg",
+            coverPath = "Songs//MantraHujan//background.jpg"
         }
     };
     public static Difficulty selectedDifficulty = songInfo.metadata.difficulties[0]; // Default value for testing
