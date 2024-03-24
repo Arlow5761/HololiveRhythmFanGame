@@ -25,22 +25,10 @@ public class EditorSongCoverField : MonoBehaviour
     public void ChangeSongCoverImage()
     {
         StartCoroutine(FilesPanel.OpenFilePanel("Choose New Cover Image", Application.dataPath, newCoverPath => {
-            string validSongName = songInfo.metadata.songName;
-            foreach (char invalidCharacter in Path.GetInvalidFileNameChars())
-            {
-                validSongName = validSongName.Replace(invalidCharacter, '_');
-            }
-            Debug.Log(validSongName);
-
-            if (songInfo.metadata.coverPath != null) File.Delete(Path.Combine(Application.dataPath, songInfo.metadata.coverPath));
-            File.Copy(newCoverPath, Path.Combine(Application.dataPath, "Songs", validSongName, "background" + Path.GetExtension(newCoverPath)));
-
-            songInfo.metadata.coverPath = Path.Combine("Songs", validSongName, "background" + Path.GetExtension(newCoverPath));
-
+            songInfo.metadata.coverPath = newCoverPath;
+            EditorSongSelectionManager.instance.onSelectionModified.Invoke(songInfo);
             RenderImageField();
         }));
-        
-        EditorSongSelectionManager.instance.onSelectionModified.Invoke(songInfo);
     }
 
     private void RenderImageField()

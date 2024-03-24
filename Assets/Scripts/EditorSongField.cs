@@ -20,19 +20,8 @@ public class EditorSongField : MonoBehaviour
     public void OnSongChanged()
     {
         StartCoroutine(FilesPanel.OpenFilePanel("Choose New Music Audio", Application.dataPath, newAudioPath => {
-            string validSongName = songInfo.metadata.songName;
-            foreach (char invalidCharacter in Path.GetInvalidFileNameChars())
-            {
-                validSongName = validSongName.Replace(invalidCharacter, '_');
-            }
-            Debug.Log(validSongName);
-
-            if (songInfo.metadata.coverPath != null) File.Delete(Path.Combine(Application.dataPath, songInfo.metadata.songPath));
-            File.Copy(newAudioPath, Path.Combine(Application.dataPath, "Songs", validSongName, "audio" + Path.GetExtension(newAudioPath)));
-
-            songInfo.metadata.coverPath = Path.Combine("Songs", validSongName, "background" + Path.GetExtension(newAudioPath));
+            songInfo.metadata.songPath = newAudioPath;
+            EditorSongSelectionManager.instance.onSelectionModified.Invoke(songInfo);
         }));
-        
-        EditorSongSelectionManager.instance.onSelectionModified.Invoke(songInfo);
     }
 }
