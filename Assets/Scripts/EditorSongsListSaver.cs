@@ -29,9 +29,65 @@ public class EditorSongsListSaver : MonoBehaviour
             EditorSongCoverSaver.SaveCover(songInfo);
             EditorSongAudioSaver.SaveAudio(songInfo);
             EditorSongDifficultySaver.SaveDifficulty(songInfo);
+
+            SongFolderCleaner.CleanFolder(songInfo);
         }
 
-        // Clean Directory Here
+        SongsDirectoryCleaner.CleanDirectory();
+    }
+}
+
+public class SongsDirectoryCleaner
+{
+    public static void CleanDirectory()
+    {
+        List<string> songFolders = Directory.GetDirectories(Path.Combine(Application.dataPath, "Songs")).ToList();
+
+        for (int i = 0; i < SongsListReader.instance.songList.Count(); i++)
+        {
+            SongInfo songInfo = SongsListReader.instance.songList[i];
+
+            songFolders.Remove(SongDirectoryFinder.FindSongDirectory(songInfo));
+        }
+
+        for (int i = 0; i < songFolders.Count(); i++)
+        {
+            Directory.Delete(songFolders[i]);
+        }
+    }
+}
+
+public class SongFolderCleaner
+{
+    public static void CleanFolder(SongInfo songInfo)
+    {
+        string folderPath = SongDirectoryFinder.FindSongDirectory(songInfo);
+
+        if (folderPath != null)
+        {
+            List<string> folderContents = Directory.GetFiles(folderPath).ToList();
+            folderContents.AddRange(Directory.GetDirectories(folderPath));
+
+            folderContents.Remove(Path.Combine(Application.dataPath, songInfo.metadata.coverPath));
+            folderContents.Remove(Path.Combine(Application.dataPath, songInfo.metadata.songPath));
+
+            for (int i = 0; i < songInfo.metadata.difficulties.Count(); i++)
+            {
+                folderContents.Remove(Path.Combine(Application.dataPath, songInfo.metadata.difficulties[i].notePath));
+            }
+
+            for (int i = 0; i < folderContents.Count(); i++)
+            {
+                if (Directory.Exists(folderContents[i]))
+                {
+                    Directory.Delete(folderContents[i]);
+                }
+                else if (File.Exists(folderContents[i]))
+                {
+                    File.Delete(folderContents[i]);
+                }
+            }
+        }
     }
 }
 
@@ -78,7 +134,7 @@ public class EditorSongCoverSaver
             if (targetFilePath != filePath)
             {
                 File.Copy(filePath, targetFilePath);
-                songInfo.metadata.coverPath = targetFilePath;
+                songInfo.metadata.coverPath = Path.GetRelativePath(Application.dataPath, targetFilePath);
             }
         }
         else
@@ -101,7 +157,7 @@ public class EditorSongAudioSaver
             if (targetFilePath != filePath)
             {
                 File.Copy(filePath, targetFilePath);
-                songInfo.metadata.songPath = targetFilePath;
+                songInfo.metadata.songPath = Path.GetRelativePath(Application.dataPath, targetFilePath);
             }
         }
         else
@@ -120,13 +176,9 @@ public class EditorSongDifficultySaver
             string filePath = Path.Combine(Application.dataPath, songInfo.metadata.difficulties[i].notePath);
             string targetFilePath = Path.Combine(SongDirectoryFinder.FindSongDirectory(songInfo), Path.GetFileName(filePath));
 
-            if (File.Exists(filePath))
+            if (File.Exists(filePath) && targetFilePath != filePath)
             {
-                if (targetFilePath != filePath)
-                {
-                    File.Copy(filePath, targetFilePath);
-                    songInfo.metadata.songPath = targetFilePath;
-                }
+                File.Copy(filePath, targetFilePath);
             }
             else
             {
@@ -136,6 +188,8 @@ public class EditorSongDifficultySaver
 
                 streamWriter.Close();
             }
+
+            songInfo.metadata.difficulties[i].notePath = Path.GetRelativePath(Application.dataPath, targetFilePath);
         }
     }
 }
