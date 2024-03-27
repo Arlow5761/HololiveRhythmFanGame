@@ -52,8 +52,9 @@ public class EditorDifficultyItemUI : MonoBehaviour
 
     public void OnEdit()
     {
+        GameData.songInfo = songInfo;
         GameData.selectedDifficulty = difficulty;
         EditorSongsListSaver.instance.SaveSongs();
-        SceneHandler.instance.LoadSceneAsync("SongEditorScene");
+        SceneHandler.instance.LoadSceneAsync("SongEditor");
     }
 }

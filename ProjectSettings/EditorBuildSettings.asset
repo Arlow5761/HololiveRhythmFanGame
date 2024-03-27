@@ -17,5 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoseScreen.unity
     guid: cfa7a9c0744fe7f4c9bdc61f279c7b46
+  - enabled: 1
+    path: Assets/Scenes/EditorSongSelect.unity
+    guid: b962e64050238cc41a097c5bd7eb8e5e
+  - enabled: 1
+    path: Assets/Scenes/SongEditor.unity
+    guid: 22d82023aa1cfdc4db5b3f2e9c93ee33
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

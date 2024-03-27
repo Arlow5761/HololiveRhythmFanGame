@@ -204,7 +204,7 @@ public class EditorSongDifficultySaver
             {
                 File.Copy(filePath, targetFilePath, true);
             }
-            else
+            else if (!File.Exists(filePath))
             {
                 StreamWriter streamWriter = File.CreateText(targetFilePath);
 
