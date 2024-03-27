@@ -157,7 +157,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
+        width: 1200
         height: 1200
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -182,8 +182,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      background_0: -7443756053782179069
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

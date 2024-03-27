@@ -34,6 +34,12 @@ public class EditorSongsListSaver : MonoBehaviour
         }
 
         SongsDirectoryCleaner.CleanDirectory();
+
+        SongMetadata[] metadataArray = SongsListReader.instance.songList.ToList().ConvertAll((songInfo) => {return songInfo.metadata;}).ToArray();
+
+        File.WriteAllText(
+            Path.GetFullPath(Path.Join("Songs", "Songlist.json"), Application.dataPath),
+            JsonParser.WriteArray(metadataArray));
     }
 }
 
@@ -41,7 +47,7 @@ public class SongsDirectoryCleaner
 {
     public static void CleanDirectory()
     {
-        List<string> songFolders = Directory.GetDirectories(Path.Combine(Application.dataPath, "Songs")).ToList();
+        List<string> songFolders = Directory.GetDirectories(Path.Join(Path.GetFullPath(Application.dataPath), "Songs")).ToList();
 
         for (int i = 0; i < SongsListReader.instance.songList.Count(); i++)
         {
@@ -52,7 +58,7 @@ public class SongsDirectoryCleaner
 
         for (int i = 0; i < songFolders.Count(); i++)
         {
-            Directory.Delete(songFolders[i]);
+            Directory.Delete(songFolders[i], true);
         }
     }
 }
@@ -68,12 +74,12 @@ public class SongFolderCleaner
             List<string> folderContents = Directory.GetFiles(folderPath).ToList();
             folderContents.AddRange(Directory.GetDirectories(folderPath));
 
-            folderContents.Remove(Path.Combine(Application.dataPath, songInfo.metadata.coverPath));
-            folderContents.Remove(Path.Combine(Application.dataPath, songInfo.metadata.songPath));
+            folderContents.Remove(Path.GetFullPath(songInfo.metadata.coverPath, Application.dataPath));
+            folderContents.Remove(Path.GetFullPath(songInfo.metadata.songPath, Application.dataPath));
 
             for (int i = 0; i < songInfo.metadata.difficulties.Count(); i++)
             {
-                folderContents.Remove(Path.Combine(Application.dataPath, songInfo.metadata.difficulties[i].notePath));
+                folderContents.Remove(Path.GetFullPath(songInfo.metadata.difficulties[i].notePath, Application.dataPath));
             }
 
             for (int i = 0; i < folderContents.Count(); i++)
@@ -95,7 +101,7 @@ public class SongDirectoryFinder
 {
     public static string FindSongDirectory(SongInfo songInfo)
     {
-        string expectedDirectory = Path.Combine(Application.dataPath, "Songs", songInfo.metadata.songName);
+        string expectedDirectory = Path.Join(Path.GetFullPath(Application.dataPath), "Songs", songInfo.metadata.songName);
 
         if (Directory.Exists(expectedDirectory))
         {
@@ -125,15 +131,24 @@ public class EditorSongCoverSaver
 {
     public static void SaveCover(SongInfo songInfo)
     {
-        string filePath = Path.Combine(Application.dataPath, songInfo.metadata.coverPath);
+        string filePath;
+
+        if (Path.IsPathFullyQualified(songInfo.metadata.coverPath))
+        {
+            filePath = songInfo.metadata.coverPath;
+        }
+        else
+        {
+            filePath = Path.GetFullPath(songInfo.metadata.coverPath, Application.dataPath);
+        }
 
         if (File.Exists(filePath))
         {
             string targetFilePath = Path.Combine(SongDirectoryFinder.FindSongDirectory(songInfo), Path.GetFileName(filePath));
 
-            if (targetFilePath != filePath)
+            if (Path.GetFullPath(targetFilePath) != Path.GetFullPath(filePath))
             {
-                File.Copy(filePath, targetFilePath);
+                File.Copy(filePath, targetFilePath, true);
                 songInfo.metadata.coverPath = Path.GetRelativePath(Application.dataPath, targetFilePath);
             }
         }
@@ -148,15 +163,24 @@ public class EditorSongAudioSaver
 {
     public static void SaveAudio(SongInfo songInfo)
     {
-        string filePath = Path.Combine(Application.dataPath, songInfo.metadata.songPath);
+        string filePath;
+
+        if (Path.IsPathFullyQualified(songInfo.metadata.songPath))
+        {
+            filePath = songInfo.metadata.songPath;
+        }
+        else
+        {
+            filePath = Path.GetFullPath(songInfo.metadata.songPath, Application.dataPath);
+        }
 
         if (File.Exists(filePath))
         {
             string targetFilePath = Path.Combine(SongDirectoryFinder.FindSongDirectory(songInfo), Path.GetFileName(filePath));
 
-            if (targetFilePath != filePath)
+            if (Path.GetFullPath(targetFilePath) != Path.GetFullPath(filePath))
             {
-                File.Copy(filePath, targetFilePath);
+                File.Copy(filePath, targetFilePath, true);
                 songInfo.metadata.songPath = Path.GetRelativePath(Application.dataPath, targetFilePath);
             }
         }
@@ -176,16 +200,33 @@ public class EditorSongDifficultySaver
             string filePath = Path.Combine(Application.dataPath, songInfo.metadata.difficulties[i].notePath);
             string targetFilePath = Path.Combine(SongDirectoryFinder.FindSongDirectory(songInfo), Path.GetFileName(filePath));
 
-            if (File.Exists(filePath) && targetFilePath != filePath)
+            if (File.Exists(filePath) && (Path.GetFullPath(targetFilePath) != Path.GetFullPath(filePath)))
             {
-                File.Copy(filePath, targetFilePath);
+                File.Copy(filePath, targetFilePath, true);
             }
             else
             {
                 StreamWriter streamWriter = File.CreateText(targetFilePath);
 
-                // Setup difficulty defaults here
+                LevelData newLevelData = new()
+                {
+                    TickSpeed = 0.3680981595d,
+                    NoteSpeed = 1d,
+                    BaseDamage = 20,
+                    BaseHeal = 15,
+                    BaseFeverIncrease = 10,
+                };
+                newLevelData.NormalThresholds = new Grade[3];
+                newLevelData.NormalThresholds[0] = new() {name = "Perfect", margin = 0.05, score = 40};
+                newLevelData.NormalThresholds[1] = new() {name = "Great", margin = 0.1, score = 20};
+                newLevelData.NormalThresholds[2] = new() {name = "Okay", margin = 0.2, score = 10};
+                newLevelData.SpecialThresholds = new Grade[4];
+                newLevelData.SpecialThresholds[0] = new() {name = "Miss", margin = 0, score = 0};
+                newLevelData.SpecialThresholds[1] = new() {name = "SliderTick", margin = 0, score = 1};
+                newLevelData.SpecialThresholds[2] = new() {name = "MashGrade", margin = 0, score = 10};
+                newLevelData.SpecialThresholds[3] = new() {name = "ScoreNote", margin = 0, score = 20};
 
+                streamWriter.Write(JsonParser.WriteObject(newLevelData));
                 streamWriter.Close();
             }
 

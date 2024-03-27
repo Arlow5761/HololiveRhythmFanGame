@@ -1,17 +1,1 @@
-
-[
-    {
-        "songName" : "Shiny Smily Story (2022 ver.)",
-        "artist" : "holoJP",
-        "bpm" : 163,
-        "difficulties" : [
-          {
-            "name" : "Standard",
-            "rating" : 7,
-            "notePath" : "Songs//Shiny Smily Story (2022 ver.)//Standard.json"
-          }
-        ],
-        "songPath" : "Songs//Shiny Smily Story (2022 ver.)//ShinySmilyStory.ogg",
-        "coverPath" : "Songs//Shiny Smily Story (2022 ver.)//background.jpg"
-    }
-]
+[{"songName":"Shiny Smily Story (2022 ver.)","artist":"holoJP","bpm":"163","difficulties":[{"name":"Standard","rating":7.0,"notePath":"Songs\\Shiny Smily Story (2022 ver.)\\Standard.json"}],"songPath":"Songs//Shiny Smily Story (2022 ver.)//ShinySmilyStory.ogg","coverPath":"Songs\\Shiny Smily Story (2022 ver.)\\background.jpg"}]

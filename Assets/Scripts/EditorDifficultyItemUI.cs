@@ -44,13 +44,7 @@ public class EditorDifficultyItemUI : MonoBehaviour
     }
 
     public void OnDelete()
-    {
-        
-        if (Directory.Exists(Path.Combine(Application.dataPath, difficulty.notePath)))
-        {
-            File.Delete(Path.Combine(Application.dataPath, difficulty.notePath));
-        }
-        
+    {  
         List<Difficulty> tempList = songInfo.metadata.difficulties.ToList();
         tempList.RemoveAt(tempList.FindIndex(songDifficulty => {return songDifficulty.name == difficulty.name;}));
         songInfo.metadata.difficulties = tempList.ToArray();
