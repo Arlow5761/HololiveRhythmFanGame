@@ -1,31 +1,28 @@
-
-[
+[{
+    "songName" : "Shiny Smily Story (2022 ver.)",
+    "artist" : "holoJP",
+    "bpm" : 163,
+    "difficulties" : [
+      {
+        "name" : "Standard",
+        "rating" : 7,
+        "notePath" : "Songs//Shiny Smily Story (2022 ver.)//Standard.json"
+      }
+    ],
+    "songPath" : "Songs//Shiny Smily Story (2022 ver.)//ShinySmilyStory.ogg",
+    "coverPath" : "Songs//Shiny Smily Story (2022 ver.)//background.jpg"
+},
+{
+  "songName" : "Mantra Hujan",
+  "artist" : "Kobo Kanaeru",
+  "bpm" : 160,
+  "difficulties" : [
     {
-        "songName" : "Shiny Smily Story (2022 ver.)",
-        "artist" : "holoJP",
-        "bpm" : 163,
-        "difficulties" : [
-          {
-            "name" : "Standard",
-            "rating" : 7,
-            "notePath" : "Songs//ShinySmilyStory//Standard.json"
-          }
-        ],
-        "songPath" : "Songs//ShinySmilyStory//ShinySmilyStory.ogg",
-        "coverPath" : "Songs//ShinySmilyStory//background.jpg"
-    },
-    {
-      "songName" : "Mantra Hujan",
-      "artist" : "Kobo Kanaeru",
-      "bpm" : 160,
-      "difficulties" : [
-        {
-          "name" : "Banjir",
-          "rating" : 7,
-          "notePath" : "Songs//MantraHujan//Banjir.json"
-        }
-      ],
-      "songPath" : "Songs//MantraHujan//Mantra-Hujan-Kobo-Kanaeru.ogg",
-      "coverPath" : "Songs//MantraHujan//background.jpg"
-  }
-]
+      "name" : "Banjir",
+      "rating" : 7,
+      "notePath" : "Songs//Mantra Hujan//Banjir.json"
+    }
+  ],
+  "songPath" : "Songs//Mantra Hujan//Mantra-Hujan-Kobo-Kanaeru.ogg",
+  "coverPath" : "Songs//Mantra Hujan//background.jpg"
+}]

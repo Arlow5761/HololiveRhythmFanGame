@@ -2,20 +2,23 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 #if UNITY_EDITOR
+
 
 using UnityEditor;
 
 public static class FilesPanel
 {
-    public static IEnumerator OpenFilePanel()
+    public static IEnumerator OpenFilePanel(string prompt, string initialDirectory, Action<string> action)
     {
-        string filePath = EditorUtility.OpenFilePanel("Upload Music", Application.dataPath, "mp3, wav, ogg");
+        string filePath = EditorUtility.OpenFilePanel(prompt, initialDirectory, "");
 
         if (filePath != null)
         {
-            Debug.Log(filePath);
+            action(filePath);
         }
 
         yield break;
@@ -65,7 +68,9 @@ public static class DllTest
 
 public static class FilesPanel
 {
-    public static IEnumerator OpenFilePanel()
+    public static UnityEvent<string> onFileSelected;
+
+    public static IEnumerator OpenFilePanel(string prompt, string initialDirectory, Action<string> action)
     {
         OpenFileName ofn = new OpenFileName();
         ofn.structSize = Marshal.SizeOf(ofn);
@@ -74,14 +79,14 @@ public static class FilesPanel
         ofn.maxFile = ofn.file.Length;
         ofn.fileTitle = new string(new char[64]);
         ofn.maxFileTitle = ofn.fileTitle.Length;
-        ofn.initialDir = Application.dataPath;
-        ofn.title = "Upload Music";
-        ofn.defExt = "MP3";
+        ofn.initialDir = initialDirectory;
+        ofn.title = prompt;
+        ofn.defExt = "";
         ofn.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;
 
         if(DllTest.GetOpenFileName(ofn))
         {
-            Debug.Log(ofn.file);
+            action(ofn.file);
         }
 
         yield break;
