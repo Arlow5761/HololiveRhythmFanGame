@@ -6,11 +6,11 @@
       {
         "name" : "Standard",
         "rating" : 7,
-        "notePath" : "Songs//ShinySmilyStory//Standard.json"
+        "notePath" : "Songs//Shiny Smily Story (2022 ver.)//Standard.json"
       }
     ],
-    "songPath" : "Songs//ShinySmilyStory//ShinySmilyStory.ogg",
-    "coverPath" : "Songs//ShinySmilyStory//background.jpg"
+    "songPath" : "Songs//Shiny Smily Story (2022 ver.)//ShinySmilyStory.ogg",
+    "coverPath" : "Songs//Shiny Smily Story (2022 ver.)//background.jpg"
 },
 {
   "songName" : "Mantra Hujan",
@@ -20,9 +20,9 @@
     {
       "name" : "Banjir",
       "rating" : 7,
-      "notePath" : "Songs//MantraHujan//Banjir.json"
+      "notePath" : "Songs//Mantra Hujan//Banjir.json"
     }
   ],
-  "songPath" : "Songs//MantraHujan//Mantra-Hujan-Kobo-Kanaeru.ogg",
-  "coverPath" : "Songs//MantraHujan//background.jpg"
+  "songPath" : "Songs//Mantra Hujan//Mantra-Hujan-Kobo-Kanaeru.ogg",
+  "coverPath" : "Songs//Mantra Hujan//background.jpg"
 }]

@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public int health = 100;
     public UnityEvent<int> onHealthChanged;
     public UnityEvent onDeath;
+    public bool isDead;
 
     // Fever Variables
     public float feverDuration;
@@ -209,19 +210,29 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(int damage)
     {
+        if (isDead) return;
+
         health = math.clamp(health - damage, 0, maxHealth);
         onHealthChanged.Invoke(health);
 
         if (health == 0)
         {
-            onDeath.Invoke();
+            Die();
         }
     }
 
     public void Heal(int amount)
     {
+        if (isDead) return;
+
         health = math.clamp(health + amount, 0, maxHealth);
         onHealthChanged.Invoke(health);
+    }
+
+    public void Die()
+    {
+        isDead = true;
+        onDeath.Invoke();
     }
 
     public void IncreaseFever(int amount)
