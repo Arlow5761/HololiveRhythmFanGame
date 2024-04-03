@@ -4,7 +4,10 @@ using UnityEngine;
 
 public static class CharacterDictionary
 {
-    private static Dictionary<string, CharacterInterface> characters;
+    private static Dictionary<string, CharacterInterface> characters = new()
+    {
+        {"Test", new TestCharacter()}
+    };
 
     public static CharacterInterface GetCharacter(string characterName)
     {

@@ -21,4 +21,9 @@ public class CharacterInitializer : MonoBehaviour
     {
         Initialize();
     }
+
+    void Start()
+    {
+        SetupCharacter();
+    }
 }
