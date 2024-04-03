@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class CharacterDictionary
+{
+    private static Dictionary<string, CharacterInterface> characters;
+
+    public static CharacterInterface GetCharacter(string characterName)
+    {
+        return characters.GetValueOrDefault(characterName, null);
+    }
+}
