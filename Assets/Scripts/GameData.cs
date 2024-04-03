@@ -16,11 +16,11 @@ public static class GameData
                 {
                     name = "Banjir",
                     rating = 7,
-                    notePath = "Songs//MantraHujan//Banjir.json"
+                    notePath = "Songs//Mantra Hujan//Banjir.json"
                 }
             },
-            songPath = "Songs//MantraHujan//Mantra-Hujan-Kobo-Kanaeru.ogg",
-            coverPath = "Songs//MantraHujan//background.jpg"
+            songPath = "Songs//Mantra Hujan//Mantra-Hujan-Kobo-Kanaeru.ogg",
+            coverPath = "Songs//Mantra Hujan//background.jpg"
         }
     };
     public static Difficulty selectedDifficulty = songInfo.metadata.difficulties[0]; // Default value for testing
