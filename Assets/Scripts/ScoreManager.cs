@@ -22,9 +22,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] public UnityEvent<int> onScoreChanged = new();
     [SerializeField] public UnityEvent<int> onComboChanged = new();
 
+    public ScorePipeline scorePipeline = new();
+
     public void AddScoreRaw(int additionalScore)
     {
-        score += (int) (additionalScore * math.max(0, multiplier) + math.max(0, bonus));
+        score += scorePipeline.ProcessScore((int) (additionalScore * math.max(0, multiplier) + math.max(0, bonus)));
         Scores.score = score;
         onScoreChanged.Invoke(score);
     }
