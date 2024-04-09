@@ -23,6 +23,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] public UnityEvent<int> onComboChanged = new();
 
     public ScorePipeline scorePipeline = new();
+    public ComboPipeline comboPipeline = new();
 
     public void AddScoreRaw(int additionalScore)
     {
@@ -38,14 +39,14 @@ public class ScoreManager : MonoBehaviour
 
     public void IncrementCombo()
     {
-        combo++;
+        combo = comboPipeline.Process(++combo);
         if (Scores.combo < combo) Scores.combo = combo;
         onComboChanged.Invoke(combo);
     }
 
     public void BreakCombo()
     {
-        combo = 0;
+        combo = comboPipeline.Process(0);
         Scores.fullCombo = false;
         onComboChanged.Invoke(combo);
     }
