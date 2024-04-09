@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScoreRaw(int additionalScore)
     {
-        score += scorePipeline.ProcessScore((int) (additionalScore * math.max(0, multiplier) + math.max(0, bonus)));
+        score += scorePipeline.Process((int) (additionalScore * math.max(0, multiplier) + math.max(0, bonus)));
         Scores.score = score;
         onScoreChanged.Invoke(score);
     }
