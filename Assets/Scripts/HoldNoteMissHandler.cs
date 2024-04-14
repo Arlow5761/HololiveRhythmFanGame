@@ -11,9 +11,10 @@ public class HoldNoteMissHandler : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    public Grade SubmitGrade(Grade grade)
+    public Grade RegisterMiss(NoteData noteData, Grade grade)
     {
-        Grade finalGrade = gradePipeline.Process(grade);
+        Grade processedGrade = gradePipeline.Process(grade);
+        Grade finalGrade = processedGrade;
 
         return finalGrade;
     }

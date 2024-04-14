@@ -11,9 +11,12 @@ public class HoldNoteTickHandler : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    public Grade SubmitGrade(Grade grade)
+    public Grade RegisterTick(NoteData noteData, Grade grade)
     {
-        Grade finalGrade = gradePipeline.Process(grade);
+        Grade processedGrade = gradePipeline.Process(grade);
+        Grade finalGrade = processedGrade;
+
+        ScoreManager.instance.AddScoreRaw(finalGrade.score);
 
         return finalGrade;
     }

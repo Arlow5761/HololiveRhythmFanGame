@@ -54,6 +54,8 @@ public class NormalNote : BaseNote
         NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
         NotesManager.instance.onNotePass.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
+        NormalNoteMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
+
         CleanUp();
     }
 
@@ -70,6 +72,8 @@ public class NormalNote : BaseNote
         noteData.onHit.Invoke(result);
         NotesManager.instance.onNotePress.Invoke(noteData, result);
         NotesManager.instance.onGetGrade.Invoke(noteData, result);
+
+        NormalNoteHitHandler.instance.RegisterHit(noteData, result);
 
         //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
         //audioSource.PlayOneShot(audioSource.clip);
@@ -117,6 +121,7 @@ public class SliderNote : BaseNote
             for (int i = 0; i < newTicks - ticks; i++)
             {
                 NotesManager.instance.onGetGrade.Invoke(noteData, tickGrade);
+                HoldNoteTickHandler.instance.RegisterTick(noteData, tickGrade);
             }
 
             ticks = newTicks;
@@ -129,6 +134,8 @@ public class SliderNote : BaseNote
 
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
         NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
+
+        HoldNoteMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         Timeline.instance.updateEvent.RemoveListener(CheckMissStart);
@@ -143,6 +150,8 @@ public class SliderNote : BaseNote
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
         NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
         NotesManager.instance.onNoteRelease.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
+
+        HoldNoteMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(CheckMissEnd);
@@ -162,6 +171,8 @@ public class SliderNote : BaseNote
         noteData.onHit.Invoke(result);
         NotesManager.instance.onNotePress.Invoke(noteData, result);
         NotesManager.instance.onGetGrade.Invoke(noteData, result);
+
+        HoldNotePressHandler.instance.RegisterPress(noteData, result);
 
         //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "holdstart");
         //audioSource.PlayOneShot(audioSource.clip);
@@ -186,10 +197,12 @@ public class SliderNote : BaseNote
         if (result.score != 0)
         {
             NotesManager.instance.onGetGrade.Invoke(noteData, result);
+            HoldNoteReleaseHandler.instance.RegisterRelease(noteData, result);
         }
         else
         {
             NotesManager.instance.onNoteMiss.Invoke(noteData, result);
+            HoldNoteMissHandler.instance.RegisterMiss(noteData, result);
         }
 
         noteData.onHit.Invoke(result);
@@ -250,6 +263,8 @@ public class MashNote : BaseNote
         noteData.onHit.Invoke(mashGrade);
         NotesManager.instance.onNotePress.Invoke(noteData, mashGrade);
         NotesManager.instance.onGetGrade.Invoke(noteData, mashGrade);
+
+        MashNoteHitHandler.instance.RegisterHit(noteData, mashGrade);
         
         //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
         //audioSource.PlayOneShot(audioSource.clip);

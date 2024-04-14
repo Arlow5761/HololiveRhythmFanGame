@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class HoldNoteReleaseHandler : MonoBehaviour
+public class MashNoteMissHandler : MonoBehaviour
 {
-    public static HoldNoteReleaseHandler instance;
+    public static MashNoteMissHandler instance;
 
     public GradePipeline gradePipeline = new();
 
@@ -11,7 +11,7 @@ public class HoldNoteReleaseHandler : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    public Grade RegisterRelease(NoteData noteData, Grade grade)
+    public Grade RegisterMiss(NoteData noteData, Grade grade)
     {
         Grade processedGrade = gradePipeline.Process(grade);
         Grade finalGrade = processedGrade;
@@ -19,14 +19,12 @@ public class HoldNoteReleaseHandler : MonoBehaviour
         if (finalGrade.name == "Miss")
         {
             ScoreManager.instance.BreakCombo();
+            Scores.grades[finalGrade.name]++;
         }
         else
         {
-            ScoreManager.instance.IncrementCombo();
-            ScoreManager.instance.AddScoreWithCombo(finalGrade.score);
+            ScoreManager.instance.AddScoreRaw(finalGrade.score);
         }
-        
-        Scores.grades[finalGrade.name]++;
 
         return finalGrade;
     }

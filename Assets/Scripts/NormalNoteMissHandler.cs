@@ -11,9 +11,22 @@ public class NormalNoteMissHandler : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    public Grade SubmitGrade(Grade grade)
+    public Grade RegisterMiss(NoteData noteData, Grade grade)
     {
-        Grade finalGrade = gradePipeline.Process(grade);
+        Grade processedGrade = gradePipeline.Process(grade);
+        Grade finalGrade = processedGrade;
+
+        if (finalGrade.name == "Miss")
+        {
+            ScoreManager.instance.BreakCombo();
+        }
+        else
+        {
+            ScoreManager.instance.IncrementCombo();
+            ScoreManager.instance.AddScoreWithCombo(finalGrade.score);
+        }
+
+        Scores.grades[finalGrade.name]++;
 
         return finalGrade;
     }
