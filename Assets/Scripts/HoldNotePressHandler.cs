@@ -19,11 +19,14 @@ public class HoldNotePressHandler : MonoBehaviour
         if (finalGrade.name == "Miss")
         {
             ScoreManager.instance.BreakCombo();
+            PlayerController.instance.OnNoteMiss(noteData, finalGrade);
         }
         else
         {
             ScoreManager.instance.IncrementCombo();
             ScoreManager.instance.AddScoreWithCombo(finalGrade.score);
+            PlayerController.instance.OnNotePress(noteData, finalGrade);
+            NotesAudioPlayer.instance.OnHoldNotePress(noteData, finalGrade);
         }
         
         Scores.grades[finalGrade.name]++;

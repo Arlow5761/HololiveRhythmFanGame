@@ -17,6 +17,8 @@ public class MashNoteHitHandler : MonoBehaviour
         Grade finalGrade = processedGrade;
 
         ScoreManager.instance.AddScoreRaw(finalGrade.score);
+        PlayerController.instance.OnNotePress(noteData, finalGrade);
+        NotesAudioPlayer.instance.OnMashNotePress(noteData, finalGrade);
 
         return finalGrade;
     }

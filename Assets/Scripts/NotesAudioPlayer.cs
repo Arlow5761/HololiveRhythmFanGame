@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class NotesAudioPlayer : MonoBehaviour
 {
+    public static NotesAudioPlayer instance;
+
+    public void Initialize()
+    {
+        if (instance == null) instance = this;
+    }
+
     public void OnNormalNotePress(NoteData noteData, Grade grade)
     {
         if (noteData.NoteType != "Normal") return;
@@ -26,5 +33,10 @@ public class NotesAudioPlayer : MonoBehaviour
 
         AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
         audioSource.PlayOneShot(audioSource.clip);
+    }
+
+    void Awake()
+    {
+        Initialize();
     }
 }

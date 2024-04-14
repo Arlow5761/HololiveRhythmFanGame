@@ -19,6 +19,7 @@ public class HoldNoteReleaseHandler : MonoBehaviour
         if (finalGrade.name == "Miss")
         {
             ScoreManager.instance.BreakCombo();
+            PlayerController.instance.OnNoteMiss(noteData, grade);
         }
         else
         {
@@ -27,6 +28,8 @@ public class HoldNoteReleaseHandler : MonoBehaviour
         }
         
         Scores.grades[finalGrade.name]++;
+
+        PlayerController.instance.OnNoteRelease(noteData, finalGrade);
 
         return finalGrade;
     }

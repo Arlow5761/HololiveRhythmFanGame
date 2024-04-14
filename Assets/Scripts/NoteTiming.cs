@@ -51,9 +51,6 @@ public class NormalNote : BaseNote
         //}
 
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
-        NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
-        NotesManager.instance.onNotePass.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
-
         NormalNoteMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         CleanUp();
@@ -70,9 +67,6 @@ public class NormalNote : BaseNote
         if (result.score == 0) return;
 
         noteData.onHit.Invoke(result);
-        NotesManager.instance.onNotePress.Invoke(noteData, result);
-        NotesManager.instance.onGetGrade.Invoke(noteData, result);
-
         NormalNoteHitHandler.instance.RegisterHit(noteData, result);
 
         //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
@@ -120,7 +114,6 @@ public class SliderNote : BaseNote
 
             for (int i = 0; i < newTicks - ticks; i++)
             {
-                NotesManager.instance.onGetGrade.Invoke(noteData, tickGrade);
                 HoldNoteTickHandler.instance.RegisterTick(noteData, tickGrade);
             }
 
@@ -133,8 +126,6 @@ public class SliderNote : BaseNote
         if (currentTime < timing || Threshold.instance.GetGrade(currentTime - timing).score != 0) return;
 
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
-        NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
-
         HoldNotePressMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
@@ -148,9 +139,6 @@ public class SliderNote : BaseNote
         if (currentTime < endTiming || Threshold.instance.GetGrade(currentTime - endTiming).score != 0) return;
 
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
-        NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
-        NotesManager.instance.onNoteRelease.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
-
         HoldNoteReleaseMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
@@ -169,9 +157,6 @@ public class SliderNote : BaseNote
         if (result.score == 0) return;
 
         noteData.onHit.Invoke(result);
-        NotesManager.instance.onNotePress.Invoke(noteData, result);
-        NotesManager.instance.onGetGrade.Invoke(noteData, result);
-
         HoldNotePressHandler.instance.RegisterPress(noteData, result);
 
         //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "holdstart");
@@ -196,17 +181,14 @@ public class SliderNote : BaseNote
 
         if (result.score != 0)
         {
-            NotesManager.instance.onGetGrade.Invoke(noteData, result);
             HoldNoteReleaseHandler.instance.RegisterRelease(noteData, result);
         }
         else
         {
-            NotesManager.instance.onNoteMiss.Invoke(noteData, result);
             HoldNoteReleaseMissHandler.instance.RegisterMiss(noteData, result);
         }
 
         noteData.onHit.Invoke(result);
-        NotesManager.instance.onNoteRelease.Invoke(noteData, result);
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(SliderTick);
@@ -261,9 +243,6 @@ public class MashNote : BaseNote
         //PlayerController.instance.IncreaseFever(Song.Instance.baseFeverIncrease / 3);
 
         noteData.onHit.Invoke(mashGrade);
-        NotesManager.instance.onNotePress.Invoke(noteData, mashGrade);
-        NotesManager.instance.onGetGrade.Invoke(noteData, mashGrade);
-
         MashNoteHitHandler.instance.RegisterHit(noteData, mashGrade);
         
         //AudioSource audioSource = AudioSystem.instance.GetAudio("sfx", "mezzo");
@@ -290,8 +269,8 @@ public class HealNote : BaseNote
 
         //PlayerController.instance.Heal(Song.Instance.baseDamage);
         noteData.onHit.Invoke(healGrade);
-        NotesManager.instance.onNoteHit.Invoke(noteData, healGrade);
-        NotesManager.instance.onGetGrade.Invoke(noteData, healGrade);
+        //NotesManager.instance.onNoteHit.Invoke(noteData, healGrade);
+        //NotesManager.instance.onGetGrade.Invoke(noteData, healGrade);
 
         CleanUp();
     }
@@ -323,8 +302,8 @@ public class ObstacleNote : BaseNote
         //ScoreManager.instance.BreakCombo();
         //PlayerController.instance.Damage(Song.Instance.baseDamage);
         noteData.onHit.Invoke(obstacleGrade);
-        NotesManager.instance.onNoteHit.Invoke(noteData, obstacleGrade);
-        NotesManager.instance.onGetGrade.Invoke(noteData, obstacleGrade);
+        //NotesManager.instance.onNoteHit.Invoke(noteData, obstacleGrade);
+        //NotesManager.instance.onGetGrade.Invoke(noteData, obstacleGrade);
         //Scores.grades["Miss"]++;
 
         CleanUp();
@@ -356,7 +335,7 @@ public class ScoreNote : BaseNote
 
         //ScoreManager.instance.AddScoreWithCombo(grade.score); // Change the added score
         noteData.onHit.Invoke(grade);
-        NotesManager.instance.onGetGrade.Invoke(noteData, grade);
+        //NotesManager.instance.onGetGrade.Invoke(noteData, grade);
 
         CleanUp();
     }

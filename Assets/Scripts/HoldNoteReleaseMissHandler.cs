@@ -16,6 +16,19 @@ public class HoldNoteReleaseMissHandler : MonoBehaviour
         Grade processedGrade = gradePipeline.Process(grade);
         Grade finalGrade = processedGrade;
 
+        if (finalGrade.name == "Miss")
+        {
+            ScoreManager.instance.BreakCombo();
+            PlayerController.instance.OnNoteMiss(noteData, finalGrade);
+        }
+        else
+        {
+            ScoreManager.instance.IncrementCombo();
+            ScoreManager.instance.AddScoreWithCombo(finalGrade.score);
+        }
+
+        PlayerController.instance.OnNoteRelease(noteData, finalGrade);
+
         return finalGrade;
     }
 

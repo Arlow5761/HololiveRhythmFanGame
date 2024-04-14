@@ -19,11 +19,14 @@ public class NormalNoteMissHandler : MonoBehaviour
         if (finalGrade.name == "Miss")
         {
             ScoreManager.instance.BreakCombo();
+            PlayerController.instance.OnNoteMiss(noteData, grade);
+            PlayerController.instance.OnNotePass(noteData, grade);
         }
         else
         {
             ScoreManager.instance.IncrementCombo();
             ScoreManager.instance.AddScoreWithCombo(finalGrade.score);
+            PlayerController.instance.OnNotePress(noteData, finalGrade);
         }
 
         Scores.grades[finalGrade.name]++;
