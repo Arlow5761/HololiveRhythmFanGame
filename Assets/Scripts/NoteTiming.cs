@@ -135,7 +135,7 @@ public class SliderNote : BaseNote
         noteData.onHit.Invoke(Threshold.instance.GetSpecialGrade("Miss"));
         NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
-        HoldNoteMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
+        HoldNotePressMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Press);
         Timeline.instance.updateEvent.RemoveListener(CheckMissStart);
@@ -151,7 +151,7 @@ public class SliderNote : BaseNote
         NotesManager.instance.onNoteMiss.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
         NotesManager.instance.onNoteRelease.Invoke(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
-        HoldNoteMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
+        HoldNoteReleaseMissHandler.instance.RegisterMiss(noteData, Threshold.instance.GetSpecialGrade("Miss"));
 
         ProcessInput.instance.inputEvent.RemoveListener(Release);
         Timeline.instance.updateEvent.RemoveListener(CheckMissEnd);
@@ -202,7 +202,7 @@ public class SliderNote : BaseNote
         else
         {
             NotesManager.instance.onNoteMiss.Invoke(noteData, result);
-            HoldNoteMissHandler.instance.RegisterMiss(noteData, result);
+            HoldNoteReleaseMissHandler.instance.RegisterMiss(noteData, result);
         }
 
         noteData.onHit.Invoke(result);

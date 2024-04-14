@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class HoldNoteMissHandler : MonoBehaviour
+public class HoldNotePressMissHandler : MonoBehaviour
 {
-    public static HoldNoteMissHandler instance;
+    public static HoldNotePressMissHandler instance;
 
     public GradePipeline gradePipeline = new();
 
