@@ -298,4 +298,10 @@ public class PlayerController : MonoBehaviour
             break;
         }
     }
+
+    // Determines whether a note is colliding with a player or not
+    public bool IsCollidingWithNote(NoteData noteData)
+    {
+        return noteData.RowNumber == lane; // not checked with time yet
+    }
 }
