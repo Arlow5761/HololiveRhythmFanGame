@@ -15,8 +15,17 @@ public class HealNotePassHandler : MonoBehaviour
 
     public Grade RegisterPass(NoteData noteData, Grade grade)
     {
-        Grade processedGrade = gradePipeline.Process(grade);
-        Grade finalGrade = processedGrade;
+        Grade finalGrade = grade;
+
+        if (PlayerController.instance.IsCollidingWithNote(noteData))
+        {
+            Grade processedGrade = gradePipeline.Process(grade);
+            finalGrade = processedGrade;
+        }
+        else
+        {
+            finalGrade = Threshold.instance.GetSpecialGrade("Miss");
+        }
 
         if (finalGrade.name == "Miss")
         {
