@@ -294,6 +294,12 @@ public class PlayerController : MonoBehaviour
             case "Normal":
                 if (noteData.RowNumber == lane) Damage(Song.Instance.baseDamage);
             break;
+            case "Heal":
+                if (noteData.RowNumber == lane) Heal(Song.Instance.baseHeal);
+            break;
+            case "Obstacle":
+                if (noteData.RowNumber == lane) Damage(Song.Instance.baseDamage);
+            break;
             default:
             break;
         }
