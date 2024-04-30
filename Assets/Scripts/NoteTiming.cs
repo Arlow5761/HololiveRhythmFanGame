@@ -269,6 +269,7 @@ public class HealNote : BaseNote
 
         //PlayerController.instance.Heal(Song.Instance.baseDamage);
         noteData.onHit.Invoke(healGrade);
+        HealNotePassHandler.instance.RegisterPass(noteData, healGrade);
         //NotesManager.instance.onNoteHit.Invoke(noteData, healGrade);
         //NotesManager.instance.onGetGrade.Invoke(noteData, healGrade);
 
@@ -302,6 +303,7 @@ public class ObstacleNote : BaseNote
         //ScoreManager.instance.BreakCombo();
         //PlayerController.instance.Damage(Song.Instance.baseDamage);
         noteData.onHit.Invoke(obstacleGrade);
+        ObstacleNotePassHandler.instance.RegisterPass(noteData, obstacleGrade);
         //NotesManager.instance.onNoteHit.Invoke(noteData, obstacleGrade);
         //NotesManager.instance.onGetGrade.Invoke(noteData, obstacleGrade);
         //Scores.grades["Miss"]++;
@@ -335,6 +337,7 @@ public class ScoreNote : BaseNote
 
         //ScoreManager.instance.AddScoreWithCombo(grade.score); // Change the added score
         noteData.onHit.Invoke(grade);
+        ScoreNotePassHandler.instance.RegisterPass(noteData, grade);
         //NotesManager.instance.onGetGrade.Invoke(noteData, grade);
 
         CleanUp();
