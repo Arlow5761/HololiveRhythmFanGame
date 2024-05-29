@@ -75,12 +75,23 @@ public class AudioSystem : MonoBehaviour
 
             AudioSource newAudioSource = audioObject.AddComponent<AudioSource>();
             newAudioSource.clip = audioClip;
+            newAudioSource.volume = audioGroup.volume;
 
             audioGroup.Add(audioName, newAudioSource);
             return newAudioSource;
         }
 
         return null;
+    }
+
+    public void ChangeVolume(string groupName, float newVolume)
+    {
+        AudioGroup audioGroup;
+
+        if (audioGroups.TryGetValue(groupName, out audioGroup))
+        {
+            audioGroup.ChangeVolumeAll(newVolume);
+        }
     }
 
     public void Initialize()

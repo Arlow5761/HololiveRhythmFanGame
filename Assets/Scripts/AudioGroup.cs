@@ -6,6 +6,8 @@ using UnityEngine;
 // Container class for multiple audio sources
 public class AudioGroup : Dictionary<string, AudioSource>
 {
+    public float volume;
+
     public void StopAll()
     {
         this.AsParallel().ForAll(audio => audio.Value.Stop());
@@ -28,7 +30,8 @@ public class AudioGroup : Dictionary<string, AudioSource>
 
     public void ChangeVolumeAll(float newVolume)
     {
-        this.AsParallel().ForAll(audio => audio.Value.volume = newVolume);
+        volume = newVolume;
+        this.AsParallel().ForAll(audio => audio.Value.volume = volume);
     }
 }
 
