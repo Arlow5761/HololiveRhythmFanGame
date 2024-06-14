@@ -6,7 +6,8 @@ public static class CharacterDictionary
 {
     private static Dictionary<string, CharacterInterface> characters = new()
     {
-        {"Test", new TestCharacter()}
+        {"Test", new TestCharacter()},
+        {"Mori", new MoriCharacter()}
     };
 
     public static CharacterInterface GetCharacter(string characterName)
