@@ -9,7 +9,10 @@ public class MoriCharacter : CharacterInterface
 
     public void Setup()
     {
+        PlayerController.instance.gameObject.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("CharacterSprites/Animation_Mori_Calliope_NoBackground");
+
         livesCount = 0;
+        currentCombo = 0;
 
         ScoreManager.instance.comboPipeline.AddStep(new(-1, (int combo) => {
             if (livesCount > 0 && combo == 0)
