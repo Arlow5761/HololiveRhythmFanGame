@@ -24,7 +24,7 @@ public static class GameData
         }
     };
     public static Difficulty selectedDifficulty = songInfo.metadata.difficulties[0]; // Default value for testing
-    public static string character = "Test";
+    public static string character = "Mori";
     public static string pet;
     public static double offset;
 }
